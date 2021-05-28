@@ -150,11 +150,11 @@ var Pather = {
 		}
 
 		if (x === undefined || y === undefined) {
-			throw new Error("moveTo: Function must be called with at least 2 arguments.");
+			throw new Error("이동 : 함수는 최소한 2 개의 인수로 호출되어야합니다.");
 		}
 
 		if (typeof x !== "number" || typeof y !== "number") {
-			throw new Error("moveTo: Coords must be numbers");
+			throw new Error("이동 : 좌표는 숫자 여야합니다.");
 		}
 
 		if (retry === undefined) {
@@ -188,7 +188,7 @@ var Pather = {
 		path = getPath(me.area, x, y, me.x, me.y, useTeleport ? 1 : 0, useTeleport ? ([62, 63, 64].indexOf(me.area) > -1 ? 30 : this.teleDistance) : this.walkDistance);
 
 		if (!path) {
-			throw new Error("moveTo: Failed to generate path.");
+			throw new Error("이동 : 경로를 생성하지 못했습니다.");
 		}
 
 		path.reverse();
@@ -265,7 +265,7 @@ var Pather = {
 					fail += 1;
 
 					if (!path) {
-						throw new Error("moveTo: Failed to generate path.");
+						throw new Error("이동 : 경로를 생성하지 못했습니다.");
 					}
 
 					path.reverse();
@@ -275,7 +275,7 @@ var Pather = {
 						path.pop();
 					}
 
-					print("move retry " + fail);
+					print("이동 재시도 :" + fail);
 
 					if (fail > 0) {
 						Packet.flash(me.gid);
@@ -474,7 +474,7 @@ ModeLoop:
 
 						while (getTickCount() - tick < 1000) {
 							if (door.mode === 2) {
-								me.overhead("Opened a door!");
+								me.overhead("도어를 오픈합니다!");
 
 								return true;
 							}
@@ -519,7 +519,7 @@ ModeLoop:
 		}
 
 		if (!unit || !unit.hasOwnProperty("x") || !unit.hasOwnProperty("y")) {
-			throw new Error("moveToUnit: Invalid unit.");
+			throw new Error("moveTo 단위 : 유효하지 않은 단위.");
 		}
 
 		if (unit instanceof PresetUnit) {
@@ -546,7 +546,7 @@ ModeLoop:
 	*/
 	moveToPreset: function (area, unitType, unitId, offX, offY, clearPath, pop) {
 		if (area === undefined || unitType === undefined || unitId === undefined) {
-			throw new Error("moveToPreset: Invalid parameters.");
+			throw new Error("moveToPreset : 유효하지 않은 매개 변수.");
 		}
 
 		if (offX === undefined) {
@@ -568,7 +568,7 @@ ModeLoop:
 		var presetUnit = getPresetUnit(area, unitType, unitId);
 
 		if (!presetUnit) {
-			throw new Error("moveToPreset: Couldn't find preset unit - id " + unitId);
+			throw new Error("moveToPreset : 사전 설정 단위를 찾을 수 없습니다 - id " + unitId);
 		}
 
 		return this.moveTo(presetUnit.roomx * 5 + presetUnit.x + offX, presetUnit.roomy * 5 + presetUnit.y + offY, 3, clearPath, pop);
@@ -594,7 +594,7 @@ ModeLoop:
 			area = getArea();
 
 			if (!area) {
-				throw new Error("moveToExit: error in getArea()");
+				throw new Error("moveToExit : 오류 getArea()");
 			}
 
 			exits = area.exits;
@@ -760,7 +760,7 @@ ModeLoop:
 		}
 
 		if (!unit) {
-			throw new Error("openUnit: Unit not found. ID: " + unit);
+			throw new Error("openUnit : 단위를 찾을 수 없음 ID: " + unit);
 		}
 
 		if (unit.mode != 0) {
@@ -815,7 +815,7 @@ ModeLoop:
 		}
 
 		if (!unit) {
-			throw new Error("useUnit: Unit not found. ID: " + id);
+			throw new Error("useUnit : 단위를 찾을 수 없습니다 ID: " + id);
 		}
 
 		for (i = 0; i < 3; i += 1) {
@@ -825,7 +825,7 @@ ModeLoop:
 
 			if (type === 2 && unit.mode === 0) {
 				if ((me.area === 83 && targetArea === 100 && me.getQuest(21, 0) !== 1) || (me.area === 120 && targetArea === 128 && me.getQuest(39, 0) !== 1)) {
-					throw new Error("useUnit: Incomplete quest.");
+					throw new Error("useUnit : 완료되지 않은 퀘스트.");
 				}
 
 				if (me.area === 92) {
@@ -870,7 +870,7 @@ ModeLoop:
 	useWaypoint: function useWaypoint(targetArea, check) {
 		switch (targetArea) {
 		case undefined:
-			throw new Error("useWaypoint: Invalid targetArea parameter: " + targetArea);
+			throw new Error("useWaypoint : 유효하지 않은 대상 지역 매개 변수: " + targetArea);
 		case null:
 		case "random":
 			check = true;
@@ -878,11 +878,11 @@ ModeLoop:
 			break;
 		default:
 			if (typeof targetArea !== "number") {
-				throw new Error("useWaypoint: Invalid targetArea parameter");
+				throw new Error("useWaypoint : 유효하지 않은 대상 지역 매개 변수");
 			}
 
 			if (this.wpAreas.indexOf(targetArea) < 0) {
-				throw new Error("useWaypoint: Invalid area");
+				throw new Error("useWaypoint : 유효하지 않은 영역");
 			}
 
 			break;
@@ -905,7 +905,7 @@ ModeLoop:
 						if (!Misc.poll(function () {
 							return me.area === 1;
 						}, 2000, 100)) {
-							throw new Error("Failed to go to act 1 using Warriv");
+							throw new Error("Warriv를 사용하여 1 막으로 이동하지 못했습니다.");
 						}
 					}
 				}
@@ -955,13 +955,13 @@ ModeLoop:
 
 							if (!getWaypoint(this.wpAreas.indexOf(targetArea))) {
 								me.cancel();
-								me.overhead("Trying to get the waypoint");
+								me.overhead("웨이 포인트를 얻으려고");
 
 								if (this.getWP(targetArea)) {
 									return true;
 								}
 
-								throw new Error("Pather.useWaypoint: Failed to go to waypoint");
+								throw new Error("Pather.useWaypoint: 경유지로 이동하지 못했습니다.");
 							}
 
 							break;
@@ -1018,7 +1018,7 @@ ModeLoop:
 			return true;
 		}
 
-		throw new Error("useWaypoint: Failed to use waypoint");
+		throw new Error("useWaypoint : 경유지를 사용하지 못했습니다.");
 	},
 
 	/*

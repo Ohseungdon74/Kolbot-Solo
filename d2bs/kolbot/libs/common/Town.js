@@ -154,7 +154,7 @@ var Town = {
 
 	// Start a task and return the NPC Unit
 	initNPC: function (task, reason) {
-		print("initNPC: " + reason);
+		print("ÿc2초기화 NPC: " + reason);
 
 		var npc = getInteractedNPC();
 
@@ -216,7 +216,7 @@ var Town = {
 			return true;
 		}
 
-		if (!this.initNPC("Heal", "heal")) {
+		if (!this.initNPC("Heal", "회복")) {
 			return false;
 		}
 
@@ -308,7 +308,7 @@ var Town = {
 			this.goToTown(4);
 		}
 
-		npc = this.initNPC("Shop", "buyPotions");
+		npc = this.initNPC("Shop", "포션 구매");
 
 		if (!npc) {
 			return false;
@@ -449,7 +449,7 @@ var Town = {
 		}
 
 		var scroll, tome,
-			npc = this.initNPC("Shop", "fillTome");
+			npc = this.initNPC("Shop", "스크롤 채우기");
 
 		if (!npc) {
 			return false;
@@ -532,7 +532,7 @@ var Town = {
 			return false;
 		}
 
-		npc = this.initNPC("Shop", "identify");
+		npc = this.initNPC("Shop", "구분");
 
 		if (!npc) {
 			return false;
@@ -890,7 +890,7 @@ CursorLoop:
 			return false;
 		}
 
-		print("ÿc4MiniShopBotÿc0: Scanning " + npc.itemcount + " items.");
+		print("ÿc4미니 샵 봇ÿc0: 스태닝 " + npc.itemcount + "개 아이템.");
 
 		do {
 			if (this.ignoredItemTypes.indexOf(item.itemType) === -1) {
@@ -1062,7 +1062,7 @@ CursorLoop:
 	buyAntidotes: function (quantity) {
 		let i,
 			antidote,
-			npc = this.initNPC("Shop", "buy Antidote");
+			npc = this.initNPC("Shop", "해독제 구매");
 
 		if (!npc) {
 			return false;
@@ -1098,7 +1098,7 @@ CursorLoop:
 		}
 
 		var key,
-			npc = this.initNPC("Key", "buyKeys");
+			npc = this.initNPC("Key", "열쇠 구매");
 
 		if (!npc) {
 			return false;
@@ -1276,7 +1276,7 @@ CursorLoop:
 				delay(200);
 			}
 
-			Misc.errorReport("Failed to put repaired item back on.");
+			Misc.errorReport("수리 된 항목을 다시 넣지 못했습니다..");
 			D2Bot.stop();
 		}
 
@@ -1290,8 +1290,8 @@ CursorLoop:
 
 		repairAction = this.needRepair();
 
-		if (force && repairAction.indexOf("repair") === -1) {
-			repairAction.push("repair");
+		if (force && repairAction.indexOf("수리") === -1) {
+			repairAction.push("수리");
 		}
 
 		if (!repairAction || !repairAction.length) {
@@ -1301,7 +1301,7 @@ CursorLoop:
 		for (i = 0; i < repairAction.length; i += 1) {
 			switch (repairAction[i]) {
 			case "repair":
-				npc = this.initNPC("Repair", "repair");
+				npc = this.initNPC("Repair", "수리");
 
 				if (!npc) {
 					return false;
@@ -1326,7 +1326,7 @@ CursorLoop:
 						myQuiver.drop();
 					}
 
-					npc = this.initNPC("Repair", "repair");
+					npc = this.initNPC("Repair", "수리");
 
 					if (!npc) {
 						return false;
@@ -1385,7 +1385,7 @@ CursorLoop:
 				repairAction.push("repair");
 			}
 		} else {
-			print("ÿc4Town: ÿc1Can't afford repairs.");
+			print("ÿc4지역: ÿc1수리 할 자금이 부족합니다.");
 		}
 
 		return repairAction;
@@ -1813,7 +1813,7 @@ MainLoop:
 		for (i = 0; !!items && i < items.length; i += 1) {
 			if (items[i].location === 3 && items[i].mode === 0 && items[i].itemType === 22) {
 				if (getUIFlag(0xC) || (Config.PacketShopping && getInteractedNPC() && getInteractedNPC().itemcount > 0)) { // Might as well sell the item if already in shop
-					print("clearInventory sell " + items[i].name);
+					print("인벤토리 정리 및 판매 :" + items[i].name);
 					Misc.itemLogger("Sold", items[i]);
 					items[i].sell();
 				} else {
@@ -1948,7 +1948,7 @@ MainLoop:
 					}
 
 					if (getUIFlag(0xC) || (Config.PacketShopping && getInteractedNPC() && getInteractedNPC().itemcount > 0)) { // Might as well sell the item if already in shop
-						print("clearInventory sell " + items[i].name);
+						print("인벤토리 정리 및 판매 : " + items[i].name);
 						Misc.itemLogger("Sold", items[i]);
 						items[i].sell();
 					} else {
@@ -1959,12 +1959,12 @@ MainLoop:
 					break;
 				case 4: // Sell item
 					try {
-						print("LowGold sell " + items[i].name);
-						this.initNPC("Shop", "clearInventory");
+						print("낮은 금액으로 판매 : " + items[i].name);
+						this.initNPC("Shop", "인벤토리 정리");
 						Misc.itemLogger("Sold", items[i]);
 						items[i].sell();
 					} catch (e) {
-						print(e);
+						ㅑprint(e);
 					}
 
 					break;

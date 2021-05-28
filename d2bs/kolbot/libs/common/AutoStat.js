@@ -595,7 +595,7 @@ MainSwitch:
 
 		while (getTickCount() - tick < 3000) {
 			if (currStat > me.getStat(4)) {
-				print("AutoStat: Using " + (currStat - me.getStat(4)) + " stat points in " + statIDToString[type]);
+				print("스텟 분배 : 스텟 포인트 " + (currStat - me.getStat(4)) + " 개를 " + statIDToString[type] + "분배 하였습니다.");
 				return true;
 			}
 
@@ -716,7 +716,7 @@ MainSwitch:
 		this.bulkStat = bulkStat;
 
 		if (!this.statBuildOrder || !this.statBuildOrder.length) {
-			print("AutoStat: No build array specified");
+			print("스탯 분배 : 지정된 빌드 배열이 없습니다.");
 
 			return false;
 		}
@@ -735,7 +735,7 @@ MainSwitch:
 			}
 		}
 
-		print("AutoStat: Finished allocating stat points");
+		print("스탯 분배 : 스탯 포인트 할당 완료");
 
 		return true;
 	};

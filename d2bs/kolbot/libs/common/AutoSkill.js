@@ -50,7 +50,7 @@ var AutoSkill = new function () {
 		for (var i = 0; i < inputArray.length; i += 1) {
 			// limit maximum allocation count to 20
 			if (inputArray[i][1] > 20) {
-				print("AutoSkill: Skill build index " + i + " has allocation count of " + inputArray[i][1] + " and it will be limited to 20");
+				print("스텟 분배: 스킬 빌드 인덱스 " + i + " 할당 횟수가 " + inputArray[i][1] + " 20 개로 제한됩니다.");
 				inputArray[i][1] = 20;
 			}
 
@@ -96,7 +96,7 @@ var AutoSkill = new function () {
 			var addTo = this.skillToAdd(this.skillBuildOrder);
 
 			if (addTo) {
-				print("AutoSkill: Using skill point in Skill ID: " + addTo);
+				print("스킬 분배: 스킬 ID: " + addTo + "에 투자하였습니다.");
 				delay(100);
 				useSkillPoint(addTo, 1);
 			}
@@ -121,7 +121,7 @@ var AutoSkill = new function () {
 		this.save = save;
 
 		if (!this.skillBuildOrder || !this.skillBuildOrder.length) {
-			print("AutoSkill: No build array specified");
+			print("스킬 분배: 지정된 빌드 배열이 없습니다.");
 
 			return false;
 		}
@@ -140,7 +140,7 @@ var AutoSkill = new function () {
 			}
 		}
 
-		print("AutoSkill: Finished allocating skill points");
+		print("스킬 분배: 스킬 포인트 할당 완료");
 
 		return true;
 	};

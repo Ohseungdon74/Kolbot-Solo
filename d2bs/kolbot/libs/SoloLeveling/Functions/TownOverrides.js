@@ -173,7 +173,7 @@ Town.identify = function () {
 		return false;
 	}
 
-	npc = this.initNPC("Shop", "identify");
+	npc = this.initNPC("Shop", "아이템 식별 및 정리.");
 
 	if (!npc) {
 		return false;
@@ -341,7 +341,7 @@ Town.buyBooks = function () {
 			if (tpScroll && me.getStat(14) + me.getStat(15) >= tpScroll.getItemCost(0) && Storage.Inventory.CanFit(tpScroll)) {
 				try {
 					if (tpScroll.buy()) {
-						print('ÿc9SoloLevelingÿc0: bought Scroll of Town Portal');
+						print('ÿc9솔로레벨링ÿc0: 타운포탈 스크롤 구입');
 					}
 				} catch (e1) {
 					print(e1);
@@ -358,7 +358,7 @@ Town.buyBooks = function () {
 		if (idBook && Storage.Inventory.CanFit(idBook)) {
 			try {
 				if (idBook.buy()) {
-					print('ÿc9SoloLevelingÿc0: bought Tome of Identify');
+					print('ÿc9솔로레벨링ÿc0: 식별의 책 구입');
 				}
 			} catch (e3) {
 				print(e3);
@@ -449,7 +449,7 @@ Town.buyPotions = function () {
 		this.goToTown(4);
 	}
 
-	npc = this.initNPC("Shop", "buyPotions");
+	npc = this.initNPC("Shop", "포션 구매");
 
 	if (!npc) {
 		return false;
@@ -516,7 +516,7 @@ Town.shopItems = function () {
 		return false;
 	}
 
-	print("ÿc4MiniShopBotÿc0: Scanning " + npc.itemcount + " items.");
+	print("ÿc4미니 숍 봇ÿc0: 스캐닝 " + npc.itemcount + "개 아이템.");
 
 	do {
 		if (this.ignoredItemTypes.indexOf(item.itemType) === -1) {
@@ -524,7 +524,7 @@ Town.shopItems = function () {
 		}
 	} while (item.getNext());
 
-	print("ÿc9SoloLevelingÿc0: Evaluating " + npc.itemcount + " items.");
+	print("ÿc9솔로 레벨링ÿc0: 평가 " + npc.itemcount + "개 아이템.");
 
 	for (i = 0; i < items.length; i += 1) {
 		result = Pickit.checkItem(items[i]);
@@ -605,15 +605,15 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (book.interact()) {
-			print('ÿc9SoloLevelingÿc0: used Radament skill book');
+			print('ÿc9솔로레벨링ÿc0: 중고 Radament 스킬북');
 		} else {
-			print('ÿc9SoloLevelingÿc0: failed to used Radament skill book');
+			print('ÿc9솔로레벨링ÿc0: Radament 스킬북 사용 실패');
 		}
 	}
 
 	//Act 3
 	if (me.getItem(546)) { // golden bird
-		print("ÿc9SoloLevelingÿc0: starting jade figurine");
+		print("ÿc9솔로레벨링ÿc0: 제이드 동상 시작");
 		me.overhead('jade figurine');
 		Town.goToTown(3);
 		Town.npcInteract("meshif");
@@ -633,9 +633,9 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (pol.interact()) {
-			print('ÿc9SoloLevelingÿc0: used potion of life');
+			print('ÿc9솔로레벨링ÿc0: 사용한 생명의 물약');
 		} else {
-			print('ÿc9SoloLevelingÿc0: failed to used potion of life');
+			print('ÿc9솔로레벨링ÿc0: 생명의 물약을 사용하지 못했습니다.');
 		}
 	}
 
@@ -648,7 +648,7 @@ Town.unfinishedQuests = function () {
 
 		Town.goToTown(3);
 		Town.npcInteract("alkor");
-		print('ÿc9SoloLevelingÿc0: LamEssen Tome completed');
+		print('ÿc9솔로레벨링ÿc0: LamEssen Tome 완성');
 	}
 
 	if (kw) { //remove Khalim's Will if quest not completed and restarting run.
@@ -656,7 +656,7 @@ Town.unfinishedQuests = function () {
 			Town.clearInventory();
 			delay(500 + me.ping * 2);
 			Quest.stashItem(174);
-			print('ÿc9SoloLevelingÿc0: removed khalims will');
+			print('ÿc9솔로레벨링ÿc0: 제거 된 할림의 의지');
 			Item.autoEquip();
 		}
 	}
@@ -1049,23 +1049,23 @@ Town.clearInventory = function () {
 					delay(200);
 				}
 
-				this.initNPC("Shop", "clearInventory");
+				this.initNPC("Shop", "인벤토리 정리");
 
 				if (getUIFlag(0xC) || (Config.PacketShopping && getInteractedNPC() && getInteractedNPC().itemcount > 0)) { // Might as well sell the item if already in shop
-					print("clearInventory sell " + items[i].name);
+					print("인벤토리 정리 : " + items[i].name);
 					Misc.itemLogger("Sold", items[i]);
 					items[i].sell();
 				} else {
-					print("clearInventory dropped " + items[i].name);
-					Misc.itemLogger("Dropped", items[i], "clearInventory");
+					print("인벤토리 정리 드랍 " + items[i].name);
+					Misc.itemLogger("Dropped", items[i], "인벤토리 정리");
 					items[i].drop();
 				}
 
 				break;
 			case 4: // Sell item
 				try {
-					print("LowGold sell " + items[i].name);
-					this.initNPC("Shop", "clearInventory");
+					print(" 금액으로 판매 : " + items[i].name);
+					this.initNPC("Shop", "인벤토리 정리");
 					Misc.itemLogger("Sold", items[i]);
 					items[i].sell();
 				} catch (e) {
@@ -1097,7 +1097,7 @@ Town.clearJunk = function () {
 		) {
 			if (junk[0].drop()) {
 				me.overhead('cleared junk');
-				print("ÿc9SoloLevelingÿc0: Cleared junk - " + junk[0].name);
+				print("ÿc9솔로레벨링ÿc0: 정크 제거 - " + junk[0].name);
 				delay(50 + me.ping);
 			}
 		}
@@ -1118,7 +1118,7 @@ Town.clearJunk = function () {
 				junk[0].itemType !== 30 && junk[0].getStatEx(31) < rwBase.getStatEx(31)) { // only drop noneth armors helms shields
 				if (junk[0].drop()) {
 					me.overhead('cleared runeword junk');
-					print("ÿc9SoloLevelingÿc0: Cleared runeword junk - " + junk[0].name);
+					print("ÿc9솔로레벨링ÿc0: 룬워드 정크 제거 - " + junk[0].name);
 					delay(50 + me.ping);
 				}
 			}

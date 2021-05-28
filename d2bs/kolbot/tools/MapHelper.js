@@ -38,12 +38,12 @@ function main() {
 			delay(100);
 
 			if (mapThread.running) {
-				print("pause mapthread");
+				print("맵 스레드 일시 중지");
 				mapThread.pause();
 			}
 		} else {
 			if (!mapThread.running) {
-				print("resume mapthread");
+				print("맵 스레드 재개");
 				mapThread.resume();
 			}
 		}

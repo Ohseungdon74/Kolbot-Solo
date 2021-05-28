@@ -58,7 +58,7 @@ function main() {
 		if (party) {
 			do {
 				if (party.name !== me.name && getPlayerFlag(me.gid, party.gid, 8) && hostiles.indexOf(party.name) === -1) {
-					D2Bot.printToConsole(party.name + " (Level " + party.level + " " + charClass[party.classid] + ")" + " has declared hostility.", 8);
+					D2Bot.printToConsole(party.name + " (레벨 " + party.level + " " + charClass[party.classid] + ")" + "가 적대감을 선언했습니다.", 8);
 					hostiles.push(party.name);
 				}
 			} while (party.getNext());
@@ -72,7 +72,7 @@ function main() {
 		var script = getScript("default.dbj");
 
 		if (script && script.running) {
-			print("ÿc1Pausing.");
+			print("ÿc1일시 중지.");
 			script.pause();
 		}
 	};
@@ -82,7 +82,7 @@ function main() {
 		var script = getScript("default.dbj");
 
 		if (script && !script.running) {
-			print("ÿc2Resuming.");
+			print("ÿc2재개.");
 			script.resume();
 		}
 	};
@@ -195,7 +195,7 @@ function main() {
 
 			if (hostiles.length > 0 && (Config.HostileAction === 0 || (Config.HostileAction === 1 && me.inTown))) {
 				if (Config.TownOnHostile) {
-					print("ÿc1Hostility detected, going to town.");
+					print("ÿc1적대감이 감지되어 마을로 이동.");
 					this.pause();
 
 					if (!me.inTown) {
@@ -205,8 +205,8 @@ function main() {
 					try {
 						Town.goToTown();
 					} catch (e) {
-						print(e + " Failed to go to town. Quitting.");
-						scriptBroadcast("quit"); // quit if failed to go to town
+						print(e + " 마을에 가지 못했습니다. 종료합니다.");
+						scriptBroadcast("종료합니다."); // quit if failed to go to town
 					}
 
 					while (hostiles.length > 0) {
@@ -220,7 +220,7 @@ function main() {
 
 					this.resume();
 				} else {
-					scriptBroadcast("quit");
+					scriptBroadcast("종료합니다.");
 				}
 
 				delay(500);
@@ -307,7 +307,7 @@ function main() {
 				// Mode 1 - Quit if hostile player is nearby
 				if (Config.HostileAction === 1) {
 					if (Config.TownOnHostile) {
-						print("ÿc1Hostile player nearby, going to town.");
+						print("ÿc1근처에 적대적인 플레이어가 마을로갑니다.");
 						this.pause();
 
 						if (!me.inTown) {
@@ -317,8 +317,8 @@ function main() {
 						try {
 							Town.goToTown();
 						} catch (e) {
-							print(e + " Failed to go to town. Quitting.");
-							scriptBroadcast("quit"); // quit if failed to go to town
+							print(e + " 마을에 가지 못했습니다. 종료합니다.");
+							scriptBroadcast("종료합니다."); // quit if failed to go to town
 						}
 
 						while (hostiles.length > 0) {
@@ -332,7 +332,7 @@ function main() {
 
 						this.resume();
 					} else {
-						scriptBroadcast("quit");
+						scriptBroadcast("종료합니다.");
 					}
 
 					delay(500);
