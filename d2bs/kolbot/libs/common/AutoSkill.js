@@ -96,7 +96,7 @@ var AutoSkill = new function () {
 			var addTo = this.skillToAdd(this.skillBuildOrder);
 
 			if (addTo) {
-				print("스킬 분배: 스킬 ID: " + addTo + "에 투자하였습니다.");
+				print("스킬 분배 : 스킬 ID: " + addTo + "에 투자하였습니다.");
 				delay(100);
 				useSkillPoint(addTo, 1);
 			}
@@ -121,7 +121,7 @@ var AutoSkill = new function () {
 		this.save = save;
 
 		if (!this.skillBuildOrder || !this.skillBuildOrder.length) {
-			print("스킬 분배: 지정된 빌드 배열이 없습니다.");
+			print("스킬 분배 : 지정된 빌드 배열이 없습니다.");
 
 			return false;
 		}
@@ -140,7 +140,7 @@ var AutoSkill = new function () {
 			}
 		}
 
-		print("스킬 분배: 스킬 포인트 할당 완료");
+		print("스킬 분배 : 스킬 포인트 할당 완료");
 
 		return true;
 	};

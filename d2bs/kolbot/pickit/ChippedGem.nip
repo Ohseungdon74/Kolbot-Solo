@@ -1,0 +1,7 @@
+//Pickit by Kolton
+//crafted items will come later as a separate section
+// 보석
+[name] == Chippedamethyst || [name] == Chippedtopaz || [name] == Chippeddiamond || [name] == Chippedsapphire
+//[name] == Flawedamethyst || [name] == Flawedtopaz || [name] == Flaweddiamond || [name] == Flawedsapphire
+//[name] == Flawlessamethyst || [name] == Flawlesstopaz || [name] == Flawlessdiamond || [name] == Flawlesssapphire
+[name] == Perfectamethyst || [name] == Perfecttopaz || [name] == Perfectdiamond || [name] == Perfectsapphire

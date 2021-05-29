@@ -492,7 +492,7 @@ function locationAction (location) {
 			}
 
 			if (getTickCount() - gameStart < StarterConfig.MinGameTime * 1e3) {
-				ControlAction.timeoutDelay("최소 게임 시간 대기", StarterConfig.MinGameTime * 1e3 + gameStart - getTickCount());
+				ControlAction.timeoutDelay("최소게임 시간대기", StarterConfig.MinGameTime * 1e3 + gameStart - getTickCount());
 			}
 		}
 
@@ -682,7 +682,7 @@ function locationAction (location) {
 							setUp.password = DataFile.getStats().AcctPswd;
 
 							if (!ControlAction.loginAccount(setUp)) { // generated account login from stored datafile info
-								D2Bot.printToConsole('SoloLeveling: Error logging in. please update your profile settings and start again', 6);
+								D2Bot.printToConsole('솔로레벨링: 로그인 실패. 당신의 프로필설정을 업데이트 그리고 다시 시작하세요.', 6);
 								D2Bot.stop();
 							}
 						}
