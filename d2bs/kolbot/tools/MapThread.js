@@ -708,7 +708,7 @@ var Hooks = {
 				for (i = 0; i < exits.length; i += 1) {
 					if (exits[i].target === this.prevAreas[me.area]) {
 						this.hooks.push({
-							name: "이전지역",
+							name: "이전 지역",
 							destination: this.prevAreas[me.area],
 							hook: new Text("Num 1: " + Pather.getAreaName(this.prevAreas[me.area]), 150, 525 - (this.hooks.length * 10))
 						});

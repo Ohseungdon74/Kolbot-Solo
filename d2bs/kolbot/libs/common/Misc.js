@@ -1412,7 +1412,7 @@ var Misc = {
 			lastArea = DataFile.getStats().lastArea;
 
 			if (lastArea) {
-				desc += ("\n\\xffc0Area: " + lastArea);
+				desc += ("\n\\xffc0지역 : " + lastArea);
 			}
 		}
 
@@ -1572,7 +1572,7 @@ var Misc = {
 		}
 
 		if (keptLine) {
-			desc += ("\n\\xffc0Line: " + keptLine);
+			desc += ("\n\\xffc0라인 : " + keptLine);
 		}
 
 		desc += "$" + (unit.getFlag(0x400000) ? ":eth" : "");
@@ -1732,7 +1732,7 @@ var Misc = {
 							}
 
 							if (needhp) {
-								print("We need healing potions");
+								print("치유 물약이 필요합니다.");
 
 								check = true;
 							}
@@ -1792,7 +1792,7 @@ var Misc = {
 			unit = getUnit(-1, name);
 
 		if (!unit) {
-			print("player not found");
+			print("플레이어를 찾을 수 없습니다.");
 
 			return false;
 		}
@@ -1891,8 +1891,8 @@ MainLoop:
 			filemsg = dateString + " <" + me.profile + "> " + error.replace(/ÿc[0-9!"+<:;.*]/gi, "") + "\n";
 		} else {
 			source = error.fileName.substring(error.fileName.lastIndexOf("\\") + 1, error.fileName.length);
-			msg = "ÿc1Error in ÿc0" + script + " ÿc1(" + source + " line ÿc1" + error.lineNumber + "): ÿc1" + error.message;
-			oogmsg = " Error in " + script + " (" + source + " #" + error.lineNumber + ") " + error.message + " (Area: " + me.area + ", Ping:" + me.ping + ", Game: " + me.gamename + ")";
+			msg = "ÿc1오류 ÿc0" + script + " ÿc1(" + source + " 라인 ÿc1" + error.lineNumber + "): ÿc1" + error.message;
+			oogmsg = " 오류 " + script + " (" + source + " #" + error.lineNumber + ") " + error.message + " (지역: " + me.area + ", 핑:" + me.ping + ", 게임: " + me.gamename + ")";
 			filemsg = dateString + " <" + me.profile + "> " + msg.replace(/ÿc[0-9!"+<:;.*]/gi, "") + "\n";
 
 			if (error.hasOwnProperty("stack")) {
@@ -2025,7 +2025,7 @@ MainLoop:
 			return copy;
 		}
 
-		throw new Error("Unable to copy obj! Its type isn't supported.");
+		throw new Error("obj를 복사 할 수 없습니다! 유형이 지원되지 않습니다.");
 	},
 
 	copy: function (from) {
@@ -2185,13 +2185,13 @@ var Experience = {
 			timeToLevel = this.timeToLevel();
 
 		//string = "[Game: " + me.gamename + (me.gamepassword ? "//" + me.gamepassword : "") + getGameTime + "] [Level: " + me.getStat(12) + " (" + progress + "%)] [XP: " + gain + "] [Games ETA: " + runsToLevel + "] [Time ETA: " + timeToLevel + "]";
-		string = "[Game: " + me.gamename + (me.gamepassword ? "//" + me.gamepassword : "") + getGameTime + "] [Level: " + me.getStat(12) + " (" + progress + "%)] [XP: " + gain + "] [Games ETA: " + runsToLevel + "]";
+		string = "[게임: " + me.gamename + (me.gamepassword ? "//" + me.gamepassword : "") + getGameTime + "] [레벨: " + me.getStat(12) + " (" + progress + "%)] [XP: " + gain + "] [Games ETA: " + runsToLevel + "]";
 
 		if (gain) {
 			D2Bot.printToConsole(string, 4);
 
 			if (me.getStat(12) > DataFile.getStats().level) {
-				D2Bot.printToConsole("Congrats! You gained a level. Current level:" + me.getStat(12), 5);
+				D2Bot.printToConsole("축하합니다! 레벨이 올랐습니다. 현재 레벨:" + me.getStat(12), 5);
 			}
 		}
 	}
@@ -2200,7 +2200,7 @@ var Experience = {
 var Packet = {
 	openMenu: function (unit) {
 		if (unit.type !== 1) {
-			throw new Error("openMenu: Must be used on NPCs.");
+			throw new Error("메뉴 열기 : NPC에서 사용해야합니다.");
 		}
 
 		if (getUIFlag(0x08)) {
@@ -2243,7 +2243,7 @@ var Packet = {
 
 	startTrade: function (unit, mode) {
 		if (unit.type !== 1) {
-			throw new Error("Unit.startTrade: Must be used on NPCs.");
+			throw new Error("Unit.startTrade: NPC에서 사용해야합니다..");
 		}
 
 		if (getUIFlag(0x0C)) {
@@ -2279,7 +2279,7 @@ var Packet = {
 			npc = getInteractedNPC();
 
 		if (!npc) {
-			throw new Error("buyItem: No NPC menu open.");
+			throw new Error("아이템 구매 : NPC 메뉴가 열리지 않습니다.");
 		}
 
 		if (me.getStat(14) + me.getStat(15) < unit.getItemCost(0)) { // Can we afford the item?
@@ -2309,7 +2309,7 @@ var Packet = {
 
 	sellItem: function (unit) {
 		if (unit.type !== 4) { // Check if it's an item we want to buy
-			throw new Error("Unit.sell: Must be used on items.");
+			throw new Error("Unit.sell: 아이템에 사용되어야합니다.");
 		}
 
 		var i, tick, npc,
@@ -2530,7 +2530,7 @@ Example (Spoof 'player move' packet to server):
 function PacketBuilder () {
 	/* globals DataView ArrayBuffer */
 	if (this.__proto__.constructor !== PacketBuilder) {
-		throw new Error("PacketBuilder must be called with 'new' operator!");
+		throw new Error("패킷 빌더는 'new'연산자로 호출해야합니다!");
 	}
 
 	let queue = [], count = 0;

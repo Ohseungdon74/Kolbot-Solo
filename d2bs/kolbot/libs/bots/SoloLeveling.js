@@ -12,17 +12,17 @@ if (!isIncluded("SoloLeveling/Tools/Tracker.js")) {
 
 function SoloLeveling () {
 	this.setup = function () {
-		print('ÿc9SoloLevelingÿc0: start setup');
-		me.overhead('start setup');
-		print("ÿc9SoloLevelingÿc0: quest items loaded to Pickit");
+		print('ÿc9솔로레벨링ÿc0 : 설정 시작.');
+		me.overhead('설정 시작');
+		print("ÿc9솔로레벨링ÿc0 : 퀘스트 아이템 pickits 로드..");
 		NTIP.arrayLooping(nipItems.Quest);
-		me.overhead('loading pickits');
-		print("ÿc9SoloLevelingÿc0: general items loaded to Pickit");
+		me.overhead('로드 pickits');
+		print("ÿc9솔로레벨링ÿc0 : 기본 아이템 pickits 로드..");
 		NTIP.arrayLooping(nipItems.General);
-		print("ÿc9SoloLevelingÿc0: valuable items to sell loaded to Pickit");
+		print("ÿc9솔로레벨링ÿc0 : Pickit에 로드된 판매 할 귀중한 품목..");
 		NTIP.arrayLooping(nipItems.Selling);
-		print('ÿc9SoloLevelingÿc0: start run');
-		me.overhead('starting run');
+		print('ÿc9솔로레벨링ÿc0 : 시작..');
+		me.overhead('실행 시작..');
 
 		if (me.charlvl === 1) {
 			let buckler = me.getItem(328);

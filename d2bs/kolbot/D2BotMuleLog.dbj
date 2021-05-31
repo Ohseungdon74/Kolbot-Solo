@@ -240,7 +240,7 @@ MainSwitch:
 			gameCount += 1;
 		}
 
-		ControlAction.timeoutDelay("Make Game Delay", StarterConfig.CreateGameDelay * 1e3);
+		ControlAction.timeoutDelay("방생성 대기 : ", StarterConfig.CreateGameDelay * 1e3);
 		createGame(MuleLogger.LogGame[0] + gameCount, MuleLogger.LogGame[1], 0);
 		locationTimeout(5000, location);
 

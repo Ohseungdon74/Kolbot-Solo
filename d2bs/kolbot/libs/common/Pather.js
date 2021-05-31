@@ -568,7 +568,7 @@ ModeLoop:
 		var presetUnit = getPresetUnit(area, unitType, unitId);
 
 		if (!presetUnit) {
-			throw new Error("moveToPreset : 사전 설정 단위를 찾을 수 없습니다 - id " + unitId);
+			throw new Error("사전 설정포인트 : id - " + unitId + " 찾을 수 없습니다.");
 		}
 
 		return this.moveTo(presetUnit.roomx * 5 + presetUnit.x + offX, presetUnit.roomy * 5 + presetUnit.y + offY, 3, clearPath, pop);
@@ -760,7 +760,7 @@ ModeLoop:
 		}
 
 		if (!unit) {
-			throw new Error("openUnit : 단위를 찾을 수 없음 ID: " + unit);
+			throw new Error("openUnit 단위를 찾을 수 없음 ID : " + unit);
 		}
 
 		if (unit.mode != 0) {
@@ -815,7 +815,7 @@ ModeLoop:
 		}
 
 		if (!unit) {
-			throw new Error("useUnit : 단위를 찾을 수 없습니다 ID: " + id);
+			throw new Error("useUnit 단위를 찾을 수 없습니다 ID : " + id);
 		}
 
 		for (i = 0; i < 3; i += 1) {
@@ -870,7 +870,7 @@ ModeLoop:
 	useWaypoint: function useWaypoint(targetArea, check) {
 		switch (targetArea) {
 		case undefined:
-			throw new Error("useWaypoint : 유효하지 않은 대상 지역 매개 변수: " + targetArea);
+			throw new Error("useWaypoint 유효하지 않은 대상 지역 매개 변수 : " + targetArea);
 		case null:
 		case "random":
 			check = true;
@@ -1339,7 +1339,7 @@ MainLoop:
 			if (preset) {
 				this.moveToUnit(preset, 0, 0, clearPath);
 
-				wp = getUnit(2, "waypoint");
+				wp = getUnit(2, "웨이 포인트");
 
 				if (wp) {
 					for (j = 0; j < 10; j += 1) {

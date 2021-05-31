@@ -75,7 +75,7 @@ var AutoBuild = new function AutoBuild () {
 		var template = getTemplateFilename();
 		this.print("Including build template "+template+" into "+currentScript);
 		if (!include(template)) {
-			throw new Error("Failed to include template: "+template);
+			throw new Error("템플릿 : " + template + " 포함하지 못했습니다.");
 		}
 
 		// Only load() helper thread from default.dbj if it isn't loaded
@@ -109,7 +109,7 @@ var AutoBuild = new function AutoBuild () {
 	// but log from all scripts
 	function myPrint () {
 		var args = Array.prototype.slice.call(arguments);
-		args.unshift("AutoBuild:");
+		args.unshift("자동 빌드 :");
 		var result = args.join(" ");
 		if (verbose) { print.call(this, result); }
 		if (debug) { log.call(this, result); }

@@ -34,23 +34,23 @@ Town.townTasks = function () {
 	Runewords.makeRunewords();
 	Cubing.doCubing();
 	Runewords.makeRunewords();
-	this.equipSWAP();
-	this.heal();
-	this.identify();
-	this.clearInventory();
-	this.buyBooks();
-	this.buyPotions();
-	this.fillTome(518);
-	this.fillTome(519);
+	this.equipSWAP(); //무기 교체
+	this.heal(); // 회복
+	this.identify(); //아이템 식별
+	this.clearInventory(); //인벤토리 정리
+	this.buyBooks(); // 책 구매
+	this.buyPotions(); // 물약 구매
+	this.fillTome(518); //포탈 책 채우기
+	this.fillTome(519); //아이템 스크롤 책 채우기
 	this.shopItems();
-	this.buyKeys();
-	this.repair(true);
+	this.buyKeys(); //열쇠 구매
+	this.repair(true);	//장비 수리
 	this.shopItems();
-	this.reviveMerc();
-	this.gamble();
-	Item.autoEquip();
-	Merc.hireMerc();
-	Merc.equipMerc();
+	this.reviveMerc();	//용병 부활
+	this.gamble();	//겜블
+	Item.autoEquip();	//장비 착용
+	Merc.hireMerc();	
+	Merc.equipMerc(); //용병 장비 착용
 	this.stash();
 	this.clearJunk();
 	this.organizeStash();
@@ -173,7 +173,7 @@ Town.identify = function () {
 		return false;
 	}
 
-	npc = this.initNPC("Shop", "아이템 식별 및 정리.");
+	npc = this.initNPC("Shop", "아이템 확인 및 정리.");
 
 	if (!npc) {
 		return false;
@@ -329,7 +329,7 @@ Town.buyBooks = function () {
 		if (tpBook && me.getStat(14) + me.getStat(15) >= tpBook.getItemCost(0) && Storage.Inventory.CanFit(tpBook)) {
 			try {
 				if (tpBook.buy()) {
-					print('ÿc9SoloLevelingÿc0: bought Tome of Town Portal');
+					print('ÿc9솔로레벨링ÿc0 : Tome of Town Portal 구입');
 					this.fillTome(518);
 				}
 			} catch (e1) {
@@ -341,7 +341,7 @@ Town.buyBooks = function () {
 			if (tpScroll && me.getStat(14) + me.getStat(15) >= tpScroll.getItemCost(0) && Storage.Inventory.CanFit(tpScroll)) {
 				try {
 					if (tpScroll.buy()) {
-						print('ÿc9솔로레벨링ÿc0: 타운포탈 스크롤 구입');
+						print('ÿc9솔로레벨링ÿc0 : 타운포탈 스크롤 구입');
 					}
 				} catch (e1) {
 					print(e1);
@@ -358,7 +358,7 @@ Town.buyBooks = function () {
 		if (idBook && Storage.Inventory.CanFit(idBook)) {
 			try {
 				if (idBook.buy()) {
-					print('ÿc9솔로레벨링ÿc0: 식별의 책 구입');
+					print('ÿc9솔로레벨링ÿc0 : 아이템식별 스크롤 구입');
 				}
 			} catch (e3) {
 				print(e3);
@@ -516,7 +516,7 @@ Town.shopItems = function () {
 		return false;
 	}
 
-	print("ÿc4미니 숍 봇ÿc0: 스캐닝 " + npc.itemcount + "개 아이템.");
+	print("ÿc4샵 봇ÿc0 : 스캔 " + npc.itemcount + " 개 아이템.");
 
 	do {
 		if (this.ignoredItemTypes.indexOf(item.itemType) === -1) {
@@ -524,7 +524,7 @@ Town.shopItems = function () {
 		}
 	} while (item.getNext());
 
-	print("ÿc9솔로 레벨링ÿc0: 평가 " + npc.itemcount + "개 아이템.");
+	print("ÿc9솔로레벨링ÿc0 : 평가 " + npc.itemcount + " 개 아이템.");
 
 	for (i = 0; i < items.length; i += 1) {
 		result = Pickit.checkItem(items[i]);
@@ -533,8 +533,8 @@ Town.shopItems = function () {
 		if (result.result === 1 && NTIP.CheckItem(items[i], NTIP_CheckListNoTier, true).result !== 0) {
 			try {
 				if (Storage.Inventory.CanFit(items[i]) && me.getStat(14) + me.getStat(15) >= items[i].getItemCost(0)) {
-					Misc.itemLogger("Shopped", items[i]);
-					Misc.logItem("Shopped", items[i], result.line);
+					Misc.itemLogger("쇼핑 :", items[i]);
+					Misc.logItem("쇼핑 :", items[i], result.line);
 					items[i].buy();
 				}
 			} catch (e) {
@@ -550,8 +550,8 @@ Town.shopItems = function () {
 					Item.getBodyLoc(items[i])[0] !== undefined &&
 					Item.canEquip(items[i]) &&
 					NTIP.GetTier(items[i]) > Item.getEquippedItem(Item.getBodyLoc(items[i])[0]).tier) {
-						Misc.itemLogger("AutoEquip Shopped", items[i]);
-						Misc.logItem("AutoEquip Shopped", items[i], result.line);
+						Misc.itemLogger("케릭장비 쇼핑 :", items[i]);
+						Misc.logItem("케릭장비 쇼핑 :", items[i], result.line);
 						items[i].buy();
 					}
 
@@ -559,8 +559,8 @@ Town.shopItems = function () {
 					Item.getBodyLocMerc(items[i])[0] !== undefined &&
 					Item.canEquipMerc(items[i], Item.getBodyLocMerc(items[i])[0]) &&
 					NTIP.GetMercTier(items[i]) > Item.getEquippedItemMerc(Item.getBodyLocMerc(items[i])[0]).tier) {
-						Misc.itemLogger("AutoEquipMerc Shopped", items[i]);
-						Misc.logItem("AutoEquipMerc Shopped", items[i], result.line);
+						Misc.itemLogger("용병장비 쇼핑 :", items[i]);
+						Misc.logItem("용병장비 쇼핑 :", items[i], result.line);
 						items[i].buy();
 					}
 				}
@@ -605,15 +605,15 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (book.interact()) {
-			print('ÿc9솔로레벨링ÿc0: 중고 Radament 스킬북');
+			print('ÿc9솔로레벨링ÿc0 : 중고 Radament 스킬북');
 		} else {
-			print('ÿc9솔로레벨링ÿc0: Radament 스킬북 사용 실패');
+			print('ÿc9솔로레벨링ÿc0 : Radament 스킬북 사용 실패');
 		}
 	}
 
 	//Act 3
 	if (me.getItem(546)) { // golden bird
-		print("ÿc9솔로레벨링ÿc0: 제이드 동상 시작");
+		print("ÿc9솔로레벨링ÿc0 : 제이드 동상 시작");
 		me.overhead('jade figurine');
 		Town.goToTown(3);
 		Town.npcInteract("meshif");
@@ -633,9 +633,9 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (pol.interact()) {
-			print('ÿc9솔로레벨링ÿc0: 사용한 생명의 물약');
+			print('ÿc9솔로레벨링ÿc0 : 사용한 생명의 물약');
 		} else {
-			print('ÿc9솔로레벨링ÿc0: 생명의 물약을 사용하지 못했습니다.');
+			print('ÿc9솔로레벨링ÿc0 : 생명의 물약을 사용하지 못했습니다.');
 		}
 	}
 
@@ -648,7 +648,7 @@ Town.unfinishedQuests = function () {
 
 		Town.goToTown(3);
 		Town.npcInteract("alkor");
-		print('ÿc9솔로레벨링ÿc0: LamEssen Tome 완성');
+		print('ÿc9솔로레벨링ÿc0 : 람 에센스 탐 완성');
 	}
 
 	if (kw) { //remove Khalim's Will if quest not completed and restarting run.
@@ -656,7 +656,7 @@ Town.unfinishedQuests = function () {
 			Town.clearInventory();
 			delay(500 + me.ping * 2);
 			Quest.stashItem(174);
-			print('ÿc9솔로레벨링ÿc0: 제거 된 할림의 의지');
+			print('ÿc9솔로레벨링ÿc0 : 제거 된 할림의 의지');
 			Item.autoEquip();
 		}
 	}
@@ -712,9 +712,9 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (sor.interact()) {
-			print('ÿc9SoloLevelingÿc0: used scroll of resistance');
+			print('ÿc9S솔로레벨링ÿc0: 저항의 사용 두루마리');
 		} else {
-			print('ÿc9SoloLevelingÿc0: failed to used scroll of resistance');
+			print('ÿc9솔로레벨링ÿc0: 저항의 두루마리를 사용하지 못했습니다.');
 		}
 	}
 
@@ -813,7 +813,7 @@ Town.buyPots = function (quantity, type) {
 		break;
 	}
 
-	print('ÿc9SoloLevelingÿc0: buying ' + quantity + ' ' + type + ' Potions');
+	print('ÿc9솔로레벨링ÿc0 : 구매 ' + quantity + '개의 ' + type + ' 포션');
 
 	for (let totalspecialpotions = 0; totalspecialpotions < quantity; totalspecialpotions++) {
 
@@ -841,7 +841,7 @@ Town.drinkPots = function () {
 		}
 	}
 
-	print('ÿc9SoloLevelingÿc0: drank Special Potions');
+	print('ÿc9솔로레벨링ÿc0 : 내성 물약을 마셨습니다.');
 
 	return true;
 };
@@ -1027,8 +1027,8 @@ Town.clearInventory = function () {
 			items[i].classid !== 174 && // Khalim's Will
 			items[i].classid !== 644 && // Malah's Potion
 			items[i].classid !== 646 && // Scroll of Resistance
-			(items[i].classid !== 603 && items[i].quality !== 7) && // Anni
-			(items[i].classid !== 604 && items[i].quality !== 7) && // Torch
+			(items[i].classid !== 603 && items[i].quality !== 7) && // Anni 전멸
+			(items[i].classid !== 604 && items[i].quality !== 7) && // Torch 지옥의 횟불
 			(items[i].classid !== 605 && items[i].quality !== 7) && // Gheeds
 			(items[i].code !== 529 || !!me.findItem(518, 0, 3)) && // Don't throw scrolls if no tome is found (obsolete code?)
 			(items[i].code !== 530 || !!me.findItem(519, 0, 3)) && // Don't throw scrolls if no tome is found (obsolete code?)
@@ -1079,7 +1079,7 @@ Town.clearInventory = function () {
 
 	return true;
 };
-
+// 인벤토리 정리 기능
 Town.clearJunk = function () {
 	let junk = me.findItems(-1, 0);
 
@@ -1097,7 +1097,7 @@ Town.clearJunk = function () {
 		) {
 			if (junk[0].drop()) {
 				me.overhead('cleared junk');
-				print("ÿc9솔로레벨링ÿc0: 정크 제거 - " + junk[0].name);
+				print("ÿc9솔로레벨링ÿc0 : 정크 제거 - " + junk[0].name);
 				delay(50 + me.ping);
 			}
 		}
@@ -1118,7 +1118,7 @@ Town.clearJunk = function () {
 				junk[0].itemType !== 30 && junk[0].getStatEx(31) < rwBase.getStatEx(31)) { // only drop noneth armors helms shields
 				if (junk[0].drop()) {
 					me.overhead('cleared runeword junk');
-					print("ÿc9솔로레벨링ÿc0: 룬워드 정크 제거 - " + junk[0].name);
+					print("ÿc9솔로레벨링ÿc0 : 룬워드 정크 제거 - " + junk[0].name);
 					delay(50 + me.ping);
 				}
 			}

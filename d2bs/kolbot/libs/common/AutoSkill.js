@@ -96,7 +96,7 @@ var AutoSkill = new function () {
 			var addTo = this.skillToAdd(this.skillBuildOrder);
 
 			if (addTo) {
-				print("스킬 분배 : 스킬 ID: " + addTo + "에 투자하였습니다.");
+				print("ÿc1스킬 분배 IDÿc7 : " + addTo + " 에 분배 하였습니다.");
 				delay(100);
 				useSkillPoint(addTo, 1);
 			}

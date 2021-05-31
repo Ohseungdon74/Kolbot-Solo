@@ -53,7 +53,7 @@ function main () {
 		canQuit = true,
 		timerLastDrink = [];
 
-	print("ÿc9솔로레벨링:ÿc3 사용자 지정 도구 스레드 스크립트 시작...");
+	print("ÿc9솔로레벨링ÿc3 : 사용자 지정 도구 스레드 스크립트 시작...");
 	D2Bot.init();
 	Config.init(false);
 	Pickit.init(false);

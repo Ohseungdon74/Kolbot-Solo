@@ -27,7 +27,7 @@ var NTIP = {},
 NTIP.OpenFile = function (filepath, notify) {
 	if (!FileTools.exists(filepath)) {
 		if (notify) {
-			Misc.errorReport("ÿc1NIP file doesn't exist: ÿc0" + filepath);
+			Misc.errorReport("ÿc1NIP 파일 : ÿc0" + filepath + " 존재하지 않습니다.");
 		}
 
 		return false;
@@ -42,7 +42,7 @@ NTIP.OpenFile = function (filepath, notify) {
 		nipfile = File.open(filepath, 0);
 	} catch (fileError) {
 		if (notify) {
-			Misc.errorReport("ÿc1Failed to load NIP: ÿc0" + filename);
+			Misc.errorReport("ÿc1로드 실패한 NIP : ÿc0" + filename);
 		}
 	}
 

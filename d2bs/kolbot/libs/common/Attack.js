@@ -229,14 +229,14 @@ var Attack = {
 		}
 
 		if (!target) {
-			throw new Error("Attack.kill: Target not found");
+			throw new Error("Attack.kill: 타겟이 없습니다.");
 		}
 
 		gid = target.gid;
 
 		if (Config.MFLeader) {
 			Pather.makePortal();
-			say("kill " + classId);
+			say(classId + " 죽음");
 		}
 
 		while (attackCount < Config.MaxAttackCount && this.checkMonster(target) && this.skipCheck(target)) {
@@ -266,14 +266,14 @@ var Attack = {
 
 			if (result === 0) {
 				if (retry++ > 3) {
-					errorInfo = " (doAttack failed)";
+					errorInfo = " (공격 실패.)";
 
 					break;
 				}
 
 				Packet.flash(me.gid);
 			} else if (result === 2) {
-				errorInfo = " (No valid attack skills)";
+				errorInfo = " (유효한 공격 스킬이 없습니다.)";
 
 				break;
 			} else {
@@ -284,7 +284,7 @@ var Attack = {
 		}
 
 		if (attackCount === Config.MaxAttackCount) {
-			errorInfo = " (attackCount exceeded)";
+			errorInfo = " (공격 횟수 초과)";
 		}
 
 		if (Config.MFSwitchPercent) {
@@ -298,7 +298,7 @@ var Attack = {
 		}
 
 		if (target.hp > 0 && target.mode !== 0 && target.mode !== 12) {
-			throw new Error("Failed to kill " + target.name + errorInfo);
+			throw new Error("실패 : " +target.name + errorInfo + "를 죽이지 못했습니다. ");
 		}
 
 		return true;
@@ -387,7 +387,7 @@ var Attack = {
 
 		if (Config.MFLeader && !!bossId) {
 			Pather.makePortal();
-			say("clear " + bossId);
+			say("보스 킬 : " + bossId);
 		}
 
 		if (range === undefined) {
@@ -411,7 +411,7 @@ var Attack = {
 		}
 
 		if (typeof (range) !== "number") {
-			throw new Error("Attack.clear: range must be a number.");
+			throw new Error("Attack.clear: 범위는 숫자 여야합니다.");
 		}
 
 		var i, boss, orgx, orgy, target, result, monsterList, start, coord, skillCheck, secAttack,
@@ -435,7 +435,7 @@ var Attack = {
 			}
 
 			if (!boss) {
-				throw new Error("Attack.clear: " + bossId + " not found");
+				throw new Error("Attack.clear : " + bossId + "를 찾을 수 없습니다.");
 			}
 
 			orgx = boss.x;
@@ -643,7 +643,7 @@ var Attack = {
 		case "boolean": // false from Attack.getMob()
 			return false;
 		default:
-			throw new Error("clearList: Invalid argument");
+			throw new Error("보스 킬 목록: 잘못된 인수");
 		}
 
 		if (!sortFunc) {
@@ -715,7 +715,7 @@ var Attack = {
 
 					// Skip non-unique monsters after 15 attacks, except in Throne of Destruction
 					if (me.area !== 131 && !(target.spectype & 0x7) && gidAttack[i].attacks > 15) {
-						print("ÿc1Skipping " + target.name + " " + target.gid + " " + gidAttack[i].attacks);
+						print("ÿc1보류 : " + target.name + " " + target.gid + " " + gidAttack[i].attacks);
 						monsterList.shift();
 					}
 
@@ -1093,7 +1093,7 @@ var Attack = {
 
 	deploy: function (unit, distance, spread, range) {
 		if (arguments.length < 4) {
-			throw new Error("deploy: Not enough arguments supplied");
+			throw new Error("deploy: 제공된 인수가 충분하지 않습니다.");
 		}
 
 		var i, grid, index, currCount,
@@ -1183,7 +1183,7 @@ var Attack = {
 
 	buildGrid: function (xmin, xmax, ymin, ymax, spread) {
 		if (xmin >= xmax || ymin >= ymax || spread < 1) {
-			throw new Error("buildGrid: Bad parameters");
+			throw new Error("buildGrid: 잘못된 매개 변수");
 		}
 
 		var i, j, coll,
@@ -1280,7 +1280,7 @@ var Attack = {
 		}
 
 		if ((unit.spectype & 0x7) && Config.SkipException && Config.SkipException.indexOf(unit.name) > -1) {
-			print("ÿc1Skip Exception: " + unit.name);
+			print("ÿc1예외 건너 뛰기 : " + unit.name);
 			return true;
 		}
 
@@ -1645,7 +1645,7 @@ AuraLoop: // Skip monsters with auras
 		}
 
 		if (name) {
-			print("ÿc4Attackÿc0: No valid positions for: " + name);
+			print("ÿc4공격 : ÿc0 " + name + " 몹의 정보가 없습니다." );
 		}
 
 		return false;

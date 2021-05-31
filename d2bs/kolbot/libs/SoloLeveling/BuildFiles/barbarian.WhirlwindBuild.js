@@ -6,7 +6,7 @@
  */
 
 var build = {
-	caster: false,
+	caster: true,
 	skillstab: 32, // Barbarian Combat
 	wantedskills: [152, 151], // Bash, Whirlwind
 	usefulskills: [138, 149, 155], // Shout, Battle Orders, Battle Command

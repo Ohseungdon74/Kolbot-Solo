@@ -70,7 +70,7 @@ var Loader = {
 			return copy;
 		}
 
-		throw new Error("Unable to copy obj! Its type isn't supported.");
+		throw new Error("obj를 복사 할 수 없습니다! 유형이 지원되지 않습니다.");
 	},
 
 	copy: function (from, to) {
@@ -92,7 +92,7 @@ var Loader = {
 		if (!this.fileList.length) {
 			showConsole();
 
-			throw new Error("You don't have any valid scripts in bots folder.");
+			throw new Error("봇 폴더에 유효한 스크립트가 없습니다.");
 		}
 
 		for (s in Scripts) {
@@ -105,37 +105,37 @@ var Loader = {
 			script = this.scriptList[this.scriptIndex];
 
 			if (this.fileList.indexOf(script) < 0) {
-				Misc.errorReport("ÿc1Script " + script + " doesn't exist.");
+				Misc.errorReport("ÿc1스크립트 : " + script + " 가 존재하지 않습니다.");
 				continue;
 			}
 
 			if (!include("bots/" + script + ".js")) {
-				Misc.errorReport("Failed to include script: " + script);
+				Misc.errorReport("스크립트 : " + script + " 로딩 실패.");
 				continue;
 			}
 
 			if (isIncluded("bots/" + script + ".js")) {
 				try {
 					if (typeof (global[script]) !== "function") {
-						throw new Error("Invalid script function name");
+						throw new Error("잘못된 스크립트 함수 이름");
 					}
 
 					if (this.skipTown.indexOf(script) > -1 || Town.goToTown()) {
-						print("ÿc2Starting script: ÿc9" + script);
+						print("ÿc2시작 스크립트 : ÿc9" + script);
 						//scriptBroadcast(JSON.stringify({currScript: script}));
 						Messaging.sendToScript("tools/toolsthread.js", JSON.stringify({currScript: script}));
 
 						reconfiguration = typeof Scripts[script] === 'object';
 
 						if (reconfiguration) {
-							print("ÿc2Copying Config properties from " + script + " object.");
+							print("ÿc2구성 속성 : " + script + " 에 복사.");
 							this.copy(Scripts[script], Config);
 						}
 
 						global[script]();
 
 						if (reconfiguration) {
-							print("ÿc2Reverting back unmodified config properties.");
+							print("ÿc2수정되지 않은 구성 속성 되돌리기.");
 							this.copy(unmodifiedConfig, Config);
 						}
 					}

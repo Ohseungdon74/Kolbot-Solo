@@ -31,9 +31,9 @@ NodeAction.killMonsters = function (arg) {
 			do {
 				if (getDistance(me.x, me.y, getRoom(kingPreset.roomx * 5 + kingPreset.x), getRoom(kingPreset.roomy * 5 + kingPreset.y)) <= 25) {
 					Town.goToTown();
-					print('ÿc9SoloLevelingÿc0: exit cows. Near the king');
-					me.overhead('Exit cows. Near the king');
-					D2Bot.printToConsole('SoloLeveling: exit cows. Near the king');
+					print('ÿc9솔로레벨링ÿc0 : 카우킹이 근처에 있어 종료합니다.');
+					me.overhead('카우킹이 근처에 있어 종료합니다.');
+					D2Bot.printToConsole('솔로레벨링 : 카우킹이 근처에 있어 종료합니다.');
 				}
 			} while (king.getNext());
 		}
@@ -132,7 +132,7 @@ Pather.openDoors = function (x, y) { //fixed monsterdoors/walls in act 5
 
 					while (getTickCount() - tick < 1000) {
 						if (door.mode === 2) {
-							me.overhead("Opened a door!");
+							me.overhead("문을 열었다!");
 
 							return true;
 						}
@@ -161,7 +161,7 @@ Pather.openDoors = function (x, y) { //fixed monsterdoors/walls in act 5
 					Skill.cast(Config.AttackSkill[1], Skill.getHand(Config.AttackSkill[1]), monstadoor);
 				}
 
-				me.overhead("Broke a barricaded door!");
+				me.overhead("바리케이드 문을 부수다!");
 			}
 		} while (monstadoor.getNext());
 	}
@@ -174,7 +174,7 @@ Pather.openDoors = function (x, y) { //fixed monsterdoors/walls in act 5
 					Skill.cast(Config.AttackSkill[1], Skill.getHand(Config.AttackSkill[1]), monstawall);
 				}
 
-				me.overhead("Broke a barricaded wall!");
+				me.overhead("바리케이드 벽을 부수다!");
 			}
 		} while (monstawall.getNext());
 	}
@@ -228,7 +228,7 @@ Pather.changeAct = function () {
 		}
 	}
 
-	throw new Error("SoloLeveling: Failed to change Act");
+	throw new Error("SoloLeveling : Act 변경 실패");
 };
 
 Pather.moveTo = function (x, y, retry, clearPath, pop) {
@@ -251,11 +251,11 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 	}
 
 	if (x === undefined || y === undefined) {
-		throw new Error("moveTo: Function must be called with at least 2 arguments.");
+		throw new Error("moveTo: 함수는 최소한 2 개의 인수로 호출되어야합니다.");
 	}
 
 	if (typeof x !== "number" || typeof y !== "number") {
-		throw new Error("moveTo: Coords must be numbers");
+		throw new Error("이동 할 좌표는 숫자여야 합니다.");
 	}
 
 	if (retry === undefined) {
@@ -274,7 +274,7 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 	path = getPath(me.area, x, y, me.x, me.y, useTeleport ? 1 : 0, useTeleport ? ([62, 63, 64].indexOf(me.area) > -1 ? 30 : this.teleDistance) : this.walkDistance);
 
 	if (!path) {
-		throw new Error("moveTo: Failed to generate path.");
+		throw new Error("이동 할 "+ me.area +" 경로를 생성하지 못했습니다.");
 	}
 
 	path.reverse();
@@ -346,7 +346,7 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 				fail += 1;
 
 				if (!path) {
-					throw new Error("moveTo: Failed to generate path.");
+					throw new Error("이동 할 "+ me.area +" 경로를 생성하지 못했습니다.");
 				}
 
 				path.reverse();
@@ -356,7 +356,7 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 					path.pop();
 				}
 
-				print("move retry " + fail);
+				print("이동 재시도 " + fail + " 회");
 
 				if (fail > 0) {
 					Packet.flash(me.gid);
@@ -511,7 +511,7 @@ Pather.useUnit = function (type, id, targetArea) {
 
 		if (type === 2 && unit.mode === 0) {
 			if ((me.area === 83 && targetArea === 100 && me.getQuest(21, 0) !== 1) || (me.area === 120 && targetArea === 128 && me.getQuest(39, 0) !== 1)) {
-				throw new Error("useUnit: Incomplete quest.");
+				throw new Error(me.getQuest + " 완료되지 않은 퀘스트.");
 			}
 
 			if (me.area === 92) {

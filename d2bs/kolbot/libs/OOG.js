@@ -670,7 +670,7 @@ MainLoop:
 		}
 
 		if (delay) {
-			this.timeoutDelay("Make Game Delay", delay);
+			this.timeoutDelay("방생성 대기 : ", delay);
 		}
 
 		me.blockMouse = true;

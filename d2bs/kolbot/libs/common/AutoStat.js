@@ -595,7 +595,7 @@ MainSwitch:
 
 		while (getTickCount() - tick < 3000) {
 			if (currStat > me.getStat(4)) {
-				print("스텟 분배 : 스텟 포인트 " + (currStat - me.getStat(4)) + " 개를 " + statIDToString[type] + "분배 하였습니다.");
+				print("ÿc7스텟 분배ÿc7 : " + (currStat - me.getStat(4)) + " 개를 " + statIDToString[type] + " 에 투자하였습니다.");
 				return true;
 			}
 

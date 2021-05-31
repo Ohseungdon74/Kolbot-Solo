@@ -184,7 +184,7 @@ NTIP.CheckItem = function (item, entryList, verbose) {
 NTIP.OpenFile = function (filepath, notify) {
 	if (!FileTools.exists(filepath)) {
 		if (notify) {
-			Misc.errorReport("ÿc1NIP file doesn't exist: ÿc0" + filepath);
+			Misc.errorReport("ÿc1NIP 파일 : ÿc0" + filepath + " 존재하지 않습니다.");
 		}
 
 		return false;
@@ -197,7 +197,7 @@ NTIP.OpenFile = function (filepath, notify) {
 		nipfile = File.open(filepath, 0);
 	} catch (fileError) {
 		if (notify) {
-			Misc.errorReport("ÿc1Failed to load NIP: ÿc0" + filename);
+			Misc.errorReport("ÿc1로드 실패한 NIP : ÿc0" + filename);
 		}
 	}
 
@@ -234,7 +234,7 @@ NTIP.OpenFile = function (filepath, notify) {
 	}
 
 	if (notify) {
-		print("ÿc4Loaded NIP: ÿc2" + filename + "ÿc4. Lines: ÿc2" + lines.length + "ÿc4. Valid entries: ÿc2" + entries + ". ÿc4Time: ÿc2" + (getTickCount() - tick) + " ms");
+		print("ÿc4로드 NIP : ÿc2" + filename + "ÿc4. 라인: ÿc2" + lines.length + "ÿc4. 유효한 항목 : ÿc2" + entries + ". ÿc4시간 : ÿc2" + (getTickCount() - tick) + " ms");
 	}
 
 	return true;

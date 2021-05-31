@@ -154,7 +154,7 @@ var Town = {
 
 	// Start a task and return the NPC Unit
 	initNPC: function (task, reason) {
-		print("ÿc2초기화 NPC: " + reason);
+		print("ÿc2초기화 NPC : " + reason);
 
 		var npc = getInteractedNPC();
 
@@ -1460,7 +1460,7 @@ CursorLoop:
 
 		var i, tick, dialog, lines,
 			preArea = me.area,
-			npc = this.initNPC("Merc", "reviveMerc");
+			npc = this.initNPC("Merc", "용병부활.");
 
 		if (!npc) {
 			return false;
@@ -1959,7 +1959,7 @@ MainLoop:
 					break;
 				case 4: // Sell item
 					try {
-						print("낮은 금액으로 판매 : " + items[i].name);
+						print("판매 : " + items[i].name + " 를 판애하다.");
 						this.initNPC("Shop", "인벤토리 정리");
 						Misc.itemLogger("Sold", items[i]);
 						items[i].sell();

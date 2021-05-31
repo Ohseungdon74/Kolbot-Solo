@@ -172,7 +172,7 @@ var Quest = {
 
 					Storage.Inventory.MoveTo(hstaff);
 				} else {
-					Town.clearJunk();
+					//Town.clearJunk();
 					Town.organizeInventory();
 
 					if (hstaff.location === 6) {
@@ -378,7 +378,7 @@ var Quest = {
 	},
 
 	characterRespec: function () {// Akara reset for build change
-		if (me.respec) {
+		if (me.respec || SetUp.getBuild() === SetUp.finalBuild) {
 			return true;
 		}
 
