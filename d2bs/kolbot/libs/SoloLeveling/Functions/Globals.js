@@ -213,7 +213,7 @@ var Check = {
 
 			break;
 		case "bloodraven": //bloodaraven
-			if (me.normal && !me.bloodraven || me.hell && !me.getSkill(54, 0)) {
+			if (me.normal && !me.bloodraven || me.hell && me.getSkill(54, 0)) {
 				return true;
 			}
 
@@ -309,7 +309,7 @@ var Check = {
 
 			break;
 		case "templeruns": //temple runs
-			if (Pather.accessToAct(3) && (me.normal && me.charlvl < 25 || me.nightmare && me.charlvl < 50 || me.hell)) {
+			if (Pather.accessToAct(3) && (me.normal && me.charlvl < 25 || me.nightmare && (me.charlvl < 50 || !me.lamessen) || me.hell)) {
 				return true;
 			}
 
@@ -443,13 +443,13 @@ var Check = {
 			if (lvlReq) {
 				if (!lowRes) {
 					diffShift = me.diff + 1;
-					D2Bot.printToConsole('솔로레벨링: 다음 난이도 요구 사항 충족. 시작: ' + Difficulty[diffShift]);
+					D2Bot.printToConsole('SoloLeveling: next difficulty requirements met. Starting: ' + Difficulty[diffShift]);
 				} else {
 					if (me.charlvl >= SetUp.levelCap + 5) {
 						diffShift = me.diff + 1;
-						D2Bot.printToConsole('솔로레벨링: 오버 레벨. 시작: ' + Difficulty[diffShift]);
+						D2Bot.printToConsole('SoloLeveling: Over leveled. Starting: ' + Difficulty[diffShift]);
 					} else {
-						D2Bot.printToConsole('솔로레벨링: ' + Difficulty[diffShift + 1] + ' 에 진입하기위한 저항. FR: ' + Check.Resistance().FR + ' | CR: ' + Check.Resistance().CR + ' | LR: ' + Check.Resistance().LR);
+						D2Bot.printToConsole('SoloLeveling: ' + Difficulty[diffShift + 1] + ' requirements not met. Negative resistance. FR: ' + Check.Resistance().FR + ' | CR: ' + Check.Resistance().CR + ' | LR: ' + Check.Resistance().LR);
 					}
 				}
 			}
@@ -475,7 +475,7 @@ var Check = {
 
 			break;
 		case 2: //hell
-			if (!me.baal) {
+			if (!me.baal && !me.amazon || me.amazon) {
 				needRunes = false;
 			}
 

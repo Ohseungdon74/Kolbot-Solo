@@ -6,10 +6,10 @@
  */
 
 var build = {
-	caster: true,
+	caster: false,
 	skillstab: 32, // Barbarian Combat
-	wantedskills: [152, 151], // Bash, Whirlwind
-	usefulskills: [138, 149, 155], // Shout, Battle Orders, Battle Command
+	wantedskills: [126, 151], // Bash, Whirlwind
+	usefulskills: [130, 138], // Howl, Shout
 	mercAuraName: "Might",
 	mercAuraWanted: 98,
 	mercDiff: 1,
@@ -28,42 +28,30 @@ var build = {
 		["vit", "all"]
 	],
 	skills: [
-		[126, 1, false], // Bash
-		[127, 1, false], // Sword Mastery
-		[130, 1, false], // Howl
-		[127, 2, false], // Sword Mastery
-		[138, 1, false], // Shout
-		[132, 1, false], // Leap
-		[139, 1, false], // Stun
-		[141, 1, false], // Increased Stamina
-		[143, 1, false], // Leap Attack
-		[144, 1, false], // Concentrate
-		[145, 1, false], // Iron Skin
-		[148, 1, false], // Increased Speed
-		[149, 1, false], // Battle Orders
-		[151, 1, false], // Whirlwind
-		[152, 1, false], // Berserk
-		[153, 1, false], // Natural Resistance
-		[155, 1, false], // Battle Command
-		[138, 5, false], // Shout
-		[127, 5, false], // Sword Mastery
-		[151, 5, false], // Whirlwind
-		[130, 5, false], // Howl
-		[149, 5, false] // Battle Orders
-		[145, 5, false], //Iron Skin
+		[129, 1, false], //Mace Mastery
+		[130, 1, false], //Howl
+		[126, 1, false], //Bash
+		[138, 1, false], //Shout
+		[155, 1, false], //Battle Command
+		[151, 1, false], //Whirlwind
+		[153, 1, false], //Natural resistance
+		[148, 1, false], //Increased Speed
+		[145, 1, false], //Iron Skin
+		[138, 9, false], //Level shout
+		[149, 7, false], //Level Battle orders
+		[149, 20, false], //Max Battle orders
+		[138, 20, false], //Max Shout
+		[151, 10, false], //whirlwind
+		[129, 10, false], //Mace Matery
+		[153, 10, false], //Natural resistance
+		[151, 20, false], //Max whirlwind
+		[129, 20, false], //Max Mace Matery
+		[153, 16, false], //Natural resistance
 		[145, 10, false], //Iron Skin
-		[151, 10, false], // Whirlwind
-		[149, 10, false], // Battle Orders
-		[138, 10, false], // Shout
-		[151, 15, false], // Whirlwind
-		[127, 15, false], // Sword Mastery		
-		[149, 20, false], // Max battle orders
-		[138, 20, false], // Max shout
-		[151, 20, false], // Max Whirlwind
-		[127, 20, false] // Sword Mastery
+		[145, 20, false] //Max iron Skin
 	],
-	autoEquipTiers: [ // autoequip final gear 자동장비 착용 주석처리시 에러발생
-/* 		//weapon
+	autoEquipTiers: [ // autoequip final gear
+		//weapon
 		"[Type] == sword && [flag] == runeword # [ias] >= 30 # [tier] == 100000", //Grief x2 dual weild
 		//Helmet
 		"[name] == wingedhelm && [quality] == set && [flag] != ethereal # [fhr] >= 30 # [tier] == 100000", // gface
@@ -79,6 +67,6 @@ var build = {
 		"[type] == amulet && [quality] == unique # [lightresist] == 35 # [tier] == 100000", //highlords
 		//rings
 		"[type] == ring && [quality] == unique # [tohit] >= 180 && [dexterity] >= 15 # [tier] == 100000", // ravenfrost
-		"[type] == ring && [quality] == unique # [lifeleech] >= 5 && [maxstamina] == 50 # [tier] == 100000", // bul-kathos' wedding band */
+		"[type] == ring && [quality] == unique # [lifeleech] >= 5 && [maxstamina] == 50 # [tier] == 100000", // bul-kathos' wedding band
 	]
 };

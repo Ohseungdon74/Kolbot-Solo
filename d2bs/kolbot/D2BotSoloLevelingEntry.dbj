@@ -1,38 +1,38 @@
 var StarterConfig = {
-	MinGameTime: 300, // 최소 게임 길이 (초). 게임이 너무 빨리 종료되면 나머지 시간은 로비에서 대기합니다.
-	PingQuitDelay: 30, // 높은 핑으로 인해 종료 후 로비에서 대기하는 시간 (초)
-	CreateGameDelay: 10, // 새 게임을 만들기 전에 기다려야하는 시간
-	ResetCount: 999, // X 게임마다 게임 카운트를 1로 재설정합니다.
-	CharacterDifference: 99, // 캐릭터 레벨 차이. 문자 차이를 사용하지 않으려면 false로 설정하십시오.
-	ChatActionsDelay: 2, // 채널에 들어가기 전에 로비에서 기다리는 시간
+	MinGameTime: 300, // Minimum game length in seconds. If a game is ended too soon, the rest of the time is waited in the lobby
+	PingQuitDelay: 30, // Time in seconds to wait in lobby after quitting due to high ping
+	CreateGameDelay: 10, // Seconds to wait before creating a new game
+	ResetCount: 999, // Reset game count back to 1 every X games.
+	CharacterDifference: 99, // Character level difference. Set to false to disable character difference.
+	ChatActionsDelay: 2, // Seconds to wait in lobby before entering a channel
 
-	// 채널 구성은 개별 프로필에 대해 이러한 옵션을 재정의 할 수 있습니다.
-	JoinChannel: "", // 기본 채널. 채널 배열 일 수 있음-[ "채널 1", "채널 2"]
-	FirstJoinMessage: "", // 기본 참여 메시지. 메시지의 배열 일 수 있습니다.
-	AnnounceGames: false, // 기본값
-	AfterGameMessage: "", // 게임 종료 후 기본 메시지입니다. 메시지의 배열 일 수 있습니다.
-	SwitchKeyDelay: 300, // 사용 금지된 키를 전환하기 전 또는 영역이 다운 된 후 기다리는 시간 (초)
-	CrashDelay: 10, // d2 창 충돌 후 대기 시간 (초)
-	FTJDelay: 300, // 게임 생성에 실패한 후 기다리는 시간
-	RealmDownDelay: 10, // Realm Down 메시지를받은 후 기다리는 시간
-	InvalidPasswordDelay: 10, // 잘못된 암호 메시지를받은 후 대기하는 시간 (분)
-	UnableToConnectDelay: 5, // 연결할 수 없음 메시지 후 대기 시간 (분)
-	TCPIPNoHostDelay: 5, // 서버에 연결할 수 없음 메시지 후 대기 시간 (초)
-	CDKeyInUseDelay: 5, // CD-Key가 사용중인 경우 다시 연결하기 전에 대기하는 시간 (분).
-	ConnectingTimeout: 10, // '연결 중 ...'화면을 취소하기 전에 기다려야하는 시간 (초)
-	PleaseWaitTimeout: 100, // '잠시 기다려주십시오 ...'화면을 취소하기 전에 기다려야하는 시간 (초)
-	WaitInLineTimeout: 12000, // 'Waiting in Line ...'화면을 취소하기 전에 기다려야하는 시간 (초)
-	GameDoesNotExistTimeout: 600, // '게임이 존재하지 않습니다'를 취소하기 전에 기다려야하는 시간입니다. 화면
-	DelayBeforeLogin: rand(5, 25),	// 로그인하기 전에 기다려야하는 시간 (초)
-	VersionErrorDelay: rand(5, 30),	// '버전을 식별 할 수 없음'메시지 후 대기 시간 (초)
-	GlobalAccountPassword: "" // 계정 생성을위한 전역 암호 값 설정
+	// ChannelConfig can override these options for individual profiles.
+	JoinChannel: "", // Default channel. Can be an array of channels - ["channel 1", "channel 2"]
+	FirstJoinMessage: "", // Default join message. Can be an array of messages
+	AnnounceGames: false, // Default value
+	AfterGameMessage: "", // Default message after a finished game. Can be an array of messages
+	SwitchKeyDelay: 300, // Seconds to wait before switching a used/banned key or after realm down
+	CrashDelay: 10, // Seconds to wait after a d2 window crash
+	FTJDelay: 300, // Seconds to wait after failing to create a game
+	RealmDownDelay: 10, // Minutes to wait after getting Realm Down message
+	InvalidPasswordDelay: 10, // Minutes to wait after getting Invalid Password message
+	UnableToConnectDelay: 5, // Minutes to wait after Unable To Connect message
+	TCPIPNoHostDelay: 5, // Seconds to wait after Cannot Connect To Server message
+	CDKeyInUseDelay: 5, // Minutes to wait before connecting again if CD-Key is in use.
+	ConnectingTimeout: 20, // Seconds to wait before cancelling the 'Connecting...' screen
+	PleaseWaitTimeout: 100, // Seconds to wait before cancelling the 'Please Wait...' screen
+	WaitInLineTimeout: 12000, // Seconds to wait before cancelling the 'Waiting in Line...' screen
+	GameDoesNotExistTimeout: 600, // Seconds to wait before cancelling the 'Game does not exist.' screen
+	DelayBeforeLogin: rand(5, 25),	// Seconds to wait before logging in
+	VersionErrorDelay: rand(5, 30),	// Seconds to wait after 'unable to identify version' message
+	GlobalAccountPassword: "" // Set value for a global password for account generation
 };
 
 var ChannelConfig = {
-	/* 채널 참여, 첫 번째 참여 메시지, 게임 발표 및 프로필 별 게임 후 메시지의 기본값을 재정의합니다.
-		이러한 옵션을 원하는만큼 재정의 할 수 있습니다 (모두 입력 할 필요는 없음).
+	/* Override default values for JoinChannel, FirstJoinMessage, AnnounceGames and AfterGameMessage per profile
+		It's possible to override any number of these options (you don't have to put all of them)
 
-		**** 이 코멘트 블록 안의 어떤 것도 편집하지 마십시오 ***
+		**** DO NOT EDIT ANYTHING INSIDE THIS COMMENT BLOCK ***
 
 		Format:
 
@@ -60,11 +60,11 @@ var ChannelConfig = {
 		}
 	*/
 
-	// 여기에 라인 추가
+	// Add your lines here
 
 };
 
-// 건드리지 마!
+// No touchy!
 include("json2.js");
 include("OOG.js");
 include("automule.js");
@@ -120,7 +120,7 @@ function ReceiveCopyData (mode, msg) {
 
 	switch (mode) {
 	case 2: // Game info
-		print("받은 게임 정보");
+		print("Received Game Info");
 
 		gameInfo = JSON.parse(msg);
 
@@ -206,8 +206,8 @@ function ReceiveCopyData (mode, msg) {
 			setUp.charClass = "assassin";
 			break;
 		default:
-			D2Bot.updateStatus('프로필 이름을 업데이트하십시오. 예 : "HCCNL-PAL"은 하드 코어 클래식 논 래더 성기사를 만듭니다.');
-			D2Bot.printToConsole('프로필 이름을 업데이트하십시오. 예 : "HCCNL-PAL"은 하드 코어 클래식 논 래더 성기사를 만듭니다.', 6);
+			D2Bot.updateStatus('Please update profile name. Example: "HCCNL-PAL" will make a Hardcore Classic NonLadder Paladin');
+			D2Bot.printToConsole('Please update profile name. Example: "HCCNL-PAL" will make a Hardcore Classic NonLadder Paladin', 6);
 			D2Bot.stop();
 
 			break;
@@ -218,8 +218,8 @@ function ReceiveCopyData (mode, msg) {
 			D2Bot.setProfile(null, null, null, null, null, setUp.tag);
 			DataFile.updateStats("finalBuild", setUp.tag);
 		} else {
-			D2Bot.updateStatus('프로필 InfoTag에 libs/SoloLeveling/BuildFiles에서 직업을 선택하세요.');
-			D2Bot.printToConsole('프로필 InfoTag에 libs/SoloLeveling/BuildFiles에서 직업을 선택하세요.', 6);
+			D2Bot.updateStatus('Please update profile InfoTag. Missing the finalBuild.');
+			D2Bot.printToConsole('Please update profile InfoTag. Missing the finalBuild.', 6);
 			D2Bot.stop();
 
 			break;
@@ -302,7 +302,7 @@ function setNextGame () {
 		nextGame += (gameCount + 1);
 	}
 
-	DataFile.updateStats("다음 방제", nextGame);
+	DataFile.updateStats("nextGame", nextGame);
 }
 
 function locationTimeout (time, location) {
@@ -426,7 +426,7 @@ function locationAction (location) {
 			}
 
 			if (getTickCount() - gameStart < StarterConfig.MinGameTime * 1e3) {
-				ControlAction.timeoutDelay("게임 진입 대기 :", StarterConfig.MinGameTime * 1e3 + gameStart - getTickCount());
+				ControlAction.timeoutDelay("Min game time wait", StarterConfig.MinGameTime * 1e3 + gameStart - getTickCount());
 			}
 		}
 
@@ -438,7 +438,7 @@ function locationAction (location) {
 			D2Bot.updateRuns();
 
 			gameCount += 1;
-			lastGameStatus = "준비";
+			lastGameStatus = "ready";
 			ingame = false;
 
 			if (StarterConfig.ResetCount && gameCount > StarterConfig.ResetCount) {
@@ -455,8 +455,8 @@ function locationAction (location) {
 		deadCheck = setUp.hardcore === true && (getControl(6, 533, 469, 120, 20) && getControl(6, 533, 469, 120, 20).disabled === 4);
 
 		if (deadCheck) {
-			D2Bot.updateStatus("캐릭터 사망");
-			D2Bot.PrintToConsole("캐릭터 사망.", 6);
+			D2Bot.updateStatus("Character died");
+			D2Bot.PrintToConsole("Character died.", 6);
 			delay(5000);
 			ControlAction.click(6, 693, 490, 80, 20);
 			break;
@@ -474,7 +474,7 @@ function locationAction (location) {
 
 		break;
 	case 2: // Waiting In Line
-		D2Bot.updateStatus("대기합니다...");
+		D2Bot.updateStatus("Waiting...");
 		locationTimeout(StarterConfig.WaitInLineTimeout * 1e3, location);
 		ControlAction.click(6, 433, 433, 96, 32);
 
@@ -492,7 +492,7 @@ function locationAction (location) {
 			}
 
 			if (getTickCount() - gameStart < StarterConfig.MinGameTime * 1e3) {
-				ControlAction.timeoutDelay("게임 대기 :", StarterConfig.MinGameTime * 1e3 + gameStart - getTickCount());
+				ControlAction.timeoutDelay("Min game time wait", StarterConfig.MinGameTime * 1e3 + gameStart - getTickCount());
 			}
 		}
 
@@ -503,11 +503,11 @@ function locationAction (location) {
 				break;
 			}
 
-			print("런 업데이트");
+			print("updating runs");
 			D2Bot.updateRuns();
 
 			gameCount += 1;
-			lastGameStatus = "준비";
+			lastGameStatus = "ready";
 			ingame = false;
 
 			if (StarterConfig.ResetCount && gameCount > StarterConfig.ResetCount) {
@@ -564,7 +564,7 @@ function locationAction (location) {
 					if (ControlAction.joinChannel(chanInfo.joinChannel[i])) {
 						useChat = true;
 					} else {
-						print("ÿc1채널에 참여할 수 없습니다. 채팅 메시지를 사용할 수 없습니다..");
+						print("ÿc1Unable to join channel, disabling chat messages.");
 
 						useChat = false;
 					}
@@ -585,7 +585,7 @@ function locationAction (location) {
 		}
 
 		if (chanInfo.announce) {
-			sayMsg("다음 게임은 " + gameInfo.gameName + gameCount + (gameInfo.gamePass === "" ? "" : "//" + gameInfo.gamePass));
+			sayMsg("Next game is " + gameInfo.gameName + gameCount + (gameInfo.gamePass === "" ? "" : "//" + gameInfo.gamePass));
 		}
 
 		if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
@@ -604,7 +604,7 @@ function locationAction (location) {
 
 		break;
 	case 4: // Create Game
-		ControlAction.timeoutDelay("게임생성대기 : ", StarterConfig.DelayBeforeLogin * 1e3);
+		ControlAction.timeoutDelay("Create Game Delay", StarterConfig.DelayBeforeLogin * 1e3);
 		D2Bot.updateStatus("Creating Game");
 
 		control = getControl(1, 657, 342, 27, 20);
@@ -636,7 +636,7 @@ function locationAction (location) {
 		if (lastGameStatus === "pending") {
 			isUp = "no";
 
-			D2Bot.printToConsole("게임 생성에 실패하였습니다.");
+			D2Bot.printToConsole("Failed to create game");
 			ControlAction.timeoutDelay("FTJ delay", StarterConfig.FTJDelay * 1e3);
 			D2Bot.updateRuns();
 		}
@@ -667,11 +667,11 @@ function locationAction (location) {
 			ControlAction.click(6, 33, 572, 128, 35);
 		}
 
-		D2Bot.updateStatus("로그인");
+		D2Bot.updateStatus("Logging In");
 
 		try {
 			if (battlenet) { // make battlenet accounts/characters
-				ControlAction.timeoutDelay("로그인 대기", StarterConfig.DelayBeforeLogin * 1e3);
+				ControlAction.timeoutDelay("Login Delay", StarterConfig.DelayBeforeLogin * 1e3);
 
 				if (setUp.account !== "") { // existing account
 					try {
@@ -682,7 +682,7 @@ function locationAction (location) {
 							setUp.password = DataFile.getStats().AcctPswd;
 
 							if (!ControlAction.loginAccount(setUp)) { // generated account login from stored datafile info
-								D2Bot.printToConsole('솔로레벨링: 로그인 실패. 당신의 프로필설정을 업데이트 그리고 다시 시작하세요.', 6);
+								D2Bot.printToConsole('SoloLeveling: Error logging in. please update your profile settings and start again', 6);
 								D2Bot.stop();
 							}
 						}
@@ -692,13 +692,13 @@ function locationAction (location) {
 						if (StarterConfig.GlobalAccountPassword) {
 							setUp.account = randomString(12, true);
 							setUp.password = StarterConfig.GlobalAccountPassword;
-							print("계정 정보 생성");
-							ControlAction.timeoutDelay("계정 정보 생성", StarterConfig.DelayBeforeLogin * 1e3);
+							print("Generating Account Information");
+							ControlAction.timeoutDelay("Generating Account Information", StarterConfig.DelayBeforeLogin * 1e3);
 						} else {
 							setUp.account = randomString(12, true);
 							setUp.password = randomString(12, true);
-							print("임의 계정 정보 생성");
-							ControlAction.timeoutDelay("임의 계정 정보 생성", StarterConfig.DelayBeforeLogin * 1e3);
+							print("Generating Random Account Information");
+							ControlAction.timeoutDelay("Generating Random Account Information", StarterConfig.DelayBeforeLogin * 1e3);
 						}
 
 						if (ControlAction.makeAccount(setUp)) {
@@ -722,7 +722,7 @@ function locationAction (location) {
 					if (!ControlAction.findCharacter(setUp)) { // make char if not found
 						if (getLocation() === 30) {	// Pop-up that happens when choosing a dead HC char
 							ControlAction.click(6, 351, 337, 96, 32);	//Exit from that pop-up
-							D2Bot.printToConsole("케릭터 사망", 9);
+							D2Bot.printToConsole("Character died", 9);
 							deleteAndRemakeChar(setUp);
 
 						} else {
@@ -757,24 +757,24 @@ function locationAction (location) {
 
 				break;
 			case getLocaleString(5207):
-				D2Bot.updateStatus("잘못된 비밀번호");
-				D2Bot.printToConsole("암호가 정확하지 않습니다.");
-				ControlAction.timeoutDelay("암호가 정확하지 않습니다.", StarterConfig.InvalidPasswordDelay * 6e4);
-				D2Bot.printToConsole("잘못된 비밀번호 - 재시작");
+				D2Bot.updateStatus("Invalid Password");
+				D2Bot.printToConsole("Invalid Password");
+				ControlAction.timeoutDelay("Invalid password delay", StarterConfig.InvalidPasswordDelay * 6e4);
+				D2Bot.printToConsole("Invalid Password - Restart");
 				D2Bot.restart();
 
 				break;
 			case getLocaleString(5219): // password must be 2 characters
-				D2Bot.updateStatus("비밀번호는 2자 이상이여야합니다.");
-				D2Bot.printToConsole("비밀번호는 2자 이상이여야합니다.");
+				D2Bot.updateStatus("Password must be 2 characters");
+				D2Bot.printToConsole("Password must be 2 characters");
 				D2Bot.stop();
 
 				break;
 			case getLocaleString(5208): // Invalid account
 			case getLocaleString(5239): // An account name already exists
 			case getLocaleString(5249): // Unable to create account
-				D2Bot.updateStatus("잘못된 계정 이름");
-				D2Bot.printToConsole("잘못된 계정 이름");
+				D2Bot.updateStatus("Invalid Account Name");
+				D2Bot.printToConsole("Invalid Account Name");
 				setUp.account = "";
 				setUp.password = "";
 				D2Bot.setProfile(setUp.account, setUp.password);
@@ -783,8 +783,8 @@ function locationAction (location) {
 				break;
 			case getLocaleString(5202): // cd key intended for another product
 			case getLocaleString(10915): // lod key intended for another product
-				D2Bot.updateStatus("잘못된 CDKey");
-				D2Bot.printToConsole("잘못된 CDKey: " + gameInfo.mpq, 6);
+				D2Bot.updateStatus("Invalid CDKey");
+				D2Bot.printToConsole("Invalid CDKey: " + gameInfo.mpq, 6);
 				D2Bot.CDKeyDisabled();
 
 				if (gameInfo.switchKeys) {
@@ -822,15 +822,15 @@ function locationAction (location) {
 
 				break;
 			case getLocaleString(5347):
-				D2Bot.updateStatus("연결 끊김 battle.net.");
-				D2Bot.printToConsole("연결 끊김 battle.net.");
+				D2Bot.updateStatus("Disconnected from battle.net.");
+				D2Bot.printToConsole("Disconnected from battle.net.");
 				ControlAction.click(6, 351, 337, 96, 32);
 				ControlAction.click(6, 335, 412, 128, 35);
 
 				break MainSwitch;
 			default:
-				D2Bot.updateStatus("로그인 에러");
-				D2Bot.printToConsole("로그인 에러 - " + string);
+				D2Bot.updateStatus("Login Error");
+				D2Bot.printToConsole("Login Error - " + string);
 
 				if (gameInfo.switchKeys) {
 					ControlAction.timeoutDelay("Key switch delay", StarterConfig.SwitchKeyDelay * 1000);
@@ -849,7 +849,7 @@ function locationAction (location) {
 
 		break;
 	case 11: // Unable To Connect
-		D2Bot.updateStatus("연결 끊김");
+		D2Bot.updateStatus("Unable To Connect");
 
 		if (connectFailRetry < 2) {
 			connectFailRetry += 1;
@@ -863,7 +863,7 @@ function locationAction (location) {
 		}
 
 		if (connectFail) {
-			ControlAction.timeoutDelay("연결 끊김", StarterConfig.UnableToConnectDelay * 6e4);
+			ControlAction.timeoutDelay("Unable to Connect", StarterConfig.UnableToConnectDelay * 6e4);
 
 			connectFail = false;
 		}
@@ -885,11 +885,11 @@ function locationAction (location) {
 		}
 
 		updateCount();
-		ControlAction.timeoutDelay("렐름 다운", StarterConfig.RealmDownDelay * 6e4);
+		ControlAction.timeoutDelay("Realm Down", StarterConfig.RealmDownDelay * 6e4);
 		D2Bot.CDKeyRD();
 
 		if (gameInfo.switchKeys && !gameInfo.rdBlocker) {
-			D2Bot.printToConsole("렐름 다운 - Changing CD-Key");
+			D2Bot.printToConsole("Realm Down - Changing CD-Key");
 			ControlAction.timeoutDelay("Key switch delay", StarterConfig.SwitchKeyDelay * 1000);
 			D2Bot.restart(true);
 		} else {
@@ -1018,7 +1018,7 @@ function locationAction (location) {
 			if (!ControlAction.findCharacter(setUp)) {
 				if (setUp.charName === DataFile.getObj().name) {
 					ControlAction.timeoutDelay("[R/D] Character not found ", 18e4);
-					D2Bot.printToConsole("새로운 캐릭터 생성 방지-재시작");
+					D2Bot.printToConsole("Avoid Creating New Character - Restart");
 					D2Bot.restart();
 				} else {
 					ControlAction.makeCharacter(setUp);
@@ -1191,7 +1191,7 @@ function main () {
 				diffName = ['Normal', 'Nightmare', 'Hell'][me.diff];
 
 				if (me.ingame) {
-					D2Bot.updateStatus("레벨: " + me.charlvl + " (" + myExp + "%) | 난이도: " + diffName + " | 지역: " + areaName + " | 골드: " + myGold + " | FR: " + frRes + " | CR: " + crRes + " | LR: " + lrRes + " | PR: " + prRes + " " + timer(gameStart));
+					D2Bot.updateStatus("Lvl: " + me.charlvl + " (" + myExp + "%) | Diff: " + diffName + " | Area: " + areaName + " | Gold: " + myGold + " | FR: " + frRes + " | CR: " + crRes + " | LR: " + lrRes + " | PR: " + prRes + " " + timer(gameStart));
 				}
 			}
 

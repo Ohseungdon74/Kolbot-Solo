@@ -28,43 +28,31 @@ var build = {
 		["vit", "all"]
 	],
 	skills: [
-		[126, 1, false], // Bash
-		[127, 1, false], // Sword Mastery
 		[130, 1, false], // Howl
-		[127, 2, false], // Sword Mastery
-		[138, 1, false], // Shout
-		[132, 1, false], // Leap
-		[139, 1, false], // Stun
-		[141, 1, false], // Increased Stamina
-		[143, 1, false], // Leap Attack
-		[144, 1, false], // Concentrate
-		[145, 1, false], // Iron Skin
-		[148, 1, false], // Increased Speed
-		[149, 1, false], // Battle Orders
-		[151, 1, false], // Whirlwind
-		[152, 1, false], // Berserk
-		[153, 1, false], // Natural Resistance
-		[155, 1, false], // Battle Command
-		[138, 5, false], // Shout
-		[127, 5, false], // Sword Mastery
-		[151, 5, false], // Whirlwind
-		[130, 5, false], // Howl
-		[149, 5, false] // Battle Orders
-		[145, 5, false], //Iron Skin
-		[145, 10, false], //Iron Skin
-		[151, 10, false], // Whirlwind
-		[149, 10, false], // Battle Orders
-		[138, 10, false], // Shout
-		[151, 15, false], // Whirlwind
-		[127, 15, false], // Sword Mastery		
-		[149, 20, false], // Max battle orders
-		[138, 20, false], // Max shout
-		[151, 20, false], // Max Whirlwind
-		[127, 20, false] // Sword Mastery
+		[131, 1, false], //Find Potion
+		[138, 6, false], //Shout
+		[142, 1, false], //Find Item
+		[141, 1, false], //Increased Stamina level
+		[138, 11, false], //Shout
+		[145, 1, false], //Iron Skin
+		[138, 15, false], //Shout
+		[149, 1, false], //Battle Orders
+		[148, 1, false], //Increased Speed
+		[149, 5, false], //Battle Orders
+		[154, 1, false], //War Cry
+		[155, 1, false], //Battle Command
+		[153, 1, false], //Natural Resistance
+		[149, 20, false], //Max battle orders
+		[138, 20, false], //Max shout
+		[153, 11, false], //Natural Resistance
+		[148, 5, false], //Increased Speed
+		[145, 20, false], //Iron Skin
+		[142, 10, false], //Find Item
+		[155, 20, false] //Battle Command
 	],
 	autoEquipTiers: [ // autoequip final gear
 		//weapon
-		"[Type] == sword && [flag] == runeword # [FCR] == 40 # [tier] == 100000", // HotO x2 dual weild
+		"[Type] == mace && [flag] == runeword # [FCR] == 40 # [tier] == 100000", // HotO x2 dual weild
 		//Helmet
 		"[name] == shako && [quality] == unique && [flag] != ethereal # [DamageResist] == 10 # [tier] == 100000", // harlequin's crest
 		//belt

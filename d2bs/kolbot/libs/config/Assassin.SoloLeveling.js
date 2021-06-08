@@ -66,8 +66,8 @@ function LoadConfig () {
 	Config.HealStatus = true;
 	Config.UseMerc = true;
 	Config.MercWatch = true;
-	Config.ClearInvOnStart = false;
 	Config.StashGold = me.charlvl * 100;
+	Config.ClearInvOnStart = false;
 
 	/* Chicken configuration. */
 	Config.LifeChicken = me.playertype ? 60 : 10;
@@ -102,7 +102,7 @@ function LoadConfig () {
 	Config.Inventory[3] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 	/* Pickit configuration. */
-	Config.PickRange =  40;
+	Config.PickRange = 40;
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
@@ -180,10 +180,10 @@ function LoadConfig () {
 	NTIP.arrayLooping(autoequipmercTiers);
 
 	/* FastMod configuration. */
-	Config.FCR = 255;
-	Config.FHR = 255;
-	Config.FBR = 255;
-	Config.IAS = 255;
+	Config.FCR = 20;
+	Config.FHR = 20;
+	Config.FBR = 20;
+	Config.IAS = 20;
 
 	/* Attack configuration. */
 	Config.AttackSkill = [0, 0, 0, 0, 0, 0, 0];

@@ -70,8 +70,8 @@ function LoadConfig () {
 	Config.HealStatus = true;
 	Config.UseMerc = true;
 	Config.MercWatch = true;
-	Config.ClearInvOnStart = false;
 	Config.StashGold = me.charlvl * 100;
+	Config.ClearInvOnStart = false;
 
 	/* Chicken configuration. */
 	Config.LifeChicken = me.playertype ? 60 : 10;
@@ -181,12 +181,13 @@ function LoadConfig () {
 	NTIP.arrayLooping(autoequipmercTiers);
 
 	/* FastMod configuration. */
-	Config.FCR = 255;
-	Config.FHR = 255;
-	Config.FBR = 255;
-	Config.IAS = 255;
+	Config.FCR = 20;
+	Config.FHR = 20;
+	Config.FBR = 20;
+	Config.IAS = 20;
 
 	/* Attack configuration. */
+	Skill.usePvpRange = true;
 	Config.AttackSkill = [0, 0, 0, 0, 0, 0, 0];
 	Config.LowManaSkill = [-1, -1];
 	Config.MaxAttackCount = 1000;
@@ -234,28 +235,12 @@ function LoadConfig () {
 
 	/* LOD gear */
 	if (!me.classic) {
+		let finalGear = Check.Build().finalGear;
+		NTIP.arrayLooping(finalGear);
+
 		switch (SetUp.finalBuild) { // finalbuilld autoequip setup
 		case 'Blova':
 		case 'Lightning':
-			var lightTiers = [ // autoequip setup
-				//weapon
-				"[name] == dimensionalshard && [quality] == unique # [fcr] == 20 # [tier] == 110000", //deaths fathom
-				//Helmet
-				"[name] == diadem && [quality] == unique # [fcr] == 25 # [tier] == 110000", //griffons
-				//belt
-				"[name] == spiderwebsash && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 90 # [tier] == 110000", //arach's
-				//armor
-				"[type] == armor && [flag] == runeword  && [flag] != ethereal # [fireresist] == 65 && [hpregen] == 7 # [tier] == 110000", //CoH
-				//shield
-				"[type] == shield # [fcr] >= 35 && [maxmana] >= 89 # [tier] == 110000", //spirit
-				//ammy
-				"[type] == amulet && [quality] == unique # [strength] == 5 && [coldresist] >= 30 # [tier] == 110000", //maras
-				//rings
-				"[type] == ring && [quality] == unique # [itemmaxmanapercent] == 25 # [tier] == 110000", //soj
-				"[name] == ring && [quality] == unique # [maxstamina] == 50 && [lifeleech] >= 3 # [tier] == 110000", //bk ring
-			];
-			NTIP.arrayLooping(lightTiers);
-
 			if (me.ladder > 0 && !Item.getEquippedItemMerc(4).prefixnum === 20566) { //infinity
 				var Inf = [
 					"[Name] == BerRune",

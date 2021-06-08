@@ -53,7 +53,7 @@ function main () {
 		canQuit = true,
 		timerLastDrink = [];
 
-	print("ÿc9솔로레벨링ÿc3 : 사용자 지정 도구 스레드 스크립트 시작...");
+	print("ÿc9SoloLeveling:ÿc3 Start Custom ToolsThread script");
 	D2Bot.init();
 	Config.init(false);
 	Pickit.init(false);
@@ -147,7 +147,7 @@ function main () {
 
 		for (k = 0; k < items.length; k += 1) {
 			if (type < 3 && items[k].mode === 0 && items[k].location === 3 && items[k].itemType === pottype) {
-				print("ÿc2인벤토리에서 물약을 마시고 있습니다.");
+				print("ÿc2Drinking potion from inventory.");
 
 				return copyUnit(items[k]);
 			}
@@ -170,7 +170,7 @@ function main () {
 			if (script) {
 				if (script.running) {
 					if (l === 0) { // default.dbj
-						print("ÿc1일시 중지.");
+						print("ÿc1Pausing.");
 					}
 
 					// don't pause townchicken during clone walk
@@ -179,7 +179,7 @@ function main () {
 					}
 				} else {
 					if (l === 0) { // default.dbj
-						print("ÿc2재개.");
+						print("ÿc2Resuming.");
 					}
 
 					script.resume();
@@ -270,7 +270,7 @@ function main () {
 				try {
 					clickItem(2, potion);
 				} catch (e) {
-					print("용병에게 물약을주지 못했습니다.");
+					print("Couldn't give the potion to merc.");
 				}
 			}
 

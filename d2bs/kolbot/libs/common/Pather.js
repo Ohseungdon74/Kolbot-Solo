@@ -905,7 +905,7 @@ ModeLoop:
 						if (!Misc.poll(function () {
 							return me.area === 1;
 						}, 2000, 100)) {
-							throw new Error("Warriv를 사용하여 1 막으로 이동하지 못했습니다.");
+							throw new Error("와리브를 통해 ACT2로 이동하지 못했습니다.");
 						}
 					}
 				}
@@ -1018,7 +1018,7 @@ ModeLoop:
 			return true;
 		}
 
-		throw new Error("useWaypoint : 경유지를 사용하지 못했습니다.");
+		throw new Error("useWaypoint : 웨이포인트를 사용하지 못했습니다.");
 	},
 
 	/*

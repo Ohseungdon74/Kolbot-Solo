@@ -19,6 +19,14 @@ NodeAction.killMonsters = function (arg) {
 		}
 	}
 
+	if ([8, 3, 4, 38, 5, 6, 27, 28, 33, 37, 56, 57, 60, 45, 58, 66, 67, 68, 69, 70, 71, 72].indexOf(me.area) > -1) {
+		monList = Attack.getMob([58, 59, 60, 61, 101, 102, 103, 104], 0, 30);
+
+		if (monList) {
+			Attack.clearList(monList);
+		}
+	}
+
 	if (!me.inTown) {
 		Attack.clear(7, 0);
 	}
@@ -31,9 +39,9 @@ NodeAction.killMonsters = function (arg) {
 			do {
 				if (getDistance(me.x, me.y, getRoom(kingPreset.roomx * 5 + kingPreset.x), getRoom(kingPreset.roomy * 5 + kingPreset.y)) <= 25) {
 					Town.goToTown();
-					print('ÿc9솔로레벨링ÿc0 : 카우킹이 근처에 있어 종료합니다.');
-					me.overhead('카우킹이 근처에 있어 종료합니다.');
-					D2Bot.printToConsole('솔로레벨링 : 카우킹이 근처에 있어 종료합니다.');
+					print('ÿc9SoloLevelingÿc0: exit cows. Near the king');
+					me.overhead('Exit cows. Near the king');
+					D2Bot.printToConsole('SoloLeveling: exit cows. Near the king');
 				}
 			} while (king.getNext());
 		}
@@ -63,11 +71,13 @@ NodeAction.killMonsters = function (arg) {
 };
 
 NodeAction.popChests = function () {
+	let range = Pather.useTeleport() ? 25 : 15;
+
 	if (Config.OpenChests) {
-		Misc.openChests(10);
+		Misc.openChests(range);
 	}
 
-	Misc.useWell(10);
+	Misc.useWell(range);
 };
 
 Pather.checkWP = function (area) {
@@ -132,7 +142,7 @@ Pather.openDoors = function (x, y) { //fixed monsterdoors/walls in act 5
 
 					while (getTickCount() - tick < 1000) {
 						if (door.mode === 2) {
-							me.overhead("문을 열었다!");
+							me.overhead("Opened a door!");
 
 							return true;
 						}
@@ -161,7 +171,7 @@ Pather.openDoors = function (x, y) { //fixed monsterdoors/walls in act 5
 					Skill.cast(Config.AttackSkill[1], Skill.getHand(Config.AttackSkill[1]), monstadoor);
 				}
 
-				me.overhead("바리케이드 문을 부수다!");
+				me.overhead("Broke a barricaded door!");
 			}
 		} while (monstadoor.getNext());
 	}
@@ -174,7 +184,7 @@ Pather.openDoors = function (x, y) { //fixed monsterdoors/walls in act 5
 					Skill.cast(Config.AttackSkill[1], Skill.getHand(Config.AttackSkill[1]), monstawall);
 				}
 
-				me.overhead("바리케이드 벽을 부수다!");
+				me.overhead("Broke a barricaded wall!");
 			}
 		} while (monstawall.getNext());
 	}
@@ -228,7 +238,7 @@ Pather.changeAct = function () {
 		}
 	}
 
-	throw new Error("SoloLeveling : Act 변경 실패");
+	throw new Error("SoloLeveling: Failed to change Act");
 };
 
 Pather.moveTo = function (x, y, retry, clearPath, pop) {
@@ -251,11 +261,11 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 	}
 
 	if (x === undefined || y === undefined) {
-		throw new Error("moveTo: 함수는 최소한 2 개의 인수로 호출되어야합니다.");
+		throw new Error("moveTo: Function must be called with at least 2 arguments.");
 	}
 
 	if (typeof x !== "number" || typeof y !== "number") {
-		throw new Error("이동 할 좌표는 숫자여야 합니다.");
+		throw new Error("moveTo: Coords must be numbers");
 	}
 
 	if (retry === undefined) {
@@ -274,7 +284,7 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 	path = getPath(me.area, x, y, me.x, me.y, useTeleport ? 1 : 0, useTeleport ? ([62, 63, 64].indexOf(me.area) > -1 ? 30 : this.teleDistance) : this.walkDistance);
 
 	if (!path) {
-		throw new Error("이동 할 "+ me.area +" 경로를 생성하지 못했습니다.");
+		throw new Error("moveTo: Failed to generate path.");
 	}
 
 	path.reverse();
@@ -346,7 +356,7 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 				fail += 1;
 
 				if (!path) {
-					throw new Error("이동 할 "+ me.area +" 경로를 생성하지 못했습니다.");
+					throw new Error("moveTo: Failed to generate path.");
 				}
 
 				path.reverse();
@@ -356,7 +366,7 @@ Pather.moveTo = function (x, y, retry, clearPath, pop) {
 					path.pop();
 				}
 
-				print("이동 재시도 " + fail + " 회");
+				print("move retry " + fail);
 
 				if (fail > 0) {
 					Packet.flash(me.gid);
@@ -511,7 +521,7 @@ Pather.useUnit = function (type, id, targetArea) {
 
 		if (type === 2 && unit.mode === 0) {
 			if ((me.area === 83 && targetArea === 100 && me.getQuest(21, 0) !== 1) || (me.area === 120 && targetArea === 128 && me.getQuest(39, 0) !== 1)) {
-				throw new Error(me.getQuest + " 완료되지 않은 퀘스트.");
+				throw new Error("useUnit: Incomplete quest.");
 			}
 
 			if (me.area === 92) {

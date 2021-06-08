@@ -67,8 +67,8 @@ function LoadConfig () {
 	Config.HealStatus = true;
 	Config.UseMerc = true;
 	Config.MercWatch = true;
-	Config.ClearInvOnStart = false;
 	Config.StashGold = me.charlvl * 100;
+	Config.ClearInvOnStart = false;
 
 	/* Chicken configuration. */
 	Config.LifeChicken = me.playertype ? 60 : 10;
@@ -148,8 +148,9 @@ function LoadConfig () {
 	var levelingTiers = [ // autoequip setup
 		//weapon
 		"me.charlvl < 30 && ([Type] == bow || [Type] == amazonbow) && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"me.charlvl < 30 && ([Type] == crossbow || [Type] == amazonbow) && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		"me.charlvl < 30 && [Type] == bowquiver # # [MaxQuantity] == 2",
-		"me.charlvl > 29 && ([Type] == javelin || [Type] == amazonspear || [Type] == amazonjavelin) && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"me.charlvl > 29 && ([Type] == javelin || [Type] == amazonjavelin) && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//Helmet
 		"([type] == circlet || [type] == helm) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//belt
@@ -180,11 +181,14 @@ function LoadConfig () {
 	NTIP.arrayLooping(autoequipmercTiers);
 
 	/* FastMod configuration. */
-	Config.FCR = 255;
-	Config.FHR = 255;
-	Config.FBR = 255;
-	Config.IAS = 255;
-
+	Config.FCR = 20;
+	Config.FHR = 20;
+	Config.FBR = 20;
+	Config.IAS = 20;
+	
+	// *** special scripts ***
+	Scripts.WPGetter = true;
+	
 	/* Attack configuration. */
 	Config.AttackSkill = [0, 0, 0, 0, 0];
 	Config.LowManaSkill = [-1, -1];
@@ -397,6 +401,26 @@ function LoadConfig () {
 			Config.Runewords.push([Runeword.Lore, "Death Mask"]);
 			Config.Runewords.push([Runeword.Lore, "Full Helm"]);
 			Config.KeepRunewords.push("([type] == circlet || [type] == helm) # [LightResist] >= 25");
+		}
+
+		if (me.normal && Item.getEquippedItem(4).tier < 300) { // zephyr
+			if (!Check.haveItem("bow", "runeword", "Zephyr")) {
+				if (!me.getItem(618)) {
+					Config.Recipes.push([Recipe.Rune, "Ral Rune"]);
+				}
+
+				var zephyr = [
+					"[Name] == OrtRune # # [MaxQuantity] == 1",
+					"[Name] == EthRune # # [MaxQuantity] == 1",
+					"me.normal && ([Name] == hunter'sbow || [Name] == longbow) && [Flag] != Ethereal && [Quality] >= Normal && [Quality] <= Superior # [Sockets] == 2 # [MaxQuantity] == 1",
+				];
+				NTIP.arrayLooping(zephyr);
+
+				Config.Runewords.push([Runeword.Zephyr, "Hunter's Bow"]);
+				Config.Runewords.push([Runeword.Zephyr, "Long Bow"]);
+
+				Config.KeepRunewords.push("[type] == bow # [IAS] == 25");
+			}
 		}
 
 		if (Item.getEquippedItem(5).tier < 500) { // Ancients' Pledge

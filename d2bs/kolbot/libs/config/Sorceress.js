@@ -14,7 +14,7 @@ function LoadConfig() {
 	 */
 
 	// User addon script. Read the description in libs/bots/UserAddon.js
-	Scripts.UserAddon = true; // !!!YOU MUST SET THIS TO FALSE IF YOU WANT TO RUN BOSS/AREA SCRIPTS!!!
+	Scripts.UserAddon = false; // !!!YOU MUST SET THIS TO FALSE IF YOU WANT TO RUN BOSS/AREA SCRIPTS!!!
 
 	// Battle orders script - Use this for 2+ characters (for example BO barb + sorc)
 	Scripts.BattleOrders = false;
@@ -293,8 +293,10 @@ function LoadConfig() {
 	Config.MinColumn[3] = 0;
 
 	// Pickit config. Default folder is kolbot/pickit.
-	Config.PickitFiles.push("kolton.nip");
+	Config.PickitFiles.push("kolton_Unique.nip");
 	Config.PickitFiles.push("LLD.nip");
+	Config.PickitFiles.push("ChipperGem.nip");
+	Config.PickitFiles.push("gold1.nip");
 	Config.PickRange = 40; // Pick radius
 	Config.FastPick = false; // Check and pick items between attacks
 	Config.ManualPlayPick = false; // If set to true and D2BotMap entry script is used, will enable picking in manual play.

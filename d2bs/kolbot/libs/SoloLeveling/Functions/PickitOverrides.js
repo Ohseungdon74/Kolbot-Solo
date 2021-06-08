@@ -174,14 +174,14 @@ Pickit.pickItems = function () {
 						}
 
 						// Town visit failed - abort
-						print("ÿc7인벤토리 공간 부족 : " + this.itemColor(pickList[0]) + pickList[0].name);
+						print("ÿc7Not enough room for " + this.itemColor(pickList[0]) + pickList[0].name);
 
 						return false;
 					}
 
 					// Can't make room - trigger automule
 					Misc.itemLogger("No room for", pickList[0]);
-					print("ÿc7인벤토리 공간 부족 : " + this.itemColor(pickList[0]) + pickList[0].name);
+					print("ÿc7Not enough room for " + this.itemColor(pickList[0]) + pickList[0].name);
 
 					needMule = true;
 				}
@@ -281,7 +281,7 @@ Pickit.pickItem = function (unit, status, keptLine) {
 
 			if (stats.classid === 523) {
 				if (!item.getStat(14) || item.getStat(14) < stats.gold) {
-					print("ÿc7줍기 : " + stats.color + (item.getStat(14) ? (item.getStat(14) - stats.gold) : stats.gold) + " " + stats.name);
+					print("ÿc7Picked up " + stats.color + (item.getStat(14) ? (item.getStat(14) - stats.gold) : stats.gold) + " " + stats.name);
 
 					return true;
 				}
@@ -290,12 +290,12 @@ Pickit.pickItem = function (unit, status, keptLine) {
 			if (item.mode !== 3 && item.mode !== 5) {
 				switch (stats.classid) {
 				case 543: // Key
-					print("ÿc7줍기 : " + stats.color + stats.name + " ÿc7(" + Town.checkKeys() + "/12)");
+					print("ÿc7Picked up " + stats.color + stats.name + " ÿc7(" + Town.checkKeys() + "/12)");
 
 					return true;
 				case 529: // Scroll of Town Portal
 				case 530: // Scroll of Identify
-					print("ÿc7줍기 : " + stats.color + stats.name + " ÿc7(" + Town.checkScrolls(stats.classid === 529 ? "tbk" : "ibk") + "/20)");
+					print("ÿc7Picked up " + stats.color + stats.name + " ÿc7(" + Town.checkScrolls(stats.classid === 529 ? "tbk" : "ibk") + "/20)");
 
 					return true;
 				}
@@ -319,7 +319,7 @@ Pickit.pickItem = function (unit, status, keptLine) {
 
 		switch (status) {
 		case 1:
-			print("ÿc7줍기 : " + stats.color + stats.name + " ÿc0(I_lvl " + stats.ilvl + (keptLine ? ") (" + keptLine + ")" : ")"));
+			print("ÿc7Picked up " + stats.color + stats.name + " ÿc0(ilvl " + stats.ilvl + (keptLine ? ") (" + keptLine + ")" : ")"));
 
 			if (this.ignoreLog.indexOf(stats.type) === -1) {
 				Misc.itemLogger("Kept", item);
@@ -328,24 +328,24 @@ Pickit.pickItem = function (unit, status, keptLine) {
 
 			break;
 		case 2:
-			print("ÿc7줍기 : " + stats.color + stats.name + " ÿc0(I_lvl " + stats.ilvl + ")" + " (큐빙)");
+			print("ÿc7Picked up " + stats.color + stats.name + " ÿc0(ilvl " + stats.ilvl + ")" + " (Cubing)");
 			Misc.itemLogger("Kept", item, "Cubing " + me.findItems(item.classid).length);
 			Cubing.update();
 
 			break;
 		case 3:
-			print("ÿc7줍기 : " + stats.color + stats.name + " ÿc0(I_lvl " + stats.ilvl + ")" + " (룬워드)");
+			print("ÿc7Picked up " + stats.color + stats.name + " ÿc0(ilvl " + stats.ilvl + ")" + " (Runewords)");
 			Misc.itemLogger("Kept", item, "Runewords");
 			Runewords.update(stats.classid, gid);
 
 			break;
 		case 5: // Crafting System
-			print("ÿc7줍기 : " + stats.color + stats.name + " ÿc0(I_lvl " + stats.ilvl + ")" + " (크래프트)");
+			print("ÿc7Picked up " + stats.color + stats.name + " ÿc0(ilvl " + stats.ilvl + ")" + " (Crafting System)");
 			CraftingSystem.update(item);
 
 			break;
 		default:
-			print("ÿc7줍기 : " + stats.color + stats.name + " ÿc0(I_lvl " + stats.ilvl + (keptLine ? ") (" + keptLine + ")" : ")"));
+			print("ÿc7Picked up " + stats.color + stats.name + " ÿc0(ilvl " + stats.ilvl + (keptLine ? ") (" + keptLine + ")" : ")"));
 
 			break;
 		}

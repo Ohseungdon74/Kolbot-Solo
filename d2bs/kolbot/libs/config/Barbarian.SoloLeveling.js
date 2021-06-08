@@ -1,15 +1,15 @@
 /*
-*	@filename	Paladin.SoloLeveling.js
+*	@filename	Barbarian.SoloLeveling.js
 *	@author		isid0re
-*	@desc		Config Settings for SoloLeveling Paladin
+*	@desc		Config Settings for SoloLeveling Barbarian
 *
 *	FinalBuild choices
 *		To select your finalbuild.
 *		1. Go into the D2BS console manager.
 *		2. Select the Bots profile
 *		3. In the info tag box enter one of the following choices:
-*			Hammerdin
-*			Smiter
+*			Whirlwind
+*           Singer
 *		4. Save the profile and start
 */
 
@@ -62,13 +62,13 @@ function LoadConfig () {
 	Config.ShowCubingInfo = true;
 
 	/* Town configuration. */
-	Config.HealHP = 70;
-	Config.HealMP = 10;
+	Config.HealHP = 99;
+	Config.HealMP = 99;
 	Config.HealStatus = true;
 	Config.UseMerc = true;
 	Config.MercWatch = true;
-	Config.ClearInvOnStart = false;
 	Config.StashGold = me.charlvl * 100;
+	Config.ClearInvOnStart = false;
 
 	/* Chicken configuration. */
 	Config.LifeChicken = me.playertype ? 60 : 10;
@@ -78,17 +78,13 @@ function LoadConfig () {
 	Config.TownMP = 0;
 
 	/* Potions configuration. */
-	Config.UseHP = me.playertype ? 75 : 50;
-	Config.UseRejuvHP = me.playertype ? 60 : 30;
-	Config.UseMP = me.playertype ? 30 : 10;
+	Config.UseHP = me.playertype ? 90 : 75;
+	Config.UseRejuvHP = me.playertype ? 65 : 40;
+	Config.UseMP = me.playertype ? 75 : 55;
 	Config.UseMercHP = 75;
-	Config.UseMercRejuv = 30;
-	Config.HPBuffer = 0;
-	Config.MPBuffer = 0;
-	Config.RejuvBuffer = 0;
 
 	/* Belt configuration. */
-	Config.BeltColumn = ["hp", "hp", "mp", "rv"];
+	Config.BeltColumn = ["hp", "mp", "mp", "rv"];
 	Config.MinColumn[0] = Config.BeltColumn[0] !== "rv" ? Math.max(1, Storage.BeltSize() - 1) : 0;
 	Config.MinColumn[1] = Config.BeltColumn[1] !== "rv" ? Math.max(1, Storage.BeltSize() - 1) : 0;
 	Config.MinColumn[2] = Config.BeltColumn[2] !== "rv" ? Math.max(1, Storage.BeltSize() - 1) : 0;
@@ -108,18 +104,15 @@ function LoadConfig () {
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
-	//Config.PickitFiles.push("kolton.nip");
-	//Config.PickitFiles.push("LLD.nip");
-	Config.PickitFiles.push("ChippedGem.nip");
-	Config.PickitFiles.push("kolton_Unique.nip");
+	//	Config.PickitFiles.push("kolton.nip");
+	//	Config.PickitFiles.push("LLD.nip");
+
 	/* Gambling configuration. */
 	Config.Gamble = true;
-	Config.GambleGoldStart = 2000000;
+	Config.GambleGoldStart = 1250000;
 	Config.GambleGoldStop = 750000;
 	Config.GambleItems.push("Amulet");
-	//Config.GambleItems.push("Ring");
-	Config.GambleItems.push("Circlet");
-	Config.GambleItems.push("Coronet");
+	Config.GambleItems.push("Ring");
 
 	/* AutoMule configuration. */
 	Config.AutoMule.Trigger = [];
@@ -147,14 +140,14 @@ function LoadConfig () {
 		"[Name] == ScrollofResistance",
 	];
 
-	/* AutoEquip configuration. 자동 장비착용*/
-	Config.AutoEquip = false;
+	/* AutoEquip configuration. */
+	Config.AutoEquip = true;
 
 	var levelingTiers = [ // autoequip setup
-/* 		//weapon
-		"([Type] == sword || [Type] == sword && [Quality] >= Magic || [Type] == Sword && ([Quality] >= Magic || [flag] == runeword) || [Type] == knife && [Quality] >= Magic) && [flag] != ethereal # [secondarymindamage] == 0 && [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		//weapon
+		"([Type] == Scepter || [Type] == Mace || [Type] == Sword || [Type] == Axe) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [secondarymindamage] == 0 && [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//Helmet
-		"([type] == helm || [type] == circlet) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"([type] == helm || [type] == primalhelm) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal #  [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//belt
 		"[type] == belt && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//boots
@@ -162,35 +155,35 @@ function LoadConfig () {
 		//armor
 		"[type] == armor && ([Quality] >= Magic || [flag] == runeword) && [Flag] != Ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//shield
-		"([type] == shield || [type] == auricshields) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"[type] == shield && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//gloves
 		"[Type] == Gloves && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//ammy
 		"[Type] == Amulet && [Quality] >= Magic # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//rings
-		"[Type] == Ring && [Quality] >= Magic # [itemchargedskill] >= 0 # [tier] == tierscore(item)", */
+		"[Type] == Ring && [Quality] >= Magic # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 	];
 	NTIP.arrayLooping(levelingTiers);
 
 	var autoequipmercTiers = [
-/* 		"([type] == circlet || [type] == helm) && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
+		"([type] == circlet || [type] == helm) && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
 		"[Type] == armor && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
 		"me.charlvl > 14 && [Type] == Polearm && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
 		"[type] == armor && [flag] == runeword # [enhanceddefense] >= 200 && [enhanceddamage] >= 300 # [merctier] == 100000", //Fortitude
 		"[type] == armor && [flag] == runeword # [ias] == 45 && [coldresist] == 30 # [merctier] == 50000", //Treachery
-		"[name] == demonhead && [quality] == unique && [flag] == ethereal # [strength] >= 25 && [enhanceddefense] >= 100 # [merctier] == 50000", //Eth Andy's */
+		"[name] == demonhead && [quality] == unique && [flag] == ethereal # [strength] >= 25 && [enhanceddefense] >= 100 # [merctier] == 50000", //Eth Andy's
 	];
 	NTIP.arrayLooping(autoequipmercTiers);
 
 	/* FastMod configuration. */
-	Config.FCR = 50;
-	Config.FHR = 50;
-	Config.FBR = 50;
-	Config.IAS = 50;
+	Config.FCR = 20;
+	Config.FHR = 20;
+	Config.FBR = 20;
+	Config.IAS = 20;
 
 	/* Attack configuration. */
-	Config.AttackSkill = [0, 0, 0, 0, 0, 0, 0];
-	Config.LowManaSkill = [0, 0];
+	Config.AttackSkill = [-1, 0, 0, 0, 0];
+	Config.LowManaSkill = [0, -1];
 	Config.MaxAttackCount = 1000;
 	Config.BossPriority = me.normal ? true : false;
 	Config.ClearType = 0;
@@ -210,7 +203,7 @@ function LoadConfig () {
 	/* AutoStat configuration. */
 	Config.AutoStat.Enabled = true;
 	Config.AutoStat.Save = 0;
-	Config.AutoStat.BlockChance = 50;
+	Config.AutoStat.BlockChance = 57;
 	Config.AutoStat.UseBulk = true;
 	Config.AutoStat.Build = SetUp.specPush("stats");
 
@@ -225,11 +218,9 @@ function LoadConfig () {
 	Config.AutoBuild.DebugMode = false;
 	Config.AutoBuild.Template = SetUp.getBuild();
 
-	/* Class specific configuration. */
-	Config.AvoidDolls = true;
-	Config.Vigor = true;
-	Config.Charge = true;
-	Config.Redemption = [45, 25];
+	// Class specific config
+	Config.FindItem = false; // Use Find Item skill on corpses after clearing.
+	Config.FindItemSwitch = false; // Switch to non-primary slot when using Find Item skills
 
 	/* LOD gear */
 	if (!me.classic) {
@@ -242,8 +233,8 @@ function LoadConfig () {
 				var Grief = [
 					"[Name] == EthRune # # [MaxQuantity] == 1",
 					"[Name] == TirRune # # [MaxQuantity] == 1",
-					"[Name] == LoRune # # [MaxQuantity] == 1",
-					"[Name] == MalRune # # [MaxQuantity] == 1",
+					"[Name] == LoRune",
+					"[Name] == MalRune",
 					"[Name] == RalRune # # [MaxQuantity] == 1",
 					"[Name] == PhaseBlade && [Quality] >= Normal && [Quality] <= Superior # [Sockets] == 5 # [MaxQuantity] == 1",
 				];
@@ -254,7 +245,7 @@ function LoadConfig () {
 			}
 
 			break;
-		case 'Hammerdin':
+		case 'Singer':
 			if (!Check.haveItem("mace", "runeword", "Heart of the Oak")) {
 				var HotO = [
 					"[Name] == ThulRune # # [MaxQuantity] == 1",
@@ -286,6 +277,7 @@ function LoadConfig () {
 		}
 
 		if (!Check.haveItem("sword", "runeword", "Call To Arms")) {
+
 			var CTA = [
 				"[Name] == AmnRune # # [MaxQuantity] == 1",
 				"[Name] == RalRune # # [MaxQuantity] == 1",
@@ -301,6 +293,23 @@ function LoadConfig () {
 
 			Config.Runewords.push([Runeword.CallToArms, "Crystal Sword"]);
 			Config.KeepRunewords.push("[type] == sword # [plusskillbattleorders] >= 1");
+		}
+
+		if (me.ladder > 0 && Item.getEquippedItem(12).tier < 1000) { // Spirit shield
+			if (!Check.haveItem("shield", "runeword", "Spirit") && me.hell) {
+				var SpiritShield = [
+					"[Name] == TalRune # # [MaxQuantity] == 1",
+					"[Name] == ThulRune # # [MaxQuantity] == 1",
+					"[Name] == OrtRune # # [MaxQuantity] == 1",
+					"[Name] == AmnRune # # [MaxQuantity] == 1",
+					"[Name] == Monarch && [Flag] != Ethereal && [Quality] >= Normal && [Quality] <= Superior # ([Sockets] == 0 || [Sockets] == 4) # [MaxQuantity] == 1",
+				];
+				NTIP.arrayLooping(SpiritShield);
+			}
+
+			Config.Recipes.push([Recipe.Socket.Shield, "Monarch", Roll.NonEth]);
+			Config.Runewords.push([Runeword.Spirit, "Monarch"]);
+			Config.KeepRunewords.push("([type] == shield || [type] == auricshields) # [fcr] >= 35 && [maxmana] >= 89");
 		}
 
 		if (!Check.haveItem("armor", "runeword", "Enigma")) { // Enigma
@@ -329,58 +338,10 @@ function LoadConfig () {
 			Config.KeepRunewords.push("[type] == armor # [frw] >= 45");
 		}
 
-		if (me.ladder > 0 && Item.getEquippedItem(4).tier < 777) { // Spirit Sword
-			if (!Check.haveItem("sword", "runeword", "Spirit") && !me.hell) {
-				var SpiritSword = [
-					"[Name] == TalRune # # [MaxQuantity] == 1",
-					"[Name] == ThulRune # # [MaxQuantity] == 1",
-					"[Name] == OrtRune # # [MaxQuantity] == 1",
-					"[Name] == AmnRune # # [MaxQuantity] == 1",
-				];
-				NTIP.arrayLooping(SpiritSword);
 
-				if (!me.getItem(620)) { //Amn Rune
-					Config.Recipes.push([Recipe.Rune, "Ral Rune"]);
-					Config.Recipes.push([Recipe.Rune, "Ort Rune"]);
-					Config.Recipes.push([Recipe.Rune, "Thul Rune"]);
-				}
+// missing leveling weapons
 
-				NTIP.addLine("([Name] == BroadSword || [Name] == CrystalSword) && [flag] != ethereal && [Quality] == Normal && [Level] >= 26 && [Level] <= 40 # [Sockets] == 0 # [MaxQuantity] == 1");
 
-				Config.Recipes.push([Recipe.Socket.Weapon, "Crystal Sword", Roll.NonEth]);
-				Config.Recipes.push([Recipe.Socket.Weapon, "Broad Sword", Roll.NonEth]);
-			}
-
-			NTIP.addLine("([Name] == BroadSword || [Name] == CrystalSword) && [flag] != ethereal && [Quality] >= Normal && [Quality] <= Superior # [Sockets] == 4 # [MaxQuantity] == 1");
-			Config.Runewords.push([Runeword.Spirit, "Crystal Sword"]);
-			Config.Runewords.push([Runeword.Spirit, "Broad Sword"]);
-
-			Config.KeepRunewords.push("[type] == sword # [fcr] >= 25 && [maxmana] >= 89");
-		}
-
-		if (me.ladder > 0 && Item.getEquippedItem(5).tier < 1000) { // Spirit shield
-			if (!Check.haveItem("auricshields", "runeword", "Spirit")) {
-				var SpiritShield = [
-					"[Name] == TalRune # # [MaxQuantity] == 1",
-					"[Name] == ThulRune # # [MaxQuantity] == 1",
-					"[Name] == OrtRune # # [MaxQuantity] == 1",
-					"[Name] == AmnRune # # [MaxQuantity] == 1",
-				];
-				NTIP.arrayLooping(SpiritShield);
-			}
-
-			NTIP.addLine("([Name] == Targe || [Name] == Rondache || [Name] == HeraldicShield ||[Name] == AerinShield || [Name] == AkaranTarge || [Name] == AkaranRondache || [Name] == GildedShield ||[Name] == ProtectorShield || [Name] == SacredTarge) && [Flag] != Ethereal && [Quality] >= Normal && [Quality] <= Superior # [fireresist] > 0 && [Sockets] == 4 # [MaxQuantity] == 1");
-			Config.Runewords.push([Runeword.Spirit, "Targe"]);
-			Config.Runewords.push([Runeword.Spirit, "Rondache"]);
-			Config.Runewords.push([Runeword.Spirit, "Heraldic Shield"]);
-			Config.Runewords.push([Runeword.Spirit, "Aerin Shield"]);
-			Config.Runewords.push([Runeword.Spirit, "Akaran Targe"]);
-			Config.Runewords.push([Runeword.Spirit, "Akaran Rondache"]);
-			Config.Runewords.push([Runeword.Spirit, "Protector Shield"]);
-			Config.Runewords.push([Runeword.Spirit, "Gilded Shield"]);
-			Config.Runewords.push([Runeword.Spirit, "Sacred Targe"]);
-			Config.KeepRunewords.push("([type] == shield || [type] == auricshields) # [fcr] >= 25 && [maxmana] >= 89");
-		}
 
 		if (me.ladder > 0 && Item.getEquippedItemMerc(4).tier < 3600) { // Merc Insight
 			var Insight = [
