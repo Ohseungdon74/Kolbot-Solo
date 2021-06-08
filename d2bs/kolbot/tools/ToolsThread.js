@@ -41,7 +41,7 @@ function main() {
 		canQuit = true,
 		timerLastDrink = [];
 
-	print("ÿc3스크립트 시작...");
+	print("ÿc3Start ToolsThread script");
 	D2Bot.init();
 	Config.init(false);
 	Pickit.init(false);
@@ -131,7 +131,7 @@ function main() {
 
 		for (i = 0; i < items.length; i += 1) {
 			if (type < 3 && items[i].mode === 0 && items[i].location === 3 && items[i].itemType === pottype) {
-				print("ÿc2인벤토리에서 물약을 먹었습니다.");
+				print("ÿc2Drinking potion from inventory.");
 
 				return copyUnit(items[i]);
 			}
@@ -154,7 +154,7 @@ function main() {
 			if (script) {
 				if (script.running) {
 					if (i === 0) { // default.dbj
-						print("ÿc1일시중지.");
+						print("ÿc1Pausing.");
 					}
 
 					// don't pause townchicken during clone walk
@@ -163,7 +163,7 @@ function main() {
 					}
 				} else {
 					if (i === 0) { // default.dbj
-						print("ÿc2재개.");
+						print("ÿc2Resuming.");
 					}
 
 					script.resume();
@@ -254,7 +254,7 @@ function main() {
 				try {
 					clickItem(2, potion);
 				} catch (e) {
-					print("용병에게 물약을 주지 못했습니다.");
+					print("Couldn't give the potion to merc.");
 				}
 			}
 
@@ -378,11 +378,11 @@ function main() {
 		var hellPoisonRes = unit.getStat(sdk.stats.Poisonresist) - 100;
 		if (hellPoisonRes > maxHellPoisonRes)
 		        hellPoisonRes = maxHellPoisonRes;
-		var str = "ÿc4매직보너스: ÿc0" + unit.getStat(sdk.stats.Magicbonus) + "ÿc4 골드보너스: ÿc0" + unit.getStat(sdk.stats.Goldbonus) +
-		"ÿc1 파래: ÿc0" + unit.getStat(sdk.stats.Fireresist) + "ÿc1 Max 파래: ÿc0" + unit.getStat(sdk.stats.Maxfireresist) +
-		"ÿc3 콜래: ÿc0" + unit.getStat(sdk.stats.Coldresist) + "ÿc3 Max 콜래: ÿc0" + unit.getStat(sdk.stats.Maxcoldresist) +
-		"ÿc9 라래: ÿc0" + unit.getStat(sdk.stats.Lightresist) + "ÿc9 Max 라래: ÿc0" + unit.getStat(sdk.stats.Maxlightresist) +
-		"ÿc2 포래: ÿc0" + unit.getStat(sdk.stats.Poisonresist) + "ÿc2 Max 포래: ÿc0" + unit.getStat(sdk.stats.Maxpoisonresist) +
+		var str = "ÿc4MF: ÿc0" + unit.getStat(sdk.stats.Magicbonus) + "ÿc4 GF: ÿc0" + unit.getStat(sdk.stats.Goldbonus) +
+		"ÿc1 FR: ÿc0" + unit.getStat(sdk.stats.Fireresist) + "ÿc1 Max FR: ÿc0" + unit.getStat(sdk.stats.Maxfireresist) +
+		"ÿc3 CR: ÿc0" + unit.getStat(sdk.stats.Coldresist) + "ÿc3 Max CR: ÿc0" + unit.getStat(sdk.stats.Maxcoldresist) +
+		"ÿc9 LR: ÿc0" + unit.getStat(sdk.stats.Lightresist) + "ÿc9 Max LR: ÿc0" + unit.getStat(sdk.stats.Maxlightresist) +
+		"ÿc2 PR: ÿc0" + unit.getStat(sdk.stats.Poisonresist) + "ÿc2 Max PR: ÿc0" + unit.getStat(sdk.stats.Maxpoisonresist) +
 		"\n" +
 		"Hell res: ÿc1" + hellFireRes + "ÿc0/ÿc3" + hellColdRes + "ÿc0/ÿc9" + hellLightRes + "ÿc0/ÿc2" + hellPoisonRes +
 		"ÿc0\n" +
@@ -425,7 +425,7 @@ function main() {
 			var merc = me.getMerc();
 			print(this.getStatsString(me));
 			if (merc)
-				print("용병 스텟 :\n" + this.getStatsString(merc));
+				print("Merc stats:\n" + this.getStatsString(merc));
 
 			break;
 		case 101: // numpad 5

@@ -146,48 +146,48 @@ Loop:
 		return false;
 	};
 
-	/* Container.MoveTo(item)	컨테이너 이동 (항목)
-	 *	Takes any item and moves it into given buffer.	항목을 가져 와서 주어진 버퍼로 이동합니다.
+	/* Container.MoveTo(item)
+	 *	Takes any item and moves it into given buffer.
 	 */
 	this.MoveTo = function (item) {
 		var nPos, n, nDelay, cItem, cube;
 
 		try {
-			// 여기에 넣어도 될까요?
+			//Can we even fit it in here?
 			nPos = this.FindSpot(item);
 
 			if (!nPos) {
 				return false;
 			}
 
-			//큐브-> 보관함, 먼저 인벤토리에 항목을 배치해야합니다.
+			//Cube -> Stash, must place item in inventory first
 			if (item.location === 6 && this.location === 7 && !Storage.Inventory.MoveTo(item)) {
 				return false;
 			}
 
-			//상에있는 물건을 다룰 수 없습니다!
+			//Can't deal with items on ground!
 			if (item.mode === 3) {
 				return false;
 			}
 
-			//이미 커서에있는 항목입니다.
+			//Item already on the cursor.
 			if (me.itemoncursor && item.mode !== 4) {
 				return false;
 			}
 
-			//Make sure stash is open 숨김이 열려 있는지 확인
+			//Make sure stash is open
 			if (this.location === 7 && !Town.openStash()) {
 				return false;
 			}
 
-			//Pick to cursor if not already. 아직 선택하지 않은 경우 커서를 선택합니다.
+			//Pick to cursor if not already.
 			if (!item.toCursor()) {
 				return false;
 			}
 
-			//Loop three times to try and place it. 세 번 반복하여 시도하고 배치하십시오.
+			//Loop three times to try and place it.
 			for (n = 0; n < 5; n += 1) {
-				if (this.location === 6) { // place item into cube 큐브에 항목을 배치
+				if (this.location === 6) { // place item into cube
 					cItem = getUnit(100);
 					cube = me.getItem(549);
 
@@ -202,7 +202,7 @@ Loop:
 
 				while ((getTickCount() - nDelay) < Math.max(1000, me.ping * 3 + 500)) {
 					if (!me.itemoncursor) {
-						print("성공적으로 배치 " + item.name + " X: " + nPos.x + " Y: " + nPos.y);
+						print("Successfully placed " + item.name + " at X: " + nPos.x + " Y: " + nPos.y);
 						delay(200);
 
 						return true;
@@ -224,8 +224,8 @@ Loop:
 	this.Dump = function () {
 		var x, y, string;
 
-		print(this.name + " 의 " + this.width + " 너비와 " + this.height + " 높이");
-		print(this.name + " 에는 " + this.itemList.length + " 개의 항목이 있고 " + this.openPositions + " 개의 자리가 있습니다.");
+		print(this.name + " has the width of " + this.width + " and the height of " + this.height);
+		print(this.name + " has " + this.itemList.length + " items inside, and has " + this.openPositions + " spots left.");
 
 		for (x = 0; x < this.height; x += 1) {
 			string = "";
@@ -259,8 +259,8 @@ Loop:
 		return usedSpace * 100 / totalSpace;
 	};
 
-	/* Container.compare(reference)	컨테이너 비교 (참조)
-	 *	Compare given container versus the current one, return all new items in current buffer.	주어진 컨테이너와 현재 컨테이너를 비교하고 현재 버퍼의 모든 새 항목을 반환합니다
+	/* Container.compare(reference)
+	 *	Compare given container versus the current one, return all new items in current buffer.
 	 */
 	this.Compare = function (baseRef) {
 		var h, w, n, item, itemList, reference;
@@ -271,9 +271,9 @@ Loop:
 			itemList = [];
 			reference = baseRef.slice(0, baseRef.length);
 
-			//Insure valid reference.	유효한 참조를 확인하십시오.
+			//Insure valid reference.
 			if (typeof (reference) !== "object" || reference.length !== this.buffer.length || reference[0].length !== this.buffer[0].length) {
-				throw new Error("다른 컨테이너를 비교할 수 없습니다.");
+				throw new Error("Unable to compare different containers.");
 			}
 
 			for (h = 0; h < this.height; h += 1) {
@@ -291,7 +291,7 @@ Loop:
 						}
 					}
 
-					//Check if the buffers changed and the current buffer has an item there.	버퍼가 변경되었고 현재 버퍼에 항목이 있는지 확인하십시오.
+					//Check if the buffers changed and the current buffer has an item there.
 					if (this.buffer[h][w] > 0 && reference[h][w] > 0) {
 						itemList.push(copyUnit(item));
 					}
@@ -346,8 +346,7 @@ var Storage = new function () {
 
 		return 1; // no belt
 	};
-	// 인벤토리와 거래기능
-		
+
 	this.Reload = function () {
 		this.Inventory.Reset();
 		this.Stash.Reset();

@@ -625,18 +625,18 @@
 //[name] == ortrune # # [MaxQuantity] == 2
 //[name] == thulrune # # [MaxQuantity] == 2
 //[name] == amnrune # # [MaxQuantity] == 1
-[name] == solrune # # [MaxQuantity] == 2
-[name] == shaelrune # # [MaxQuantity] == 1
-[name] == dolrune # # [MaxQuantity] == 1
-[name] == helrune # # [MaxQuantity] == 2
-[name] == iorune # # [MaxQuantity] == 1
-[name] == lumrune # # [MaxQuantity] == 1
-[name] == korune # # [MaxQuantity] == 1
-[name] == falrune
-[name] == lemrune # # [MaxQuantity] == 1
-[name] == pulrune # # [MaxQuantity] == 1
-[name] == umrune # # [MaxQuantity] == 1
-[name] == malrune # # [MaxQuantity] == 1
+//[name] == solrune # # [MaxQuantity] == 2
+//[name] == shaelrune # # [MaxQuantity] == 1
+//[name] == dolrune # # [MaxQuantity] == 1
+//[name] == helrune # # [MaxQuantity] == 2
+//[name] == iorune # # [MaxQuantity] == 1
+//[name] == lumrune # # [MaxQuantity] == 1
+//[name] == korune # # [MaxQuantity] == 1
+//[name] == falrune
+//[name] == lemrune # # [MaxQuantity] == 1
+//[name] == pulrune # # [MaxQuantity] == 1
+//[name] == umrune # # [MaxQuantity] == 1
+//[name] == malrune # # [MaxQuantity] == 1
 
 [name] >= istrune && [name] <= zodrune
 

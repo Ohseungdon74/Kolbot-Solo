@@ -14,7 +14,7 @@ function LoadConfig() {
 	 */
 
 	// User addon script. Read the description in libs/bots/UserAddon.js
-	Scripts.UserAddon = false; // !!!YOU MUST SET THIS TO FALSE IF YOU WANT TO RUN BOSS/AREA SCRIPTS!!!
+	Scripts.UserAddon = true; // !!!YOU MUST SET THIS TO FALSE IF YOU WANT TO RUN BOSS/AREA SCRIPTS!!!
 
 	// Battle orders script - Use this for 2+ characters (for example BO barb + sorc)
 	Scripts.BattleOrders = false;
@@ -246,11 +246,11 @@ function LoadConfig() {
 
 	// Potion settings
 	Config.UseHP = 75; // Drink a healing potion if life is under designated percent.
-	Config.UseRejuvHP = 30; // Drink a rejuvenation potion if life is under designated percent.
+	Config.UseRejuvHP = 40; // Drink a rejuvenation potion if life is under designated percent.
 	Config.UseMP = 30; // Drink a mana potion if mana is under designated percent.
 	Config.UseRejuvMP = 0; // Drink a rejuvenation potion if mana is under designated percent.
 	Config.UseMercHP = 75; // Give a healing potion to your merc if his/her life is under designated percent.
-	Config.UseMercRejuv = 30; // Give a rejuvenation potion to your merc if his/her life is under designated percent.
+	Config.UseMercRejuv = 0; // Give a rejuvenation potion to your merc if his/her life is under designated percent.
 	Config.HPBuffer = 0; // Number of healing potions to keep in inventory.
 	Config.MPBuffer = 0; // Number of mana potions to keep in inventory.
 	Config.RejuvBuffer = 0; // Number of rejuvenation potions to keep in inventory.
@@ -293,8 +293,8 @@ function LoadConfig() {
 	Config.MinColumn[3] = 0;
 
 	// Pickit config. Default folder is kolbot/pickit.
-	Config.PickitFiles.push("kolton_Unique.nip");
-	//Config.PickitFiles.push("LLD.nip");
+	Config.PickitFiles.push("kolton.nip");
+	Config.PickitFiles.push("LLD.nip");
 	Config.PickRange = 40; // Pick radius
 	Config.FastPick = false; // Check and pick items between attacks
 	Config.ManualPlayPick = false; // If set to true and D2BotMap entry script is used, will enable picking in manual play.
@@ -520,7 +520,7 @@ function LoadConfig() {
 
 	Config.NoTele = false; // Restrict char from teleporting. Useful for low level/low mana chars
 	Config.BossPriority = false; // Set to true to attack Unique/SuperUnique monsters first when clearing
-	Config.ClearType = 0 //0xF; // Monster spectype to kill in level clear scripts (ie. Mausoleum). 0xF = skip normal, 0x7 = champions/bosses, 0 = all
+	Config.ClearType = 0xF; // Monster spectype to kill in level clear scripts (ie. Mausoleum). 0xF = skip normal, 0x7 = champions/bosses, 0 = all
 
 	// Clear while traveling during bot scripts
 	// You have two methods to configure clearing. First is simply a spectype to always clear, in any area, with a default range of 30

@@ -167,24 +167,18 @@ function LoadConfig () {
 		"[Type] == Amulet && [Quality] >= Magic # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//rings
 		"[Type] == Ring && [Quality] >= Magic # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
-	];
-	NTIP.arrayLooping(levelingTiers);
-
-	var autoequipmercTiers = [
+		//merc
 		"([type] == circlet || [type] == helm) && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
 		"[Type] == armor && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
 		"me.charlvl > 14 && [Type] == Polearm && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
-		"[type] == armor && [flag] == runeword # [enhanceddefense] >= 200 && [enhanceddamage] >= 300 # [merctier] == 100000", //Fortitude
-		"[type] == armor && [flag] == runeword # [ias] == 45 && [coldresist] == 30 # [merctier] == 50000", //Treachery
-		"[name] == demonhead && [quality] == unique && [flag] == ethereal # [strength] >= 25 && [enhanceddefense] >= 100 # [merctier] == 50000", //Eth Andy's
 	];
-	NTIP.arrayLooping(autoequipmercTiers);
+	NTIP.arrayLooping(levelingTiers);
 
 	/* FastMod configuration. */
-	Config.FCR = 20;
-	Config.FHR = 20;
-	Config.FBR = 20;
-	Config.IAS = 20;
+	Config.FCR = 255;
+	Config.FHR = 255;
+	Config.FBR = 255;
+	Config.IAS = 255;
 
 	/* Attack configuration. */
 	Config.AttackSkill = [0, 0, 0, 0, 0, 0, 0];

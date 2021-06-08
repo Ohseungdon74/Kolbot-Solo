@@ -475,17 +475,17 @@ var Hooks = {
 			if (this.action) {
 				switch (this.action) {
 				case 96: // Numpad 0
-					hook = this.getHook("다음 지역");
+					hook = this.getHook("Next Area");
 					obj.type = "area";
 
 					break;
 				case 97: // Numpad 1
-					hook = this.getHook("이전 지역");
+					hook = this.getHook("Previous Area");
 					obj.type = "area";
 
 					break;
 				case 98: // Numpad 2
-					hook = this.getHook("웨이포닝트");
+					hook = this.getHook("Waypoint");
 					obj.type = "wp";
 
 					break;
@@ -708,7 +708,7 @@ var Hooks = {
 				for (i = 0; i < exits.length; i += 1) {
 					if (exits[i].target === this.prevAreas[me.area]) {
 						this.hooks.push({
-							name: "이전 지역",
+							name: "Previous Area",
 							destination: this.prevAreas[me.area],
 							hook: new Text("Num 1: " + Pather.getAreaName(this.prevAreas[me.area]), 150, 525 - (this.hooks.length * 10))
 						});
@@ -721,7 +721,7 @@ var Hooks = {
 				for (i = 0; i < exits.length; i += 1) {
 					if (exits[i].target === nextAreas[me.area]) {
 						this.hooks.push({
-							name: "다음 지역",
+							name: "Next Area",
 							destination: nextAreas[me.area],
 							hook: new Text("Num 0: " + Pather.getAreaName(nextAreas[me.area]), 150, 525 - (this.hooks.length * 10))
 						});
@@ -737,7 +737,7 @@ var Hooks = {
 					for (i = 0; i < exits.length; i += 1) {
 						if (exits[i].target === this.prevAreas.indexOf(me.area)) {
 							this.hooks.push({
-								name: "다음 지역",
+								name: "Next Area",
 								destination: this.prevAreas.indexOf(me.area),
 								hook: new Text("Num 0: " + Pather.getAreaName(this.prevAreas.indexOf(me.area)), 150, 525 - (this.hooks.length * 10))
 							});

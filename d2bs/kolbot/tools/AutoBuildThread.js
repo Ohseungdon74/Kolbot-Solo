@@ -56,7 +56,7 @@ function canSpendPoints () {
 	var haveUnusedStatpoints = unusedStatPoints >= 5;	// We spend 5 stat points per level up
 	var unusedSkillPoints = me.getStat(5);
 	var haveUnusedSkillpoints = unusedSkillPoints >= 1;	// We spend 1 skill point per level up
-	if (debug) { AutoBuild.print("스탯 포인트 :", unusedStatPoints, "     스킬 포인트:", unusedSkillPoints); }
+	if (debug) { AutoBuild.print("Stat points:", unusedStatPoints, "     Skill points:", unusedSkillPoints); }
 	return haveUnusedStatpoints && haveUnusedSkillpoints;
 };
 
@@ -65,9 +65,9 @@ function spendStatPoint (id) {
 	var unusedStatPoints = me.getStat(4);
 	if (SPEND_POINTS) {
 		useStatPoint(id);
-		AutoBuild.print("스탯 포인트 (" + id + "): " + STAT_ID_TO_NAME[id] + " 사용");
+		AutoBuild.print("useStatPoint("+id+"): "+STAT_ID_TO_NAME[id]);
 	} else {
-		AutoBuild.print("가짜 스탯 포인트 사용("+id+"): "+STAT_ID_TO_NAME[id]);
+		AutoBuild.print("Fake useStatPoint("+id+"): "+STAT_ID_TO_NAME[id]);
 	}
 	delay(100);											// TODO: How long should we wait... if at all?
 	return (unusedStatPoints - me.getStat(4) === 1);	// Check if we spent one point
@@ -77,7 +77,7 @@ function spendStatPoint (id) {
 // TODO: What do we do if it fails? report/ignore/continue?
 function spendStatPoints () {
 	var stats = AutoBuildTemplate[me.charlvl].StatPoints;
-	var errorMessage = "\n빌드 템플릿에 잘못된 통계 포인트 "+getTemplateFilename()+" 레벨 "+me.charlvl + " 설정되었습니다.";
+	var errorMessage = "\nInvalid stat point set in build template "+getTemplateFilename()+" at level "+me.charlvl;
 	var spentEveryPoint = true;
 	var unusedStatPoints = me.getStat(4);
 	var len = stats.length;
@@ -88,8 +88,8 @@ function spendStatPoints () {
 
 	if (len > unusedStatPoints) {
 		len = unusedStatPoints;
-		AutoBuild.print("경고 : 레벨에서 빌드 템플릿에 지정된 통계 레벨 "+me.charlvl+" 사용 가능한 미사용 스탯 포인트를 초과"+
-			"\n첫 번째 "+len+" 스탯 "+stats.slice(0, len).join(", ")+" 추가됩니다.");
+		AutoBuild.print("Warning: Number of stats specified in your build template at level "+me.charlvl+" exceeds the available unused stat points"+
+			"\nOnly the first "+len+" stats "+stats.slice(0, len).join(", ")+" will be added");
 	}
 
 	// We silently ignore stats set to -1
@@ -104,13 +104,13 @@ function spendStatPoints () {
 			if (SPEND_POINTS) {
 				if (!pointSpent) {
 					spentEveryPoint = false;
-					AutoBuild.print("포인트 "+(i+1)+" 개의 "+STAT_ID_TO_NAME[id]+" 사용 시도가 실패했을 수 있습니다!");
+					AutoBuild.print("Attempt to spend point "+(i+1)+" in "+STAT_ID_TO_NAME[id]+" may have failed!");
 				} else if (debug) {
 					AutoBuild.print("Stat ("+(i+1)+"/"+len+") Increased "+STAT_ID_TO_NAME[id]+" from "+preStatValue+" to "+me.getStat(id));
 				}
 			}
 		} else {
-			throw new Error("통계 ID는 다음 중 하나 여야합니다.:\n0:"+STAT_ID_TO_NAME[0] +
+			throw new Error("Stat id must be one of the following:\n0:"+STAT_ID_TO_NAME[0] +
 				",\t1:"+STAT_ID_TO_NAME[1]+",\t2:"+STAT_ID_TO_NAME[2]+",\t3:"+STAT_ID_TO_NAME[3] + errorMessage);
 		}
 	}
@@ -244,10 +244,10 @@ function main () {
 
 			if (levels > 0 && (canSpendPoints() || Config.AutoSkill.Enabled || Config.AutoStat.Enabled)) {
 				scriptBroadcast("toggleQuitlist");
-				AutoBuild.print("레벨 업 감지 (", prevLevel, "-->", me.charlvl, ")");
+				AutoBuild.print("Level up detected (", prevLevel, "-->", me.charlvl, ")");
 				spendSkillPoints();
 				spendStatPoints();
-				scriptBroadcast({event: "레벨 업"});
+				scriptBroadcast({event: "level up"});
 				AutoBuild.applyConfigUpdates(); // scriptBroadcast() won't trigger listener on this thread.
 
 				if (debug) {

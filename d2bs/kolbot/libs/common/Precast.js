@@ -23,11 +23,9 @@ var Precast = new function () {
 			var slot = me.weaponswitch;
 
 			Attack.weaponSwitch(this.haveCTA);
-			Skill.cast(138, 0); // Shout			
 			Skill.cast(155, 0); // Battle Command
 			Skill.cast(149, 0); // Battle Orders
 
-			
 			this.BODuration = (20 + me.getSkill(149, 1) * 10 + (me.getSkill(138, 0) + me.getSkill(155, 0)) * 5) * 1000;
 			this.BOTick = getTickCount();
 

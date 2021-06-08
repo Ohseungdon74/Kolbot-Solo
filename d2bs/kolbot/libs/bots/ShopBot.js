@@ -18,14 +18,14 @@ function ShopBot() {
 			filename = filepath.substring(filepath.lastIndexOf("/") + 1, filepath.length);
 
 		if (!FileTools.exists(filepath)) {
-			Misc.errorReport("ÿc1NIP 파일 : ÿc0" + filepath + " 존재하지 않습니다.");
+			Misc.errorReport("ÿc1NIP file doesn't exist: ÿc0" + filepath);
 			return false;
 		}
 
 		try {
 			nipfile = File.open(filepath, 0);
 		} catch (fileError) {
-			Misc.errorReport("ÿc1로드 실패한 NIP : ÿc0" + filename);
+			Misc.errorReport("ÿc1Failed to load NIP: ÿc0" + filename);
 		}
 
 		if (!nipfile) {
@@ -54,7 +54,7 @@ function ShopBot() {
 
 	this.openMenu = function (npc) {
 		if (npc.type !== 1) {
-			throw new Error("Unit.openMenu: NPC에서 사용해야합니다..");
+			throw new Error("Unit.openMenu: Must be used on NPCs.");
 		}
 
 		var i, tick,

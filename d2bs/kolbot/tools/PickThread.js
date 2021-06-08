@@ -23,7 +23,7 @@ include("common/Storage.js");
 include("common/Town.js");
 
 function main() {
-	print("ÿc9아이템 픽 스레드 로드.");
+	print("ÿc9Pick Thread Loaded.");
 	Config.init(false);
 	Pickit.init(false);
 	Storage.Init();

@@ -113,7 +113,7 @@ var Runewords = {
 		// initiate pickit entries
 		for (i = 0; i < Config.KeepRunewords.length; i += 1) {
 			info = {
-				file: "캐릭터 구성 ",
+				file: "Character Config",
 				line: Config.KeepRunewords[i]
 			};
 
@@ -131,7 +131,7 @@ var Runewords = {
 					if (NTIPAliasClassID.hasOwnProperty(Config.Runewords[i][1].replace(/\s+/g, "").toLowerCase())) {
 						Config.Runewords[i][1] = NTIPAliasClassID[Config.Runewords[i][1].replace(/\s+/g, "").toLowerCase()];
 					} else {
-						Misc.errorReport("ÿc1잘못된 룬워드 항목:ÿc0 " + Config.Runewords[i][1]);
+						Misc.errorReport("ÿc1Invalid runewords entry:ÿc0 " + Config.Runewords[i][1]);
 						Config.Runewords.splice(i, 1);
 
 						i -= 1;
@@ -387,12 +387,12 @@ RuneLoop:
 				this.socketItem(items[0], items[i]);
 			}
 
-			print("ÿc4룬워드: ÿc0만든 룬워드 : " + items[0].fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""));
-			D2Bot.printToConsole("만든 룬워드 : " + items[0].fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""), 5);
+			print("ÿc4Runewords: ÿc0Made runeword: " + items[0].fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""));
+			D2Bot.printToConsole("Made runeword: " + items[0].fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""), 5);
 
 			if (NTIP.CheckItem(items[0], this.pickitEntries)) {
-				Misc.itemLogger("룬워드 Kept", items[0]);
-				Misc.logItem("룬워드 Kept", items[0]);
+				Misc.itemLogger("Runeword Kept", items[0]);
+				Misc.logItem("Runeword Kept", items[0]);
 			}
 		}
 
@@ -432,8 +432,8 @@ RuneLoop:
 					return false;
 				}
 
-				print("ÿc4룬워드: ÿc0룬워드 재조정 : " + base.fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""));
-				D2Bot.printToConsole("룬워드 재조정 : " + base.fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""), 5);
+				print("ÿc4Runewords: ÿc0Rerolling runeword: " + base.fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""));
+				D2Bot.printToConsole("Rerolling runeword: " + base.fname.split("\n").reverse().join(" ").replace(/ÿc[0-9!"+<;.*]/, ""), 5);
 				transmute();
 				delay(500);
 

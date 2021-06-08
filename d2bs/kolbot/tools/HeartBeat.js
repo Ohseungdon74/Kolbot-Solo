@@ -19,10 +19,10 @@ function main() {
 			do {
 				if (script.name.indexOf(".dbj") > -1) {
 					if (script.running) {
-						print("ÿc1일시 중지 ÿc0" + script.name);
+						print("ÿc1Pausing ÿc0" + script.name);
 						script.pause();
 					} else {
-						print("ÿc2재개 ÿc0" + script.name);
+						print("ÿc2Resuming ÿc0" + script.name);
 						script.resume();
 					}
 				}
