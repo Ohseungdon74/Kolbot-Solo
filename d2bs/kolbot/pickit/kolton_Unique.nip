@@ -291,12 +291,25 @@
 [name] == gildedshield && [quality] == unique // # [enhanceddefense] >= 200 // herald of zakarum
 
 //          ==rare==
-[type] == auricshields && [quality] == rare // # [paladinskills] == 2 && [fbr] == 30 && [sockets] == 2 && [enhanceddefense] >= 150 && [enhanceddamage] >= 60 && [tohit] >= 100
+//[type] == auricshields && [quality] == rare // # [paladinskills] == 2 && [fbr] == 30 && [sockets] == 2 && [enhanceddefense] >= 150 && [enhanceddamage] >= 60 && [tohit] >= 100
 
 
 // MISC
 
 //-----runes-----
+[name] == elrune
+[name] == eldrune
+[name] == tirrune
+[name] == nefrune
+[name] == ethrune
+[name] == ithrune
+[name] == talrune
+[name] == ralrune
+[name] == ortrune
+[name] == thulrune
+[name] == amnrune
+[name] == solrune
+[name] == shaelrune
 [name] == dolrune
 [name] == helrune
 [name] == iorune
@@ -307,8 +320,16 @@
 [name] == pulrune
 [name] == umrune
 [name] == malrune
-[name] >= istrune && [name] <= zodrune
-
+[name] == istrune
+//[name] >= istrune && [name] <= zodrune
+[name] == Gulrune
+[name] == Vexrune
+[name] == Ohmrune
+[name] == Lorune
+[name] == Surrune
+[name] == Berrune
+[name] == Jahrune
+[name] >= Chamrune && [name] <= zodrune
 
 [name] == greatermanapotion
 [name] == supermanapotion
@@ -318,7 +339,7 @@
 
 [name] == perfectamethyst || [name] == perfecttopaz || [name] == perfectdiamond || [name] == perfectsapphire
 
-[name] >= istrune && [name] <= zodrune
+
 
 [name] == keyofhate // # [maxquantity] == 3
 [name] == keyofterror // # [maxquantity] == 3
@@ -329,6 +350,10 @@
 [name] == baal'seye
 
 //----------jewels------------
+//          ==magic==
+[Name] == jewel && [quality] == magic # ([enhanceddamage] >= 40 || [tohit] == 100 || [maxdamage] >= 15) && ([maxhp] == 20 || [ias] >= 15 || [itemreqpercent] <= -15 || [strength] >= 9 || [dexterity] >= 9)
+[Name] == jewel && [quality] == magic # ([fireresist] == 30 || [coldresist] == 30 || [lightresist] == 30 || [fireresist] >= 15 && [lightresist] >= 15 || [maxmana] == 20) && ([maxhp] == 20 || [fhr] == 7 || [ias] == 15 || [itemreqpercent] <= -15 || [strength] >= 9 || [dexterity] >= 9)
+[Name] == jewel && [quality] == magic # [maxdamage] >= 30
 
 //          ==rare==
 [Name] == jewel && [Quality] == rare // # [strength] >= 9 && [dexterity] >= 9
@@ -447,6 +472,8 @@
 
 [type] == amulet && [quality] == crafted // # [assassinskills] == 2 && [fcr] >= 15
 [type] == amulet && [quality] == crafted // # [druidskills] == 2 && [fcr] >= 18
+[type] == amulet && [quality] == crafted // # [sorceressskills] == 2 && [fcr] >= 15
+[type] == amulet && [quality] == crafted // # [paladinskills] == 2 && [fcr] >= 18
 [type] == amulet && [quality] == crafted // # [itemaddclassskills] >= 2 && [fcr] >= 10 && ([strength]+[dexterity] >= 25 || [maxhp]+[maxmana] >= 50)
 
 [name] == jewel && [quality] == rare // # [fireresist] >= 35

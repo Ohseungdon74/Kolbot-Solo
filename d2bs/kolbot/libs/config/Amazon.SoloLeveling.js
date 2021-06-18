@@ -104,8 +104,8 @@ function LoadConfig () {
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
-	//	Config.PickitFiles.push("kolton.nip");
-	//	Config.PickitFiles.push("LLD.nip");
+	Config.PickitFiles.push("kolton_Unique.nip");
+	Config.PickitFiles.push("ChippedGem.nip");
 
 	/* Gambling configuration. */
 	Config.Gamble = true;
@@ -147,9 +147,10 @@ function LoadConfig () {
 
 	var levelingTiers = [ // autoequip setup
 		//weapon
-		"me.charlvl < 30 && ([Type] == bow || [Type] == amazonbow) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
-		"me.charlvl < 30 && [Type] == bowquiver # # [MaxQuantity] == 2",
-		"me.charlvl > 29 && ([Type] == javelin || [Type] == amazonjavelin) && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"me.charlvl < 25 && ([Type] == bow || [Type] == amazonbow) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"me.charlvl < 25 && [Type] == bowquiver # # [MaxQuantity] == 2",
+		"me.charlvl > 24 && ([Type] == javelin || [Type] == amazonjavelin) && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"me.charlvl < 25 && ([Type] == javelin || [Type] == amazonjavelin) && [Quality] >= Magic && [flag] != ethereal # [ias] > 0 # [MaxQuantity] == 1",
 		//Helmet
 		"([type] == circlet || [type] == helm) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//belt
@@ -159,7 +160,7 @@ function LoadConfig () {
 		//armor
 		"[type] == armor && ([Quality] >= Magic || [flag] == runeword) && [Flag] != Ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//shield
-		"me.charlvl > 29 && [type] == shield && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
+		"me.charlvl > 24 && [type] == shield && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//gloves
 		"[Type] == Gloves && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		//ammy
@@ -365,26 +366,6 @@ function LoadConfig () {
 			Config.KeepRunewords.push("[type] == polearm # [meditationaura] >= 12");
 		}
 
-		if (me.normal && Item.getEquippedItem(4).tier < 251) { // zephyr
-			if (!Check.haveItem("bow", "runeword", "Zephyr")) {
-				if (!me.getItem(618)) {
-					Config.Recipes.push([Recipe.Rune, "Ral Rune"]);
-				}
-
-				var zephyr = [
-					"[Name] == OrtRune # # [MaxQuantity] == 1",
-					"[Name] == EthRune # # [MaxQuantity] == 1",
-					"me.normal && ([Name] == hunter'sbow || [Name] == longbow) && [Flag] != Ethereal && [Quality] >= Normal && [Quality] <= Superior # [Sockets] == 2 # [MaxQuantity] == 1",
-				];
-				NTIP.arrayLooping(zephyr);
-
-				Config.Runewords.push([Runeword.Zephyr, "Hunter's Bow"]);
-				Config.Runewords.push([Runeword.Zephyr, "Long Bow"]);
-
-				Config.KeepRunewords.push("[type] == bow # [IAS] == 25");
-			}
-		}
-
 		if (Item.getEquippedItem(1).tier < 315) { // Lore
 			if (!Check.haveItem("helm", "runeword", "Lore")) {
 				var loreRunes = [
@@ -450,7 +431,7 @@ function LoadConfig () {
 				NTIP.arrayLooping(peaceRunes);
 			}
 
-			NTIP.addLine("([Name] == BreastPlate || [Name] == demonhidearmor || [Name] == DuskShroud || [Name] == GhostArmor ||[Name] == LightPlate || [Name] == MagePlate || [Name] == SerpentskinArmor || [Name] == trellisedarmor || [Name] == WyrmHide) && [Flag] != Ethereal && [Quality] >= Normal && [Quality] <= Superior # [Sockets] == 3 # [MaxQuantity] == 1");
+			NTIP.addLine("([Name] == demonhidearmor || [Name] == DuskShroud || [Name] == GhostArmor ||[Name] == LightPlate || [Name] == MagePlate || [Name] == SerpentskinArmor || [Name] == trellisedarmor || [Name] == WyrmHide) && [Flag] != Ethereal && [Quality] >= Normal && [Quality] <= Superior # [Sockets] == 3 # [MaxQuantity] == 1");
 
 			Config.Runewords.push([Runeword.Peace, "demonhide armor"]);
 			Config.Runewords.push([Runeword.Peace, "Dusk Shroud"]);
@@ -460,7 +441,6 @@ function LoadConfig () {
 			Config.Runewords.push([Runeword.Peace, "Serpentskin Armor"]);
 			Config.Runewords.push([Runeword.Peace, "trellised armor"]);
 			Config.Runewords.push([Runeword.Peace, "WyrmHide"]);
-			Config.Runewords.push([Runeword.Peace, "Breast Plate"]);
 
 			Config.KeepRunewords.push("[type] == armor # [coldresist] == 30");
 		}

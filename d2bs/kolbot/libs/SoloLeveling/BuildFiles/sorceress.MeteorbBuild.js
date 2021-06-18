@@ -1,7 +1,7 @@
 /*
  *    @filename   	Sorceress.MeteorbBuild.js
  *	  @author	  	isid0re
- *    @desc      	Sorceress meteorb build for after respecOne
+ *    @desc      	Sorceress meteorb build
  */
 
 var build = {
@@ -13,7 +13,7 @@ var build = {
 	mercAuraWanted: 114,
 	mercDiff: 1,
 	stats: [
-		["strength", 48], ["vitality", 165], ["strength", 61], ["vitality", 252], ["strength", 84], ["dexterity", "block"], ["vitality", "all"]
+		["strength", 48], ["vitality", 165], ["strength", 61], ["vitality", 252], ["strength", 150], ["vitality", "all"]
 	],
 	skills: [
 		[36, 1], // Fire Bolt
@@ -61,7 +61,10 @@ var build = {
 		//ammy
 		"[name] == amulet && [quality] == set # [lightresist] == 33 # [tier] == 100000", //tals ammy
 		//rings
-		"[Type] == Ring	&& [Quality] == Unique # [Dexterity] >= 20 # [tier] == 100000", //ravenfrost
-		"[Type] == Ring && [Quality] == Unique # [ItemMagicBonus] >= 30 # [tier] == 100000", //nagelring
+		"[type] == ring && [quality] == unique # [dexterity] >= 20 # [tier] == 100000", //ravenfrost
+		"[type] == ring && [quality] == unique # [itemmagicbonus] >= 30 # [tier] == 100000", //nagelring
+		//merc
+		"[type] == armor && [flag] == runeword # [enhanceddefense] >= 200 && [enhanceddamage] >= 300 # [merctier] == 100000",	//Fortitude
+		"[name] == demonhead && [quality] == unique && [flag] == ethereal # [strength] >= 25 && [enhanceddefense] >= 100 # [merctier] == 50000",	//Eth Andy's
 	]
 };

@@ -68,7 +68,7 @@ Town.townTasks = function () {
 
 	me.cancel();
 
-	if ((!me.sorceress && !me.getSkill(115, 0) || me.sorceress && !me.getSkill(54, 0)) && (me.area === 40 || me.area === 75)) {
+	if (me.area === 40 || me.area === 75) {
 		Town.buyPots(8, "Stamina");
 		Town.drinkPots();
 	}
@@ -82,7 +82,7 @@ Town.townTasks = function () {
 	}
 
 	Config.NoTele = me.normal && me.gold < 10000 ? true : !me.normal && me.gold < 50000 ? true : false;
-	Config.Dodge = me.getSkill(54, 0) && me.sorceress ? !Config.NoTele : false;
+	Config.Dodge = (me.getSkill(54, 0) || me.getStat(97, 54)) ? !Config.NoTele : Config.Dodge;
 
 	return true;
 };
@@ -769,6 +769,18 @@ Town.equipSWAP = function () {
 Town.buyPots = function (quantity, type) {
 	let npc, jugs;
 
+	if (type === "Thawing" && Check.Resistance().CR >= 75) {	// Don't buy if already at max res
+		return true;
+	}
+
+	if (type === "Antidote" && Check.Resistance().PR >= 75) {	// Don't buy if already at max res
+		return true;
+	}
+
+	if (type === "Stamina" && (me.paladin && me.getSkill(115, 0) || me.sorceress && me.getSkill(54, 0))) {	// Don't buy if teleport or vigor
+		return true;
+	}
+
 	switch (me.area) {
 	case 1:
 		Town.move(NPC.Akara);
@@ -838,10 +850,10 @@ Town.drinkPots = function () {
 				delay(10 + me.ping);
 				chugs.interact();
 			} while (chugs.getNext());
+
+			print('ÿc9SoloLevelingÿc0: drank Special Potions');
 		}
 	}
-
-	print('ÿc9SoloLevelingÿc0: drank Special Potions');
 
 	return true;
 };
