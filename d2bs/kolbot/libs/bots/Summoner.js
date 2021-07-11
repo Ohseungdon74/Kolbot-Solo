@@ -21,12 +21,18 @@ function Summoner () {
 		}
 	}
 
-	if (!Pather.moveToPreset(me.area, 2, 357, -3, -3)) {
+	if (!Pather.moveToPreset(me.area, 2, 357)/* , -3, -3 */) {
 		throw new Error("Failed to move to Summoner");
 	}
+	
+	Attack.clear(15, 0, 250); // The Summoner	
+	
+	//아케인 생츄어리 클리어
+	if (Config.Summoner.ClearArcaneSanctuary) {
+		Attack.clearLevel(Config.ClearType);
+	}
 
-	Attack.clear(15, 0, 250); // The Summoner
-
+	
 	if (Loader.scriptName(1) === "Duriel") {
 		let journal = getUnit(2, 357);
 

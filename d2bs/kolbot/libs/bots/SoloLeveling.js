@@ -12,16 +12,16 @@ if (!isIncluded("SoloLeveling/Tools/Tracker.js")) {
 
 function SoloLeveling () {
 	this.setup = function () {
-		print('ÿc9SoloLevelingÿc0: start setup');
+		print('ÿc9솔로레벨링ÿc0 : start setup');
 		me.overhead('start setup');
-		print("ÿc9SoloLevelingÿc0: quest items loaded to Pickit");
+		print("ÿc9솔로레벨링ÿc0 : quest items loaded to Pickit");
 		NTIP.arrayLooping(nipItems.Quest);
 		me.overhead('loading pickits');
-		print("ÿc9SoloLevelingÿc0: general items loaded to Pickit");
+		print("ÿc9솔로레벨링ÿc0 : general items loaded to Pickit");
 		NTIP.arrayLooping(nipItems.General);
-		print("ÿc9SoloLevelingÿc0: valuable items to sell loaded to Pickit");
+		print("ÿc9솔로레벨링ÿc0 : valuable items to sell loaded to Pickit");
 		NTIP.arrayLooping(nipItems.Selling);
-		print('ÿc9SoloLevelingÿc0: start run');
+		print('ÿc9솔로레벨링ÿc0 : start run');
 		me.overhead('starting run');
 
 		if (me.charlvl === 1) {
@@ -61,6 +61,7 @@ function SoloLeveling () {
 				}
 
 				let tick = getTickCount();
+				let currentExp = me.getStat(13);
 
 				for (j = 0; j < 5; j += 1) {
 					if (this[SetUp.scripts[k]]()) {
@@ -68,12 +69,12 @@ function SoloLeveling () {
 					}
 				}
 
-				if (j === 5) {
-					me.overhead("script " + SetUp.scripts[k] + " failed.");
+				if (Developer.logPerformance) {
+					Tracker.Script(tick, SetUp.scripts[k], currentExp);
 				}
 
-				if (Developer.logPerformance) {
-					Tracker.Script(tick, SetUp.scripts[k]);
+				if (j === 5) {
+					me.overhead("script " + SetUp.scripts[k] + " failed.");
 				}
 			}
 		}

@@ -36,11 +36,12 @@ function Andariel () {
 	Town.doChores();
 	Pather.useWaypoint(35);
 	Precast.doPrecast(true);
-
+	
+	//안다니엘로 가는중 사냥 if (!Pather.moveToExit([36, 37], true)) {
 	if (!Pather.moveToExit([36, 37], true)) {
 		throw new Error("Failed to move to Catacombs Level 4");
 	}
-
+	
 	Pather.moveTo(22549, 9520);
 
 	if (me.classid === 1 && me.gametype === 0) {

@@ -13,11 +13,14 @@ function Snapchip() {
 		throw new Error("Failed to move to Snapchip Shatter");
 	}
 
-	Attack.clear(15, 0, getLocaleString(22496)); // Snapchip Shatter
+/* 	Attack.clear(15, 0, getLocaleString(22496)); // Snapchip Shatter
 
 	if (Config.Snapchip.ClearIcyCellar) {
 		Attack.clearLevel(Config.ClearType);
-	}
+	} */
 
+	if (Config.OpenChests) {
+		Misc.openChestsInArea();
+	}
 	return true;
 }
