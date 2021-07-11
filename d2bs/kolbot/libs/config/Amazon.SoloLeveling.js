@@ -62,8 +62,8 @@ function LoadConfig () {
 	Config.ShowCubingInfo = true;
 
 	/* Town configuration. */
-	Config.HealHP = 99;
-	Config.HealMP = 99;
+	Config.HealHP = 50;
+	Config.HealMP = 0;
 	Config.HealStatus = true;
 	Config.UseMerc = true;
 	Config.MercWatch = true;
@@ -78,9 +78,9 @@ function LoadConfig () {
 	Config.TownMP = 0;
 
 	/* Potions configuration. */
-	Config.UseHP = me.playertype ? 90 : 75;
-	Config.UseRejuvHP = me.playertype ? 65 : 40;
-	Config.UseMP = me.playertype ? 75 : 55;
+	Config.UseHP = me.playertype ? 80 : 60;
+	Config.UseRejuvHP = me.playertype ? 50 : 35;
+	Config.UseMP = me.playertype ? 30 : 10;
 	Config.UseMercHP = 75;
 
 	/* Belt configuration. */
@@ -104,8 +104,9 @@ function LoadConfig () {
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
-	Config.PickitFiles.push("kolton_Unique.nip");
+	Config.PickitFiles.push("kolton.nip");
 	Config.PickitFiles.push("ChippedGem.nip");
+	Config.PickitFiles.push("LLD.nip");
 
 	/* Gambling configuration. */
 	Config.Gamble = true;
@@ -146,7 +147,7 @@ function LoadConfig () {
 	Config.AutoEquip = true;
 
 	var levelingTiers = [ // autoequip setup
-		//weapon
+ 		//weapon
 		"me.charlvl < 25 && ([Type] == bow || [Type] == amazonbow) && ([Quality] >= Magic || [flag] == runeword) && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
 		"me.charlvl < 25 && [Type] == bowquiver # # [MaxQuantity] == 2",
 		"me.charlvl > 24 && ([Type] == javelin || [Type] == amazonjavelin) && [Quality] >= Magic && [flag] != ethereal # [itemchargedskill] >= 0 # [tier] == tierscore(item)",
@@ -170,15 +171,15 @@ function LoadConfig () {
 		//merc
 		"([type] == circlet || [type] == helm) && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
 		"[Type] == armor && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
-		"me.charlvl > 14 && [Type] == Polearm && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)",
+		"me.charlvl > 14 && [Type] == Polearm && ([Quality] >= Magic || [flag] == runeword) # [itemchargedskill] >= 0 # [Merctier] == mercscore(item)", 
 	];
 	NTIP.arrayLooping(levelingTiers);
 
 	/* FastMod configuration. */
-	Config.FCR = 255;
-	Config.FHR = 255;
-	Config.FBR = 255;
-	Config.IAS = 255;
+	Config.FCR = 100;
+	Config.FHR = 100;
+	Config.FBR = 100;
+	Config.IAS = 100;
 
 	/* Attack configuration. */
 	Config.AttackSkill = [0, 0, 0, 0, 0];
@@ -271,7 +272,7 @@ function LoadConfig () {
 				Config.KeepRunewords.push("[type] == polearm # [convictionaura] >= 13");
 			}
 
-			if (me.ladder > 0 && Item.getEquippedItem(5).tier < 1000) { // Spirit shield
+/* 			if (me.ladder > 0 && Item.getEquippedItem(5).tier < 1000) { // Spirit shield
 				if (!Check.haveItem("shield", "runeword", "Spirit") && me.hell) {
 					var SpiritShield = [
 						"[Name] == TalRune # # [MaxQuantity] == 1",
@@ -286,7 +287,7 @@ function LoadConfig () {
 				Config.Recipes.push([Recipe.Socket.Shield, "Monarch", Roll.NonEth]);
 				Config.Runewords.push([Runeword.Spirit, "Monarch"]);
 				Config.KeepRunewords.push("([type] == shield || [type] == auricshields) # [fcr] >= 35 && [maxmana] >= 89");
-			}
+			} */
 
 			break;
 		default:

@@ -1,11 +1,17 @@
 ID		Act1
+12		- Pit Level 1
 15		- Hole Level 2
 13 		- Cave Level 2
 16 		- Pit Level 2
 14 		- Passage Level 2
+21	 	- Tower Level 1
+22	 	- Tower Level 2
+23	 	- Tower Level 3
+24	 	- Tower Level 4
 25	 	- Tower Level 5
 18 		- Crypta
 19 		- Mausoleum
+37 		- Catacombs Level 4
 		Act2
 55		- stony Tomb
 65		- Ancient Tunnels

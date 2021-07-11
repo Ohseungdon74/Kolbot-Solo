@@ -62,8 +62,8 @@ function LoadConfig () {
 	Config.ShowCubingInfo = true;
 
 	/* Town configuration. */
-	Config.HealHP = 99;
-	Config.HealMP = 99;
+	Config.HealHP = 50;
+	Config.HealMP = 0;
 	Config.HealStatus = true;
 	Config.UseMerc = true;
 	Config.MercWatch = true;
@@ -78,13 +78,13 @@ function LoadConfig () {
 	Config.TownMP = 0;
 
 	/* Potions configuration. */
-	Config.UseHP = me.playertype ? 90 : 75;
-	Config.UseRejuvHP = me.playertype ? 65 : 40;
-	Config.UseMP = me.playertype ? 75 : 55;
+	Config.UseHP = me.playertype ? 75 : 50;
+	Config.UseRejuvHP = me.playertype ? 50 : 35;
+	Config.UseMP = me.playertype ? 30 : 10;
 	Config.UseMercHP = 75;
 
 	/* Belt configuration. */
-	Config.BeltColumn = ["hp", "mp", "mp", "rv"];
+	Config.BeltColumn = ["hp", "hp", "hp", "mp"];
 	Config.MinColumn[0] = Config.BeltColumn[0] !== "rv" ? Math.max(1, Storage.BeltSize() - 1) : 0;
 	Config.MinColumn[1] = Config.BeltColumn[1] !== "rv" ? Math.max(1, Storage.BeltSize() - 1) : 0;
 	Config.MinColumn[2] = Config.BeltColumn[2] !== "rv" ? Math.max(1, Storage.BeltSize() - 1) : 0;
@@ -104,8 +104,8 @@ function LoadConfig () {
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
-	Config.PickitFiles.push("kolton_Unique.nip");
-	Config.PickitFiles.push("ChippedGem.nip");
+	//	Config.PickitFiles.push("kolton.nip");
+	//	Config.PickitFiles.push("LLD.nip");
 
 	/* Gambling configuration. */
 	Config.Gamble = true;

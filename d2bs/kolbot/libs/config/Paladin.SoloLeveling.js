@@ -107,8 +107,8 @@ function LoadConfig () {
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
-	Config.PickitFiles.push("kolton_Unique.nip");
-	Config.PickitFiles.push("ChippedGem.nip");
+	//	Config.PickitFiles.push("kolton.nip");
+	//	Config.PickitFiles.push("LLD.nip");
 
 	/* Gambling configuration. */
 	Config.Gamble = true;

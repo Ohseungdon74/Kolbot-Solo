@@ -81,7 +81,7 @@ function LoadConfig () {
 	/* Potions configuration. */
 	Config.UseHP = me.playertype ? 90 : 75;
 	Config.UseRejuvHP = me.playertype ? 65 : 40;
-	Config.UseMP = me.playertype ? 75 : 55;
+	Config.UseMP = me.playertype ? 55 : 25;
 	Config.UseMercHP = 75;
 	Config.HPBuffer = 0;
 	Config.MPBuffer = 0;
@@ -108,8 +108,8 @@ function LoadConfig () {
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
-	Config.PickitFiles.push("kolton_Unique.nip");
-	Config.PickitFiles.push("ChippedGem.nip");
+	//	Config.PickitFiles.push("kolton.nip");
+	//	Config.PickitFiles.push("LLD.nip");
 
 	/* Gambling configuration. */
 	Config.Gamble = true;

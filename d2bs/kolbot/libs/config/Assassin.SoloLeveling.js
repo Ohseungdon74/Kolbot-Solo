@@ -96,18 +96,18 @@ function LoadConfig () {
 	Config.HPBuffer = 0;
 	Config.MPBuffer = 0;
 	Config.RejuvBuffer = 4;
-	Config.Inventory[0] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-	Config.Inventory[1] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-	Config.Inventory[2] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-	Config.Inventory[3] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+	Config.Inventory[0] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+	Config.Inventory[1] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+	Config.Inventory[2] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+	Config.Inventory[3] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
 	/* Pickit configuration. */
 	Config.PickRange = 40;
 	Config.FastPick = false;
 	Config.CainID.Enable = false;
 	Config.FieldID = false;
-	Config.PickitFiles.push("kolton_Unique.nip");
-	Config.PickitFiles.push("ChippedGem.nip");
+	//	Config.PickitFiles.push("kolton.nip");
+	//	Config.PickitFiles.push("LLD.nip");
 
 	/* Gambling configuration. */
 	Config.Gamble = true;
