@@ -36,10 +36,17 @@ function main () {
 
 	clearAllEvents() // remove any event listeners from game crash
 
+
+
 	if (!getScript("tools/heartbeat.js")) {
 		load("tools/heartbeat.js");
 	}
-
+	
+	//D2BotLead MapHack On
+/* 	if (getScript("d2botLead.dbj")) {
+		load("tools/mapthread.js");
+	} */
+	
 	if (getScript("d2botmap.dbj")) {
 		load("tools/mapthread.js");
 		load("tools/toolsthread.js");
