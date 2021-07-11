@@ -8,7 +8,7 @@ function duriel () {
 	Quest.preReqs();
 	Quest.cubeItems(91, 92, 521);
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting duriel');
+	print('ÿc9솔로레벨링ÿc0 : starting duriel');
 	me.overhead("duriel");
 
 	if (!Pather.checkWP(46)) {

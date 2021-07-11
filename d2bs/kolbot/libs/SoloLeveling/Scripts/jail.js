@@ -6,7 +6,7 @@
 
 function jail () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting jail');
+	print('ÿc9솔로레벨링ÿc0 : starting jail');
 	me.overhead("jail");
 
 	if (!Pather.checkWP(29)) {

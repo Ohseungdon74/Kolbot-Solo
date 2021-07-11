@@ -7,7 +7,7 @@
 function smith () {
 	NTIP.addLine("[name] == horadricmalus");
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting smith');
+	print('ÿc9솔로레벨링ÿc0 : starting smith');
 	me.overhead("smith");
 
 	if (!Pather.checkWP(27)) {
@@ -20,13 +20,13 @@ function smith () {
 	Pather.moveToExit(28);
 
 	if (!Pather.moveToPreset(28, 2, 108)) {
-		throw new Error("ÿc9SoloLevelingÿc0: Failed to move to the Smith");
+		throw new Error("ÿc9솔로레벨링ÿc0 : Failed to move to the Smith");
 	}
 
 	try {
 		Attack.clear(20, 0, getLocaleString(2889)); // The Smith
 	} catch (err) {
-		print('ÿc9SoloLevelingÿc0: Failed to kill Smith');
+		print('ÿc9솔로레벨링ÿc0 : Failed to kill Smith');
 	}
 
 	Quest.collectItem(89, 108);

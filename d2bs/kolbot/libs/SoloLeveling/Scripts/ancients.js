@@ -58,7 +58,7 @@ function ancients () {
 	};
 
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting ancients');
+	print('ÿc9솔로레벨링ÿc0 : starting ancients');
 	me.overhead("ancients");
 
 	if (!Pather.checkWP(118)) {
@@ -96,7 +96,7 @@ function ancients () {
 	Precast.doPrecast(true);
 
 	if (!Pather.moveToPreset(me.area, 2, 546)) { // move to altar
-		print("ÿc9SoloLevelingÿc0: Failed to move to ancients' altar");
+		print("ÿc9솔로레벨링ÿc0 : Failed to move to ancients' altar");
 	}
 
 	touchAltar(); //activate altar
@@ -130,7 +130,7 @@ function ancients () {
 			Pather.getWP(129);
 		}
 	} catch (err) {
-		print('ÿc9SoloLevelingÿc0: Cleared Ancients. Failed to get WSK Waypoint');
+		print('ÿc9솔로레벨링ÿc0 : Cleared Ancients. Failed to get WSK Waypoint');
 	}
 
 	return true;

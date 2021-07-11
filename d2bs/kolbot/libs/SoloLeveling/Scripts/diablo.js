@@ -9,7 +9,7 @@ function diablo () {
 		let sealPreset = getPresetUnit(108, 2, seal);
 
 		if (!seal) {
-			print("ÿc9SoloLevelingÿc0: Seal preset not found");
+			print("ÿc9솔로레벨링ÿc0 : Seal preset not found");
 		}
 
 		if (sealPreset.roomy * 5 + sealPreset.y === value || sealPreset.roomx * 5 + sealPreset.x === value) {
@@ -190,7 +190,7 @@ function diablo () {
 			}
 
 			if (!seal) {
-				print("ÿc9SoloLevelingÿc0: Seal not found. Attempting portal trick");
+				print("ÿc9솔로레벨링ÿc0 : Seal not found. Attempting portal trick");
 				Town.goToTown();
 				delay(25);
 				Pather.usePortal(null, me.name);
@@ -206,7 +206,7 @@ function diablo () {
 				}
 
 				if (!seal) {
-					print("ÿc9SoloLevelingÿc0: Seal not found (id " + classid + ")");
+					print("ÿc9솔로레벨링ÿc0 : Seal not found (id " + classid + ")");
 					D2Bot.printToConsole("SoloLeveling: Seal not found (id " + classid + ")");
 				}
 			}
@@ -236,7 +236,7 @@ function diablo () {
 			}
 		}
 
-		print("ÿc9SoloLevelingÿc0: Failed to open seal (id " + classid + ")");
+		print("ÿc9솔로레벨링ÿc0 : Failed to open seal (id " + classid + ")");
 
 		return true;
 	};
@@ -252,7 +252,7 @@ function diablo () {
 		}
 
 		if (!this.getBoss(getLocaleString(2851))) {
-			print("ÿc9SoloLevelingÿc0: Failed Vizier");
+			print("ÿc9솔로레벨링ÿc0 : Failed Vizier");
 		}
 	};
 
@@ -268,7 +268,7 @@ function diablo () {
 		}
 
 		if (!this.getBoss(getLocaleString(2852))) {
-			print("ÿc9SoloLevelingÿc0: Failed Seis");
+			print("ÿc9솔로레벨링ÿc0 : Failed Seis");
 		}
 	};
 
@@ -283,12 +283,12 @@ function diablo () {
 		}
 
 		if (!this.getBoss(getLocaleString(2853))) {
-			print("ÿc9SoloLevelingÿc0: Failed Infector");
+			print("ÿc9솔로레벨링ÿc0 : Failed Infector");
 		}
 	};
 
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting diablo');
+	print('ÿc9솔로레벨링ÿc0 : starting diablo');
 	me.overhead("diablo");
 
 	if (!Pather.checkWP(107)) {
@@ -309,7 +309,7 @@ function diablo () {
 	let theD = getUnit(1, 243);
 
 	if (!theD) {
-		print("ÿc9SoloLevelingÿc0: Diablo not found. Checking seal bosses.");
+		print("ÿc9솔로레벨링ÿc0 : Diablo not found. Checking seal bosses.");
 		this.infector();
 		this.seis();
 		this.vizier();

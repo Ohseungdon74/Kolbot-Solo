@@ -7,7 +7,7 @@
 function travincal () {
 	Quest.preReqs();
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting travincal');
+	print('ÿc9솔로레벨링ÿc0 : starting travincal');
 	me.overhead("travincal");
 
 	if (!Pather.checkWP(83)) {
@@ -27,7 +27,7 @@ function travincal () {
 	Pickit.pickItems();
 
 	if (!Pather.moveToPreset(83, 2, 404)) { // go to orb
-		print('ÿc9SoloLevelingÿc0: Failed to move to compelling orb');
+		print('ÿc9솔로레벨링ÿc0 : Failed to move to compelling orb');
 	}
 
 	Attack.clear(10); // clear area around orb
@@ -50,7 +50,7 @@ function travincal () {
 		delay(250 + me.ping);
 
 		if (!Pather.usePortal(83, me.name)) { // return to Trav
-			print("ÿc9SoloLevelingÿc0: Failed to go back to Travincal and smash orb");
+			print("ÿc9솔로레벨링ÿc0 : Failed to go back to Travincal and smash orb");
 		}
 
 		Quest.smashSomething(404); // smash orb
@@ -58,7 +58,7 @@ function travincal () {
 		Town.doChores();
 
 		if (!Pather.usePortal(83, me.name)) { // return to Trav
-			print("ÿc9SoloLevelingÿc0: Failed to go back to Travincal and take entrance");
+			print("ÿc9솔로레벨링ÿc0 : Failed to go back to Travincal and take entrance");
 		}
 
 		if (!Pather.moveToExit(100, true)) {

@@ -6,7 +6,7 @@
 
 function ancienttunnels () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting ancient tunnels');
+	print('ÿc9솔로레벨링ÿc0 : starting ancient tunnels');
 	me.overhead("ancient tunnels");
 
 	if (!Pather.checkWP(44)) {
@@ -25,12 +25,12 @@ function ancienttunnels () {
 		try {
 			Attack.clear(15, 0, getLocaleString(2886));
 		} catch (err) {
-			print('ÿc9SoloLevelingÿc0: Failed to kill Dark Elder');
+			print('ÿc9솔로레벨링ÿc0 : Failed to kill Dark Elder');
 		}
 	}
 
 	if (!Pather.moveToExit(65, true)) {
-		print("ÿc9SoloLevelingÿc0: Failed to move to Ancient Tunnels");
+		print("ÿc9솔로레벨링ÿc0 : Failed to move to Ancient Tunnels");
 
 		return false;
 	}

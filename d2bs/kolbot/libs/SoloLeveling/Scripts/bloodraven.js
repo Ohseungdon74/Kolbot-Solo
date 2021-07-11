@@ -6,7 +6,7 @@
 
 function bloodraven () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting blood raven');
+	print('ÿc9솔로레벨링ÿc0 : starting blood raven');
 
 	if (!Pather.checkWP(3)) {
 		Pather.getWP(3);
@@ -33,7 +33,7 @@ function bloodraven () {
 	me.overhead("mausoleum");
 
 	if (!Pather.moveToExit([17, 19], true)) {
-		print("ÿc9SoloLevelingÿc0: Failed to move to Mausoleum");
+		print("ÿc9솔로레벨링ÿc0 : Failed to move to Mausoleum");
 	}
 
 	Attack.clearLevel();

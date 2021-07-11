@@ -5,7 +5,7 @@
 */
 
 function tombs () {
-	print('ÿc9SoloLevelingÿc0: starting tombs');
+	print('ÿc9솔로레벨링ÿc0 : starting tombs');
 	me.overhead("tombs");
 
 	let tombID = [66, 67, 68, 69, 70, 71, 72];
@@ -27,15 +27,11 @@ function tombs () {
 			let orifice = getPresetUnit(me.area, 2, 152);
 
 			if (gbox) {
-				if (Pather.moveToPreset(me.area, 2, 397, 0, 0, true)) {
-					break;
-				}
+				Pather.moveToPreset(me.area, 2, 397);
 			}
 
 			if (orifice) {
-				if (Pather.moveToPreset(me.area, 2, 152, 0, 0, true)) {
-					break;
-				}
+				Pather.moveToPreset(me.area, 2, 152);
 			}
 
 			Attack.clear(50);

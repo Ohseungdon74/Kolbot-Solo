@@ -614,7 +614,7 @@ Misc.gamePacket = function (bytes) {// various game events
 			if (wave > -1) {
 				Misc.gamePause();
 				tick = getTickCount();
-				print('ÿc9SoloLevelingÿc0: baal wave #' + (wave + 1));
+				print('ÿc9솔로레벨링ÿc0 : baal wave #' + (wave + 1));
 				me.overhead("wave " + (wave + 1));
 
 				while (getTickCount() - tick < 6500) { //prep

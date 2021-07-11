@@ -6,7 +6,7 @@
 
 function amulet () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting amulet');
+	print('ÿc9솔로레벨링ÿc0 : starting amulet');
 	me.overhead("amulet");
 
 	if (!Pather.checkWP(44)) {

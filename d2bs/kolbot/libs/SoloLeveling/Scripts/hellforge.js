@@ -8,7 +8,7 @@ function hellforge () {
 	NTIP.addLine("[name] == hellforgehammer");
 	NTIP.addLine("[name] == mephisto'ssoulstone");
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting hellforge');
+	print('ÿc9솔로레벨링ÿc0 : starting hellforge');
 	me.overhead("hellforge");
 
 	if (!Pather.checkWP(107)) {
@@ -20,13 +20,13 @@ function hellforge () {
 	Precast.doPrecast(true);
 
 	if (!Pather.moveToPreset(me.area, 2, 376)) {
-		print("ÿc9SoloLevelingÿc0: Failed to move to Hephasto");
+		print("ÿc9솔로레벨링ÿc0 : Failed to move to Hephasto");
 	}
 
 	try {
 		Attack.clear(20, 0, getLocaleString(1067)); // Hephasto The Armorer
 	} catch (err) {
-		print('ÿc9SoloLevelingÿc0: Failed to kill Hephasto');
+		print('ÿc9솔로레벨링ÿc0 : Failed to kill Hephasto');
 	}
 
 	Town.doChores();
@@ -44,7 +44,7 @@ function hellforge () {
 	}
 
 	if (!Pather.moveToPreset(me.area, 2, 376)) {
-		print('ÿc9SoloLevelingÿc0: Failed to move to forge');
+		print('ÿc9솔로레벨링ÿc0 : Failed to move to forge');
 	}
 
 	Attack.clear(15);

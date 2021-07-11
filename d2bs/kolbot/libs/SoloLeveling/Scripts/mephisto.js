@@ -6,7 +6,7 @@
 
 function mephisto () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting mephisto');
+	print('ÿc9솔로레벨링ÿc0 : starting mephisto');
 	me.overhead("mephisto");
 
 	if (!Pather.checkWP(101)) {

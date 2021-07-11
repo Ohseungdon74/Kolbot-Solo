@@ -5,7 +5,7 @@
 */
 
 function den () {
-	print('ÿc9SoloLevelingÿc0: starting den');
+	print('ÿc9솔로레벨링ÿc0 : starting den');
 	me.overhead("den");
 
 	if (!Pather.checkWP(3)) {

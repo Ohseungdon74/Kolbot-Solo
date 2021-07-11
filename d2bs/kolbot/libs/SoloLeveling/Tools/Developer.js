@@ -28,7 +28,7 @@ const Developer = {
 			return obj;
 		}
 
-		print("ÿc9SoloLevelingÿc0: Failed to read Obj. (Developer.parseObj)");
+		print("ÿc9솔로레벨링ÿc0 : Failed to read Obj. (Developer.parseObj)");
 
 		return false;
 	},

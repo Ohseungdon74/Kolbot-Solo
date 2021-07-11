@@ -69,7 +69,7 @@ function summoner () {
 	};
 
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting summoner');
+	print('ÿc9솔로레벨링ÿc0 : starting summoner');
 	me.overhead("summoner");
 
 	if (!Pather.checkWP(74)) {
@@ -84,10 +84,10 @@ function summoner () {
 	try {
 		Pather.moveToPreset(74, 2, 357, -3, -3);
 	} catch (err) {
-		print('ÿc9SoloLevelingÿc0: Failed to reach Summoner. Retry');
+		print('ÿc9솔로레벨링ÿc0 : Failed to reach Summoner. Retry');
 
 		if (!Pather.moveToPreset(74, 2, 357, -3, -3)) {
-			print('ÿc9SoloLevelingÿc0: Failed to reach summoner');
+			print('ÿc9솔로레벨링ÿc0 : Failed to reach summoner');
 
 			return false;
 		}
@@ -96,7 +96,7 @@ function summoner () {
 	try {
 		Attack.clear(15, 0, 250); // The Summoner
 	} catch (e) {
-		print('ÿc9SoloLevelingÿc0: Failed to kill summoner');
+		print('ÿc9솔로레벨링ÿc0 : Failed to kill summoner');
 
 		return false;
 	}

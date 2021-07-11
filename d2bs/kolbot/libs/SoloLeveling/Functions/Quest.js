@@ -318,10 +318,10 @@ var Quest = {
 
 			if (!Item.equip(newitem, loc)) {
 				Pickit.pickItems();
-				print("ÿc9SoloLevelingÿc0: failed to equip item.(Quest.equipItem)");
+				print("ÿc9솔로레벨링ÿc0 : failed to equip item.(Quest.equipItem)");
 			}
 		} else {
-			print("ÿc9SoloLevelingÿc0: Lost item before trying to equip it. (Quest.equipItem)");
+			print("ÿc9솔로레벨링ÿc0 : Lost item before trying to equip it. (Quest.equipItem)");
 		}
 
 		if (me.itemoncursor) {
@@ -329,12 +329,12 @@ var Quest = {
 
 			if (olditem) {
 				if (Storage.Inventory.CanFit(olditem)) {
-					print("ÿc9SoloLevelingÿc0: Keeping weapon");
+					print("ÿc9솔로레벨링ÿc0 : Keeping weapon");
 
 					Storage.Inventory.MoveTo(olditem);
 				} else {
 					me.cancel();
-					print("ÿc9SoloLevelingÿc0: No room to keep weapon");
+					print("ÿc9솔로레벨링ÿc0 : No room to keep weapon");
 
 					olditem.drop();
 				}
@@ -454,7 +454,7 @@ var Quest = {
 					Town.move('stash');
 					Storage.Stash.MoveTo(selected);
 					me.cancel;
-					print('ÿc9SoloLevelingÿc0: used hole punch on ' + selected.name);
+					print('ÿc9솔로레벨링ÿc0 : used hole punch on ' + selected.name);
 
 					return true;
 				}

@@ -485,7 +485,7 @@ var Check = {
 
 	haveItem: function (type, flag, iName) {
 		if (type && !NTIPAliasType[type] && !NTIPAliasClassID[type]) {
-			print("ÿc9SoloLevelingÿc0: No NTIPalias for '" + type + "'");
+			print("ÿc9솔로레벨링ÿc0 : No NTIPalias for '" + type + "'");
 		}
 
 		type = type.toLowerCase();

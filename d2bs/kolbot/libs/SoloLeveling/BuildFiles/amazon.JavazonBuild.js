@@ -18,7 +18,7 @@ var build = {
 	skills: [
 		[35, 1, false], //lightning fury
 		[33, 1, false], //pierce
-		[32, 1, false], //valkyrie
+		//[32, 1, false], //valkyrie
 		[35, 20, false], //max lightning fury
 		[24, 20, true], //max charged strike
 		[20, 20, false], //max lightning bolt

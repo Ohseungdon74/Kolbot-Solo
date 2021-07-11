@@ -6,7 +6,7 @@
 
 function brain () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting brain');
+	print('ÿc9솔로레벨링ÿc0 : starting brain');
 	me.overhead("brain");
 
 	if (!Pather.checkWP(78)) {
@@ -18,7 +18,7 @@ function brain () {
 	Precast.doPrecast(true);
 
 	if (!Pather.moveToExit([88, 89, 91], true) || !Pather.moveToPreset(me.area, 2, 406)) {
-		print('ÿc9SoloLevelingÿc0: Failed to get the Brain');
+		print('ÿc9솔로레벨링ÿc0 : Failed to get the Brain');
 	}
 
 	Attack.clear(0x7);

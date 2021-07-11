@@ -13,7 +13,7 @@ function tristram () {
 	];
 
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting tristram');
+	print('ÿc9솔로레벨링ÿc0 : starting tristram');
 	me.overhead("tristram");
 
 	if (!Misc.checkQuest(4, 4) && !me.getItem(525)) { // missing task or key
@@ -28,7 +28,7 @@ function tristram () {
 			Precast.doPrecast(true);
 
 			if (!Pather.moveToPreset(5, 2, 30, 5, 5)) {
-				print("ÿc9SoloLevelingÿc0: Failed to move to Tree of Inifuss");
+				print("ÿc9솔로레벨링ÿc0 : Failed to move to Tree of Inifuss");
 			}
 
 			Quest.collectItem(524, 30);
@@ -77,7 +77,7 @@ function tristram () {
 
 			if (!gibbet.mode) {
 				if (!Pather.moveToPreset(38, 2, 26, 0, 0, true, true)) {
-					print("ÿc9SoloLevelingÿc0: Failed to move to Cain's Gibbet");
+					print("ÿc9솔로레벨링ÿc0 : Failed to move to Cain's Gibbet");
 				}
 
 				for (let x = 0; x < 5; x++) {

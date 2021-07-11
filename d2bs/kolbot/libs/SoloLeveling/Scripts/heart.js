@@ -6,7 +6,7 @@
 
 function heart () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting heart');
+	print('ÿc9솔로레벨링ÿc0 : starting heart');
 	me.overhead("heart");
 
 	if (!Pather.checkWP(80)) {
@@ -18,7 +18,7 @@ function heart () {
 	Precast.doPrecast(true);
 
 	if (!Pather.moveToExit([80, 92, 93], true) || !Pather.moveToPreset(me.area, 2, 405)) {
-		print('ÿc9SoloLevelingÿc0: Failed to get the heart');
+		print('ÿc9솔로레벨링ÿc0 : Failed to get the heart');
 	}
 
 	Attack.clear(0x7); // clear level

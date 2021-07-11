@@ -6,7 +6,7 @@
 
 function andariel () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting andy');
+	print('ÿc9솔로레벨링ÿc0 : starting andy');
 	me.overhead("andy");
 
 	if (me.normal && Misc.checkQuest(6, 1)) {

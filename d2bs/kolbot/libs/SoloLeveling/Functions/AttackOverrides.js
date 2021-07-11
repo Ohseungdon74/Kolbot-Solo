@@ -22,7 +22,7 @@ Attack.killTarget = function (name) {
 	}
 
 	if (!target) {
-		print("ÿc9SoloLevelingÿc0: Target not found. Performing Attack.Clear(25)");
+		print("ÿc9솔로레벨링ÿc0 : Target not found. Performing Attack.Clear(25)");
 		Attack.clear(25);
 		Pickit.pickItems();
 
@@ -30,7 +30,7 @@ Attack.killTarget = function (name) {
 	}
 
 	if (target && !Attack.canAttack(target)) { // exit if target is immune
-		print("ÿc9SoloLevelingÿc0: Attack failed. " + target.name + " is immune.");
+		print("ÿc9솔로레벨링ÿc0 : Attack failed. " + target.name + " is immune.");
 
 		return true;
 	}

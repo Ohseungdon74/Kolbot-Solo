@@ -95,11 +95,11 @@ function cows () {
 		}
 
 		if (!Town.openStash()) {
-			print('ÿc9SoloLevelingÿc0: Failed to open stash. (openPortal)');
+			print('ÿc9솔로레벨링ÿc0 : Failed to open stash. (openPortal)');
 		}
 
 		if (!Cubing.emptyCube()) {
-			print('ÿc9SoloLevelingÿc0: Failed to empty cube. (openPortal)');
+			print('ÿc9솔로레벨링ÿc0 : Failed to empty cube. (openPortal)');
 		}
 
 		let cubingItem;
@@ -139,7 +139,7 @@ function cows () {
 
 	NTIP.addLine("[Name] == wirt'sleg");
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting cows');
+	print('ÿc9솔로레벨링ÿc0 : starting cows');
 	me.overhead("cows");
 	this.getLeg();
 	Town.doChores();

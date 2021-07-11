@@ -6,7 +6,7 @@
 */
 
 function templeruns () {
-	print('ÿc9SoloLevelingÿc0: starting temple runs');
+	print('ÿc9솔로레벨링ÿc0 : starting temple runs');
 	me.overhead("temple runs");
 
 	let temples = [[78, 79], [80, 94], [80, 95], [81, 96], [81, 97], [81, 82, 98], [81, 82, 99]];

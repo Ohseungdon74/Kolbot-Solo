@@ -6,7 +6,7 @@
 
 function staff () {
 	Town.townTasks();
-	print('ÿc9SoloLevelingÿc0: starting staff');
+	print('ÿc9솔로레벨링ÿc0 : starting staff');
 	me.overhead("staff");
 
 	if (!Pather.checkWP(43)) {

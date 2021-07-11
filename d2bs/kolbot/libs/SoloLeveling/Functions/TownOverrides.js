@@ -329,7 +329,7 @@ Town.buyBooks = function () {
 		if (tpBook && me.getStat(14) + me.getStat(15) >= tpBook.getItemCost(0) && Storage.Inventory.CanFit(tpBook)) {
 			try {
 				if (tpBook.buy()) {
-					print('ÿc9SoloLevelingÿc0: bought Tome of Town Portal');
+					print('ÿc9솔로레벨링ÿc0 : bought Tome of Town Portal');
 					this.fillTome(518);
 				}
 			} catch (e1) {
@@ -341,7 +341,7 @@ Town.buyBooks = function () {
 			if (tpScroll && me.getStat(14) + me.getStat(15) >= tpScroll.getItemCost(0) && Storage.Inventory.CanFit(tpScroll)) {
 				try {
 					if (tpScroll.buy()) {
-						print('ÿc9SoloLevelingÿc0: bought Scroll of Town Portal');
+						print('ÿc9솔로레벨링ÿc0 : bought Scroll of Town Portal');
 					}
 				} catch (e1) {
 					print(e1);
@@ -358,7 +358,7 @@ Town.buyBooks = function () {
 		if (idBook && Storage.Inventory.CanFit(idBook)) {
 			try {
 				if (idBook.buy()) {
-					print('ÿc9SoloLevelingÿc0: bought Tome of Identify');
+					print('ÿc9솔로레벨링ÿc0 : bought Tome of Identify');
 				}
 			} catch (e3) {
 				print(e3);
@@ -524,7 +524,7 @@ Town.shopItems = function () {
 		}
 	} while (item.getNext());
 
-	print("ÿc9SoloLevelingÿc0: Evaluating " + npc.itemcount + " items.");
+	print("ÿc9솔로레벨링ÿc0 : Evaluating " + npc.itemcount + " items.");
 
 	for (i = 0; i < items.length; i += 1) {
 		result = Pickit.checkItem(items[i]);
@@ -605,15 +605,15 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (book.interact()) {
-			print('ÿc9SoloLevelingÿc0: used Radament skill book');
+			print('ÿc9솔로레벨링ÿc0 : used Radament skill book');
 		} else {
-			print('ÿc9SoloLevelingÿc0: failed to used Radament skill book');
+			print('ÿc9솔로레벨링ÿc0 : failed to used Radament skill book');
 		}
 	}
 
 	//Act 3
 	if (me.getItem(546)) { // golden bird
-		print("ÿc9SoloLevelingÿc0: starting jade figurine");
+		print("ÿc9솔로레벨링ÿc0 : starting jade figurine");
 		me.overhead('jade figurine');
 		Town.goToTown(3);
 		Town.npcInteract("meshif");
@@ -633,9 +633,9 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (pol.interact()) {
-			print('ÿc9SoloLevelingÿc0: used potion of life');
+			print('ÿc9솔로레벨링ÿc0 : used potion of life');
 		} else {
-			print('ÿc9SoloLevelingÿc0: failed to used potion of life');
+			print('ÿc9솔로레벨링ÿc0 : failed to used potion of life');
 		}
 	}
 
@@ -648,7 +648,7 @@ Town.unfinishedQuests = function () {
 
 		Town.goToTown(3);
 		Town.npcInteract("alkor");
-		print('ÿc9SoloLevelingÿc0: LamEssen Tome completed');
+		print('ÿc9솔로레벨링ÿc0 : LamEssen Tome completed');
 	}
 
 	if (kw) { //remove Khalim's Will if quest not completed and restarting run.
@@ -656,7 +656,7 @@ Town.unfinishedQuests = function () {
 			Town.clearInventory();
 			delay(500 + me.ping * 2);
 			Quest.stashItem(174);
-			print('ÿc9SoloLevelingÿc0: removed khalims will');
+			print('ÿc9솔로레벨링ÿc0 : removed khalims will');
 			Item.autoEquip();
 		}
 	}
@@ -712,9 +712,9 @@ Town.unfinishedQuests = function () {
 		}
 
 		if (sor.interact()) {
-			print('ÿc9SoloLevelingÿc0: used scroll of resistance');
+			print('ÿc9솔로레벨링ÿc0 : used scroll of resistance');
 		} else {
-			print('ÿc9SoloLevelingÿc0: failed to used scroll of resistance');
+			print('ÿc9솔로레벨링ÿc0 : failed to used scroll of resistance');
 		}
 	}
 
@@ -825,7 +825,7 @@ Town.buyPots = function (quantity, type) {
 		break;
 	}
 
-	print('ÿc9SoloLevelingÿc0: buying ' + quantity + ' ' + type + ' Potions');
+	print('ÿc9솔로레벨링ÿc0 : buying ' + quantity + ' ' + type + ' Potions');
 
 	for (let totalspecialpotions = 0; totalspecialpotions < quantity; totalspecialpotions++) {
 
@@ -851,7 +851,7 @@ Town.drinkPots = function () {
 				chugs.interact();
 			} while (chugs.getNext());
 
-			print('ÿc9SoloLevelingÿc0: drank Special Potions');
+			print('ÿc9솔로레벨링ÿc0 : drank Special Potions');
 		}
 	}
 
@@ -1114,7 +1114,7 @@ Town.clearJunk = function () {
 		) {
 			if (junk[0].drop()) {
 				me.overhead('cleared junk');
-				print("ÿc9SoloLevelingÿc0: Cleared junk - " + junk[0].name);
+				print("ÿc9솔로레벨링ÿc0 : Cleared junk - " + junk[0].name);
 				delay(50 + me.ping);
 			}
 		}
@@ -1135,7 +1135,7 @@ Town.clearJunk = function () {
 				junk[0].itemType !== 30 && junk[0].getStatEx(31) < rwBase.getStatEx(31)) { // only drop noneth armors helms shields
 				if (junk[0].drop()) {
 					me.overhead('cleared runeword junk');
-					print("ÿc9SoloLevelingÿc0: Cleared runeword junk - " + junk[0].name);
+					print("ÿc9솔로레벨링ÿc0 : Cleared runeword junk - " + junk[0].name);
 					delay(50 + me.ping);
 				}
 			}
