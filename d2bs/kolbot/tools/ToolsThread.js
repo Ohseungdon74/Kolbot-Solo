@@ -714,6 +714,7 @@ function main() {
 			}
 
 			this.checkPing(false); // In case of quitlist triggering first
+			delay(10000); //봇 종료 후 대기 10초
 			this.exit();
 
 			break;
