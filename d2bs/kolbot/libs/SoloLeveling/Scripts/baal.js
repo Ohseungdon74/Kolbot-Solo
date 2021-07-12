@@ -32,7 +32,7 @@ function baal () {
 	};
 
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting baal');
+	print('ÿc9SoloLevelingÿc0: starting baal');
 	me.overhead("baal");
 
 	if (!Pather.checkWP(129)) {
@@ -46,14 +46,14 @@ function baal () {
 	Pather.moveTo(15095, 5029);
 
 	if (me.diff === 2 && getUnit(1, 691)) {
-		print("ÿc9솔로레벨링ÿc0 : Dolls found! NG.");
+		print("ÿc9SoloLevelingÿc0: Dolls found! NG.");
 		me.overhead("Dolls found! NG.");
 
 		return true;
 	}
 
 	if (me.diff === 2 && getUnit(1, 641)) {
-		print("ÿc9솔로레벨링ÿc0 : Souls found! NG.");
+		print("ÿc9SoloLevelingÿc0: Souls found! NG.");
 		me.overhead("Souls found! NG.");
 
 		return true;
@@ -92,7 +92,7 @@ function baal () {
 	if (portal) {
 		Pather.usePortal(null, null, portal);
 	} else {
-		print("ÿc9솔로레벨링ÿc0 : Couldn't access portal.");
+		print("ÿc9SoloLevelingÿc0: Couldn't access portal.");
 	}
 
 	Pather.moveTo(15134, 5923);

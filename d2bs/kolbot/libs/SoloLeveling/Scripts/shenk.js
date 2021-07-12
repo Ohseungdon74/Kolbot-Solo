@@ -6,7 +6,7 @@
 
 function shenk () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting shenk');
+	print('ÿc9SoloLevelingÿc0: starting shenk');
 	me.overhead("shenk");
 
 	if (!Pather.checkWP(111)) {

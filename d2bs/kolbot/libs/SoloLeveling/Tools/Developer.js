@@ -11,6 +11,7 @@ const Developer = {
 	logEquipped: false,	//enables equipped items viewable from D2Bot# charviewer tab
 	forcePacketCasting: true, //enables forced packet casting for skill.cast
 	hideChickens: true, // disable printing chicken info in D2Bot console
+	addLadderRW: false, // set to true to enable single player ladder runewords ONLY WORKS IF RUNEWORDS.TXT IS INSTALLED AND D2BS PROFILE IS CONFIGURED
 
 	/*  Developer tools */
 	getObj: function (path) {
@@ -28,7 +29,7 @@ const Developer = {
 			return obj;
 		}
 
-		print("ÿc9솔로레벨링ÿc0 : Failed to read Obj. (Developer.parseObj)");
+		print("ÿc9SoloLevelingÿc0: Failed to read Obj. (Developer.parseObj)");
 
 		return false;
 	},

@@ -6,7 +6,7 @@
 
 function anya () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting anya');
+	print('ÿc9SoloLevelingÿc0: starting anya');
 	me.overhead("anya");
 
 	if (!me.anya) {
@@ -19,7 +19,7 @@ function anya () {
 		Precast.doPrecast(true);
 
 		if (!Pather.moveToExit(114, true) || !Pather.moveToPreset(me.area, 2, 460)) {
-			print("ÿc9솔로레벨링ÿc0 : Failed to move to Anya");
+			print("ÿc9SoloLevelingÿc0: Failed to move to Anya");
 		}
 
 		let frozenanya = getUnit(2, 558);

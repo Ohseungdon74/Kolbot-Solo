@@ -13,10 +13,7 @@ function Abaddon() {
 		throw new Error("Failed to move to Abaddon");
 	}
 
-	//Attack.clearLevel(Config.ClearType);
-	
-	if (Config.OpenChests) {
-		Misc.openChestsInArea();
-	}
+	Attack.clearLevel(Config.ClearType);
+
 	return true;
 }

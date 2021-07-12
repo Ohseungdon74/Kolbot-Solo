@@ -6,7 +6,7 @@
 
 function beetleburst () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting beetleburst');
+	print('ÿc9SoloLevelingÿc0: starting beetleburst');
 
 	if (!Pather.checkWP(43)) {
 		Pather.getWP(43);

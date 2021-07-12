@@ -8,7 +8,7 @@ function hellforge () {
 	NTIP.addLine("[name] == hellforgehammer");
 	NTIP.addLine("[name] == mephisto'ssoulstone");
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting hellforge');
+	print('ÿc9SoloLevelingÿc0: starting hellforge');
 	me.overhead("hellforge");
 
 	if (!Pather.checkWP(107)) {
@@ -20,19 +20,23 @@ function hellforge () {
 	Precast.doPrecast(true);
 
 	if (!Pather.moveToPreset(me.area, 2, 376)) {
-		print("ÿc9솔로레벨링ÿc0 : Failed to move to Hephasto");
+		print("ÿc9SoloLevelingÿc0: Failed to move to Hephasto");
 	}
 
 	try {
 		Attack.clear(20, 0, getLocaleString(1067)); // Hephasto The Armorer
 	} catch (err) {
-		print('ÿc9솔로레벨링ÿc0 : Failed to kill Hephasto');
+		print('ÿc9SoloLevelingÿc0: Failed to kill Hephasto');
 	}
 
 	Town.doChores();
 	Town.npcInteract("cain");
 
 	if (me.getItem(90)) {
+		if ([2, 69, 70].indexOf(Item.getEquippedItem(5).itemType) === -1) { //dual weild fix for assassin/barbarian
+			Item.removeItem(5);
+		}
+
 		Quest.equipItem(90, 4);
 	}
 
@@ -40,11 +44,16 @@ function hellforge () {
 
 	if (!me.getItem(90)) {
 		Pickit.pickItems();
+
+		if ([2, 69, 70].indexOf(Item.getEquippedItem(5).itemType) === -1) { //dual weild fix for assassin/barbarian
+			Item.removeItem(5);
+		}
+
 		Quest.equipItem(90, 4);
 	}
 
 	if (!Pather.moveToPreset(me.area, 2, 376)) {
-		print('ÿc9솔로레벨링ÿc0 : Failed to move to forge');
+		print('ÿc9SoloLevelingÿc0: Failed to move to forge');
 	}
 
 	Attack.clear(15);

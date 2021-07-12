@@ -36,23 +36,40 @@ var SetUp = {
 		});
 	},
 
+	//Storage Settings
+	sortSettings: {
+		ItemsSortedFromLeft: [], // default: everything not in Config.ItemsSortedFromRight
+		ItemsSortedFromRight: [
+			// (NOTE: default pickit is fastest if the left side is open)
+			603, 604, 605, // sort charms from the right
+			519, 518, 543, // sort tomes and keys to the right
+			515, 516, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596 // sort all inventory potions from the right
+		],
+		PrioritySorting: true,
+		ItemsSortedFromLeftPriority: [/*605, 604, 603, 519, 518*/], // (NOTE: the earlier in the index, the further to the Left)
+		ItemsSortedFromRightPriority: [
+			// (NOTE: the earlier in the index, the further to the Right)
+			519, 518, 605, 604, 603, 543 // sort charms from the right, Books > GC > LC > SC
+		],
+	},
+
 	levelCap: [33, 65, 100][me.diff],
 	className: ["Amazon", "Sorceress", "Necromancer", "Paladin", "Barbarian", "Druid", "Assassin"][me.classid],
 	finalBuild: DataFile.getStats().finalBuild,
-	respecOne: [ 25, 28, 26, 19, 24, 24, 30][me.classid],
+	respecOne: [ 25, 28, 26, 19, 31, 24, 30][me.classid],
 
 	respecTwo: function () {
 		let respec;
 
 		switch (me.gametype) {
 		case 0:
-			respec = [75, 75, 75, 85, 0, 75, 75][me.classid];
+			respec = [75, 75, 75, 85, 75, 75, 75][me.classid];
 			break;
 
 		case 1:
 			switch (this.finalBuild) {
 			case "Witchyzon":
-				respec = Check.haveItem("bow", "unique", "Witchwild String") ? me.charlvl : 100;
+				respec = Check.haveItem("diamondbow", "unique", "Witchwild String") ? me.charlvl : 100;
 				break;
 			case "Javazon":
 			case "Lightning":
@@ -62,7 +79,7 @@ var SetUp = {
 			case "Cold":
 			case "Meteorb":
 			case "Blizzballer":
-				respec = Check.haveItem("amulet", "set", "Tal Rasha's Adjudication") && Check.haveItem("belt", "set", "Tal Rasha's Fine Spun Cloth") && Check.haveItem("armor", "set", "Tal Rasha's Guardianship") && Check.haveItem("orb", "set", "Tal Rasha's Lidless Eye") ? me.charlvl : 100; //Tal ammy, belt, armor, and wep
+				respec = Check.haveItem("amulet", "set", "Tal Rasha's Adjudication") && Check.haveItem("belt", "set", "Tal Rasha's Fine-Spun Cloth") && Check.haveItem("armor", "set", "Tal Rasha's Guardianship") && Check.haveItem("swirlingcrystal", "set", "Tal Rasha's Lidless Eye") ? me.charlvl : 100; //Tal ammy, belt, armor, and wep
 				break;
 			case "Bone":
 			case "Poison":
@@ -82,7 +99,10 @@ var SetUp = {
 				respec = Check.haveItem("weapon", "runeword", "Grief") && Check.haveItem("weapon", "runeword", "Breath of the Dying") ? me.charlvl : 100;
 				break;
 			case "Wolf":
-				respec = Check.haveItem("weapon", "runeword", "Breath of the Dying") ? me.charlvl : 100;
+				respec = Check.haveItem("stalagmite", "unique", "Ribcracker") && Check.haveItem("armor", "runeword", "Chains of Honor") ? me.charlvl : 100;
+				break;
+			case "Plaguewolf":
+				respec = Check.haveItem("sword", "runeword", "Grief") && Check.haveItem("armor", "runeword", "Chains of Honor") ? me.charlvl : 100;
 				break;
 			}
 		}
@@ -154,12 +174,12 @@ var nipItems = {
 		"[name] == tomeoftownportal",
 		"[name] == tomeofidentify",
 		"[name] == gold # [gold] >= me.charlvl * 3 * me.diff",
-		"[name] == minorhealingpotion",
+		"me.normal && [name] == minorhealingpotion",
 		"[name] == lighthealingpotion",
 		"[name] == healingpotion",
 		"[name] == greaterhealingpotion",
 		"[name] == superhealingpotion",
-		"[name] == minormanapotion",
+		"me.normal && [name] == minormanapotion",
 		"[name] == lightmanapotion",
 		"[name] == manapotion",
 		"[name] == greatermanapotion",
@@ -195,6 +215,7 @@ var nipItems = {
 		"[Name] == Khalim'sBrain",
 		"[Name] == Khalim'sFlail",
 		"[Name] == Khalim'sWill",
+		"[Name] == malah'spotion",
 		"[Name] == ScrollofResistance",
 	],
 };
@@ -485,7 +506,7 @@ var Check = {
 
 	haveItem: function (type, flag, iName) {
 		if (type && !NTIPAliasType[type] && !NTIPAliasClassID[type]) {
-			print("ÿc9솔로레벨링ÿc0 : No NTIPalias for '" + type + "'");
+			print("ÿc9SoloLevelingÿc0: No NTIPalias for '" + type + "'");
 		}
 
 		type = type.toLowerCase();
@@ -588,88 +609,31 @@ var Check = {
 			finalGear: build.autoEquipTiers,
 		};
 	},
-};
 
-var moveTo = {
-	Inventory: function (item, sorting = false) {
-		if (item.mode === 3) {
-			return false;
-		}
+	setupCharms: function () {
+		let i, equipped, limit,
+			type = [603, 604, 605],
+			items = me.getItems()
+				.filter(item => item.location === 3 && type.indexOf(item.classid) > -1)
+				.sort((a, b) => a.classid - b.classid);
 
-		if (item.location === 3 && sorting === false) {
-			return true;
-		}
+		for (i = 0; i < type.length; i++) {
+			equipped = items.filter(item => item.classid === type[i])
+				.sort((a, b) => NTIP.GetCharmTier(a) - NTIP.GetCharmTier(b));
 
-		let spot = Storage.Inventory.FindSpot(item);
+			limit = Item.getCharmLimit(type[i]) * -1; // trim off lowest tier
+			equipped = equipped.slice(limit);
 
-		if (!spot) {
-			return false;
-		}
-
-		if (item.location === 6) {
-			while (!Cubing.openCube()) {
-				delay(1 + me.ping * 2);
-				Packet.flash(me.gid);
+			while (equipped.length > 0) {
+				Check.equippedCharms[i].push(copyUnit(equipped[0]));
+				equipped.shift();
 			}
 		}
 
-		if (Packet.itemToCursor(item)) {
-			for (let i = 0; i < 15; i += 1) {
-				sendPacket(1, 0x18, 4, item.gid, 4, spot.y, 4, spot.x, 4, 0x00);
-
-				let tick = getTickCount();
-
-				while (getTickCount() - tick < Math.max(1000, me.ping * 2 + 200)) {
-					if (!me.itemoncursor) {
-						return true;
-					}
-
-					delay(10 + me.ping);
-				}
-			}
-		}
-
-		return false;
+		return true;
 	},
 
-	Stash: function (item, sorting = false) {
-		if (item.mode === 3) {
-			return false;
-		}
-
-		if (item.location === 7 && sorting === false) {
-			return true;
-		}
-
-		let spot = Storage.Stash.FindSpot(item);
-
-		if (!spot) {
-			return false;
-		}
-
-		while (!Town.openStash()) {
-			Packet.flash(me.gid);
-			delay(me.ping * 2);
-		}
-
-		if (Packet.itemToCursor(item)) {
-			for (let i = 0; i < 15; i += 1) {
-				sendPacket(1, 0x18, 4, item.gid, 4, spot.y, 4, spot.x, 4, 0x04);
-
-				let tick = getTickCount();
-
-				while (getTickCount() - tick < Math.max(1000, me.ping * 2 + 200)) {
-					if (!me.itemoncursor) {
-						return true;
-					}
-
-					delay(10 + me.ping);
-				}
-			}
-		}
-
-		return false;
-	},
+	equippedCharms: [[],[],[]],
 };
 
 var indexOfMax = function (arr) {

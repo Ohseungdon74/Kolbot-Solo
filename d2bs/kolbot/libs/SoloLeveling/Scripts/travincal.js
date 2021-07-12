@@ -7,7 +7,7 @@
 function travincal () {
 	Quest.preReqs();
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting travincal');
+	print('ÿc9SoloLevelingÿc0: starting travincal');
 	me.overhead("travincal");
 
 	if (!Pather.checkWP(83)) {
@@ -27,13 +27,13 @@ function travincal () {
 	Pickit.pickItems();
 
 	if (!Pather.moveToPreset(83, 2, 404)) { // go to orb
-		print('ÿc9솔로레벨링ÿc0 : Failed to move to compelling orb');
+		print('ÿc9SoloLevelingÿc0: Failed to move to compelling orb');
 	}
 
 	Attack.clear(10); // clear area around orb
 
 	if (!me.travincal) { // khalim's will quest not complete
-		if (!me.getItem(173)) { // cleared council didn't pick flail
+		if (!me.getItem(174) && !me.getItem(173)) { // cleared council didn't pick flail and doesn't have will
 			let flail = getUnit(4, 173);
 
 			Pather.moveToUnit(flail);
@@ -46,11 +46,19 @@ function travincal () {
 			delay(250 + me.ping);
 		}
 
+		if (!me.inTown && me.getItem(174)) {
+			Town.goToTown();
+		}
+
+		if ([2, 69, 70].indexOf(Item.getEquippedItem(5).itemType) === -1) { //dual weild fix for assassin/barbarian
+			Item.removeItem(5);
+		}
+
 		Quest.equipItem(174, 4);
 		delay(250 + me.ping);
 
 		if (!Pather.usePortal(83, me.name)) { // return to Trav
-			print("ÿc9솔로레벨링ÿc0 : Failed to go back to Travincal and smash orb");
+			print("ÿc9SoloLevelingÿc0: Failed to go back to Travincal and smash orb");
 		}
 
 		Quest.smashSomething(404); // smash orb
@@ -58,7 +66,7 @@ function travincal () {
 		Town.doChores();
 
 		if (!Pather.usePortal(83, me.name)) { // return to Trav
-			print("ÿc9솔로레벨링ÿc0 : Failed to go back to Travincal and take entrance");
+			print("ÿc9SoloLevelingÿc0: Failed to go back to Travincal and take entrance");
 		}
 
 		if (!Pather.moveToExit(100, true)) {

@@ -6,7 +6,7 @@
 
 function mephisto () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting mephisto');
+	print('ÿc9SoloLevelingÿc0: starting mephisto');
 	me.overhead("mephisto");
 
 	if (!Pather.checkWP(101)) {
@@ -18,9 +18,9 @@ function mephisto () {
 	Precast.doPrecast(true);
 	Pather.moveToExit(102, true);
 	Town.doChores();
-	Town.buyPots(10, "Thawing"); // thawing
+	Town.buyPots(8, "Thawing"); // thawing
 	Town.drinkPots();
-	Town.buyPots(10, "Antidote"); // antidote
+	Town.buyPots(8, "Antidote"); // antidote
 	Town.drinkPots();
 	Pather.usePortal(102, me.name);
 	Precast.doPrecast(true);

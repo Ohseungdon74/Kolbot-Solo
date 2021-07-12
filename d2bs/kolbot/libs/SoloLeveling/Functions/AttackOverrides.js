@@ -22,7 +22,7 @@ Attack.killTarget = function (name) {
 	}
 
 	if (!target) {
-		print("ÿc9솔로레벨링ÿc0 : Target not found. Performing Attack.Clear(25)");
+		print("ÿc9SoloLevelingÿc0: Target not found. Performing Attack.Clear(25)");
 		Attack.clear(25);
 		Pickit.pickItems();
 
@@ -30,7 +30,7 @@ Attack.killTarget = function (name) {
 	}
 
 	if (target && !Attack.canAttack(target)) { // exit if target is immune
-		print("ÿc9솔로레벨링ÿc0 : Attack failed. " + target.name + " is immune.");
+		print("ÿc9SoloLevelingÿc0: Attack failed. " + target.name + " is immune.");
 
 		return true;
 	}
@@ -71,12 +71,12 @@ Attack.killTarget = function (name) {
 		attackCount += 1;
 		ClassAttack.afterAttack();
 
-		if ( !target || !copyUnit(target).x || target.dead) {
+		if (!target || !copyUnit(target).x || target.dead || target.spectype === 0) {
 			break;
 		}
 	}
 
-	if ( !target || !copyUnit(target).x || target.dead) {
+	if (!target || !copyUnit(target).x || target.dead || target.spectype === 0) {
 		Pickit.pickItems();
 	}
 
@@ -92,4 +92,28 @@ Attack.clearLocations = function (list) {
 	}
 
 	return true;
+};
+
+Attack.getSkillElement = function (skillId) {
+	this.elements = ["physical", "fire", "lightning", "magic", "cold", "poison", "none"];
+
+	switch (skillId) {
+	case 74: // Corpse Explosion
+	case 139: // Stun
+	case 144: // Concentrate
+	case 147: // Frenzy
+	case 273: // Minge Blast
+	case 500: // Summoner
+		return "physical";
+	case 101: // Holy Bolt
+		return "holybolt"; // no need to use this.elements array because it returns before going over the array
+	}
+
+	var eType = getBaseStat("skills", skillId, "etype");
+
+	if (typeof (eType) === "number") {
+		return this.elements[eType];
+	}
+
+	return false;
 };

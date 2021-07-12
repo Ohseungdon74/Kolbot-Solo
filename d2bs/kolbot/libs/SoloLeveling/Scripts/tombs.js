@@ -5,7 +5,7 @@
 */
 
 function tombs () {
-	print('ÿc9솔로레벨링ÿc0 : starting tombs');
+	print('ÿc9SoloLevelingÿc0: starting tombs');
 	me.overhead("tombs");
 
 	let tombID = [66, 67, 68, 69, 70, 71, 72];

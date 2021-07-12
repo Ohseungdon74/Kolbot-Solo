@@ -6,7 +6,7 @@
 
 function countess () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting countess');
+	print('ÿc9SoloLevelingÿc0: starting countess');
 	me.overhead("countess");
 
 	if (!Pather.checkWP(6)) {
@@ -31,7 +31,7 @@ function countess () {
 		Pather.moveToPreset(me.area, 2, 580);
 		Attack.clear(20, 0, getLocaleString(2875));
 	} catch (err) {
-		print('ÿc9솔로레벨링ÿc0 : Failed to kill Countess');
+		print('ÿc9SoloLevelingÿc0: Failed to kill Countess');
 	}
 
 	Pickit.pickItems();

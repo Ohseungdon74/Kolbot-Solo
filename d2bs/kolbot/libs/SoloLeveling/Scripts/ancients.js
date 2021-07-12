@@ -49,16 +49,16 @@ function ancients () {
 	let ancientsPrep = function () { // ancients prep
 		Town.goToTown(); // prep to revised settings
 		Town.fillTome(518);
-		Town.buyPots(10, "Thawing");
+		Town.buyPots(8, "Thawing");
 		Town.drinkPots();
-		Town.buyPots(10, "Antidote");
+		Town.buyPots(8, "Antidote");
 		Town.drinkPots();
 		Town.buyPotions();
 		Pather.usePortal(120, me.name);
 	};
 
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting ancients');
+	print('ÿc9SoloLevelingÿc0: starting ancients');
 	me.overhead("ancients");
 
 	if (!Pather.checkWP(118)) {
@@ -76,8 +76,8 @@ function ancients () {
 		HealStatus: false,
 		TownHP: 0,
 		TownMP: 0,
-		MPBuffer: 15,
-		HPBuffer: 15,
+		MPBuffer: me.charlvl > 39 ? 8 : 15,
+		HPBuffer: me.charlvl > 39 ? 8 : 15,
 		UseMercRejuv: 25,
 		LifeChicken: 5,
 		ManaChicken: 0,
@@ -96,7 +96,7 @@ function ancients () {
 	Precast.doPrecast(true);
 
 	if (!Pather.moveToPreset(me.area, 2, 546)) { // move to altar
-		print("ÿc9솔로레벨링ÿc0 : Failed to move to ancients' altar");
+		print("ÿc9SoloLevelingÿc0: Failed to move to ancients' altar");
 	}
 
 	touchAltar(); //activate altar
@@ -130,7 +130,7 @@ function ancients () {
 			Pather.getWP(129);
 		}
 	} catch (err) {
-		print('ÿc9솔로레벨링ÿc0 : Cleared Ancients. Failed to get WSK Waypoint');
+		print('ÿc9SoloLevelingÿc0: Cleared Ancients. Failed to get WSK Waypoint');
 	}
 
 	return true;

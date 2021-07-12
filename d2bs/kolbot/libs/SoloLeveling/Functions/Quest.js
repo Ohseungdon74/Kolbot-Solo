@@ -1,7 +1,8 @@
 /*
 *	@filename	Quest.js
 *	@author		isid0re
-*	@desc		Miscellaneous quest tasks for leveling
+*	@desc		Miscellaneous quest tasks for leveling adapted from blizzhackers autosmurf
+*	@credits	Dark-f, JeanMax for original functions
 */
 
 var Quest = {
@@ -173,7 +174,7 @@ var Quest = {
 					Storage.Inventory.MoveTo(hstaff);
 				} else {
 					Town.clearJunk();
-					Town.organizeInventory();
+					Town.sortInventory();
 
 					if (hstaff.location === 6) {
 						Cubing.openCube();
@@ -295,7 +296,7 @@ var Quest = {
 			Pickit.pickItem(questItem);
 		} else {
 			Town.clearJunk();
-			Town.organizeInventory();
+			Town.sortInventory();
 			Pickit.pickItem(questItem);
 			Pickit.pickItems();
 		}
@@ -318,10 +319,10 @@ var Quest = {
 
 			if (!Item.equip(newitem, loc)) {
 				Pickit.pickItems();
-				print("ÿc9솔로레벨링ÿc0 : failed to equip item.(Quest.equipItem)");
+				print("ÿc9SoloLevelingÿc0: failed to equip item.(Quest.equipItem)");
 			}
 		} else {
-			print("ÿc9솔로레벨링ÿc0 : Lost item before trying to equip it. (Quest.equipItem)");
+			print("ÿc9SoloLevelingÿc0: Lost item before trying to equip it. (Quest.equipItem)");
 		}
 
 		if (me.itemoncursor) {
@@ -329,12 +330,12 @@ var Quest = {
 
 			if (olditem) {
 				if (Storage.Inventory.CanFit(olditem)) {
-					print("ÿc9솔로레벨링ÿc0 : Keeping weapon");
+					print("ÿc9SoloLevelingÿc0: Keeping weapon");
 
 					Storage.Inventory.MoveTo(olditem);
 				} else {
 					me.cancel();
-					print("ÿc9솔로레벨링ÿc0 : No room to keep weapon");
+					print("ÿc9SoloLevelingÿc0: No room to keep weapon");
 
 					olditem.drop();
 				}
@@ -454,7 +455,7 @@ var Quest = {
 					Town.move('stash');
 					Storage.Stash.MoveTo(selected);
 					me.cancel;
-					print('ÿc9솔로레벨링ÿc0 : used hole punch on ' + selected.name);
+					print('ÿc9SoloLevelingÿc0: used hole punch on ' + selected.name);
 
 					return true;
 				}

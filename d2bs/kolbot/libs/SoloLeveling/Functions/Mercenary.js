@@ -97,7 +97,7 @@ var Merc = {
 		}
 
 		if (me.normal && me.gold < 10000 || !me.normal && me.gold < 100000) {
-			print('ÿc9솔로레벨링ÿc0 : not enough gold to hire merc.');
+			print('ÿc9SoloLevelingÿc0: not enough gold to hire merc.');
 
 			return true;
 		}
@@ -111,7 +111,7 @@ var Merc = {
 
 		if (mercSelected !== mercAuraWanted && me.diff === mercDiff || mercSelected !== tempMercAura && me.normal) { // replace merc
 			me.overhead('replacing merc');
-			Town.organizeInventory();
+			Town.sortInventory();
 			Item.removeItemsMerc(); // strip temp merc gear
 			delay(500 + me.ping);
 		}
@@ -127,7 +127,7 @@ var Merc = {
 
 				if (me.diff === mercDiff) {
 					if (mercenary.getSkill(mercAuraWanted, 1)) {
-						print('ÿc9솔로레벨링ÿc0 : ' + mercAuraName + ' merc hired.');
+						print('ÿc9SoloLevelingÿc0: ' + mercAuraName + ' merc hired.');
 
 						break;
 					}
@@ -135,7 +135,7 @@ var Merc = {
 
 				if (me.diff !== mercDiff && me.normal) {
 					if (mercenary.getSkill(tempMercAura, 1)) {
-						print('ÿc9솔로레벨링ÿc0 : prayer merc hired.');
+						print('ÿc9SoloLevelingÿc0: prayer merc hired.');
 
 						break;
 					}
@@ -146,11 +146,11 @@ var Merc = {
 		mercenary = Merc.getMercFix();
 
 		if (me.diff !== mercDiff && me.normal && mercenary && !mercenary.getSkill(tempMercAura, 1)) {
-			print('ÿc9솔로레벨링ÿc0 : temp merc not available. will try later');
+			print('ÿc9SoloLevelingÿc0: temp merc not available. will try later');
 		}
 
 		if (me.diff === mercDiff && mercenary && !mercenary.getSkill(mercAuraWanted, 1)) {
-			print('ÿc9솔로레벨링ÿc0 : ' + mercAuraName + ' merc not available. try later.');
+			print('ÿc9SoloLevelingÿc0: ' + mercAuraName + ' merc not available. try later.');
 		}
 
 		this.equipMerc();

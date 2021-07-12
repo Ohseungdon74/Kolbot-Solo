@@ -1,0 +1,703 @@
+1, D2bs 순수버전 케릭별 설정
+	E:\Diablo\디아블로 솔로레벨링\Kolbot-Solo.git\trunk\d2bs\kolbot\libs\config\Builds
+
+2. 솔로레벨링을 위한 케릭터 직업 설정 파일
+	E:\Diablo\디아블로 솔로레벨링\Kolbot-Solo.git\trunk\d2bs\kolbot\libs\SoloLeveling\BuildFiles
+		StartBuild : 케릭터 생성 후 특정 레벨까지 설정한 스텟, 스킬로 사냥	
+		LevelingBuild : 
+		그 외 직업 선택 : 특정 레벨 후 직업선택에 의한 스탯, 스킬 분배
+
+캐릭터 구성
+기본 시작
+문자 설정 파일은 ... \ d2bs \ kolbot \ libs \ config ... : Amazon.js, Assassin.js, Barbarian.js, Druid.js, Necromancer.js, Paladin.js, Sorceress.js에서 찾을 수 있습니다.
+ Toon 클래스 파일을 선택하고 Sorceress.MyToon.js와 같이 툰 이름을 추가하여 복사하십시오.
+ char 설정 파일없이 시작한 경우 맨 위의 흰색 콘솔에 <Home> 및 <Space> 키를 눌러야하는 옵션이 표시됩니다 char config를 작성하십시오.
+ 해당 프로필을 닫고 Class.MyToon.js 파일을 찾으십시오. 실행을 시작하기 전에 편집해야하기 때문입니다.
+ d2bs 파일을 편집 하려면 notepad ++ 를 사용하십시오 .
+
+참고 : 모든 것을 정확하게 설정하려면 구성하는 데 사용되는 두 개의 간단한 명령을 이해해야합니다.
+
+첫 번째는 true 또는 false (대소 문자 구분)입니다. 예:
+
+Scripts.Coldcrow = false; 사용 중지됨
+
+Scripts.BoneAsh = true; 사용 가능
+
+두 번째는 뭔가를 주석으로 처리하여 // 해당 행 앞에 표시하는 것입니다. 예:
+
+//Config.Recipes.push([Recipe.Gem, 560]); // 완벽한 자수정을 사용 중지했습니다.
+
+Config.Recipes.push ([Recipe.Gem, 565]); // 완벽한 토파즈가 활성화되었습니다.
+
+문자 설정 파일에는 이미 많은 설명이 포함되어 있으므로주의 깊게 읽어보십시오.
+
+다른 스크립트를 실행하려면 해당 스크립트를 true로 변경하고 모든 노트를주의 깊게 읽고 지침을 따르십시오.
+
+UserAddon
+기본적으로 UserAddon.js 스크립트 가 사용됩니다. 수동 재생 용입니다.
+
+항목, NPC 및 플레이어에 커서를 올려 놓고 자세한 정보를 볼 수 있습니다.
+항목 수준, 소켓에있는 항목, classid, 코드 및 마법 항목 접두사 / 접미사 번호를 표시합니다.
+괴물의 클래스 ID, HP 백분율 및 저항을 표시합니다.
+다른 플레이어의 장비를 보여줍니다.
+botting을 시작하려면 17 행을 false로 바꾸려면 UserAddon.js 스크립트를 비활성화해야합니다 . 이제 보스 / 영역 스크립트를 시작할 수 있습니다.
+
+Scripts.UserAddon = false; // !!!YOU MUST SET THIS TO FALSE IF YOU WANT TO RUN BOSS/AREA SCRIPTS!!!
+
+전투 명령
+2 개 이상의 문자로 사용하십시오 (예 : BO barb + sorc).
+
+Scripts.BattleOrders = false; Config.BattleOrders.Mode = 0; // 0 = give BO, 1 = get BO Config.BattleOrders.Wait = false; // Idle until the player that received BO leaves. Config.BattleOrders.Getters = []; // List of players to wait for before casting Battle Orders (mode 0). All players must be in the same area as the BOer.
+
+Catacombs 2 wp를 사용합니다 (BattleOrders.js 스크립트의 36 행 참조). 불행하게도 이것은 게임 시작시 한 번 BO를 만듭니다.
+
+@ nag0k에 의해 작성된 야만적 인 야후의 전체 게임을 선택한 플레이어와 함께 HC 플레이어 용 modded 스크립트 는 https://pastebin.com/JTmWbqLf 에서 찾을 수 있으며 기본 ... \ libs \ bots \ BattleOrders.js를 바꿀 수 있습니다. . 야만족은 선택한 종점으로 이동하여 근처에있는 모든 사람에게 보 통계를 표시할지 여부를 결정합니다. 몬스터가 그에게 더 가까이 오거나 마나가 설정치보다 낮고 치료사 NPC를 방문하면 돌아와 보를줍니다. 이 스크립트를 사용하려면 때때로 그 wp로 이동하는 다른 문자를 추가해야합니다.
+
+팀 MF 시스템
+Config.MFLeader = false; // Set to true if you have one or more MFHelpers. Opens TP and gives commands when doing normal MF runs.
+
+보스 / 지역 스크립트
+원하는 스크립트를 사용 가능하게 설정하고 값을 true로 변경하십시오. 스크립트의 순서를 변경하려면 잘라 내기 및 붙여 넣기를 사용하여 줄의 순서를 변경하십시오. 스크립트는 위에서 아래로 실행됩니다.
+
+ 
+
+ 
+
+// *** act 1 ***
+
+Scripts.Corpsefire = false;
+
+Config.Corpsefire.ClearDen = false;
+
+Scripts.Mausoleum = false;
+
+Config.Mausoleum.KillBloodRaven = false;
+
+Config.Mausoleum.ClearCrypt = false;
+
+Scripts.Rakanishu = false;
+
+Config.Rakanishu.KillGriswold = true;
+
+Scripts.UndergroundPassage = false;
+
+Scripts.Coldcrow = false;
+
+Scripts.Tristram = false;
+
+Config.Tristram.WalkClear = false; // Disable teleport while clearing to protect leechers
+
+Config.Tristram.PortalLeech = false; // Set to true to open a portal for leechers.
+
+Scripts.Pit = false;
+
+Config.Pit.ClearPit1 = true;
+
+Scripts.Treehead = false;
+
+Scripts.Smith = false;
+
+Scripts.BoneAsh = false;
+
+Scripts.Countess = false;
+
+Config.Countess.KillGhosts = false;
+
+Scripts.Andariel = false;
+
+Scripts.Cows = false; //
+
+ 
+
+ 
+
+*** act 2 ***
+
+Scripts.Radament = false;
+
+Scripts.Coldworm = false;
+
+Config.Coldworm.KillBeetleburst = false;
+
+Config.Coldworm.ClearMaggotLair = false; // Clear all 3 levels
+
+Scripts.AncientTunnels = false;
+
+Config.AncientTunnels.OpenChest = false; // Open special chest in Lost City
+
+Config.AncientTunnels.KillDarkElder = false;
+
+Scripts.Summoner = false;
+
+Config.Summoner.FireEye = false;
+
+Scripts.Tombs = false;
+
+Scripts.Duriel = false;
+
+ 
+
+ 
+
+// *** act 3 ***
+
+Scripts.Stormtree = false;
+
+Scripts.KurastTemples = false;
+
+Scripts.Icehawk = false;
+
+Scripts.Endugu = false;
+
+Scripts.Travincal = false;
+
+Config.Travincal.PortalLeech = false; // Set to true to open a portal for leechers.
+
+Scripts.Mephisto = false;
+
+Config.Mephisto.MoatTrick = false;
+
+Config.Mephisto.KillCouncil = false;
+
+Config.Mephisto.TakeRedPortal = true;
+
+ 
+
+ 
+
+// *** act 4 ***
+
+Scripts.OuterSteppes = false;
+
+Scripts.Izual = false;
+
+Scripts.Hephasto = false;
+
+Scripts.Vizier = false; // Intended for classic sorc, kills Vizier only.
+
+Scripts.FastDiablo = false;
+
+Scripts.Diablo = false;
+
+Config.Diablo.WalkClear = false; // Disable teleport while clearing to protect leechers
+
+Config.Diablo.Entrance = true; // Start from entrance
+
+Config.Diablo.SealWarning = "Leave the seals alone!"; Config.Diablo.EntranceTP = "Entrance TP up";
+
+Config.Diablo.StarTP = "Star TP up";
+
+Config.Diablo.DiabloMsg = "Diablo";
+
+Scripts.SealLeader = false; // Clear a safe spot around seals and invite leechers in. Leechers should run SealLeecher script. Don't run with Diablo or FastDiablo. //
+
+ 
+
+ 
+
+*** act 5 ***
+
+Scripts.Pindleskin = false;
+
+Config.Pindleskin.UseWaypoint = false;
+
+Config.Pindleskin.KillNihlathak = true;
+
+Config.Pindleskin.ViperQuit = false; // End script if Tomb Vipers are found.
+
+Scripts.Nihlathak = false;
+
+Config.Nihlathak.ViperQuit = false; // End script if Tomb Vipers are found.
+
+Scripts.Eldritch = false;
+
+Config.Eldritch.OpenChest = true;
+
+Config.Eldritch.KillShenk = true;
+
+Config.Eldritch.KillDacFarren = true;
+
+Scripts.Eyeback = false;
+
+Scripts.SharpTooth = false;
+
+Scripts.ThreshSocket = false;
+
+Scripts.Abaddon = false;
+
+Scripts.Frozenstein = false;
+
+Config.Frozenstein.ClearFrozenRiver = true;
+
+Scripts.Bonesaw = false;
+
+Config.Bonesaw.ClearDrifterCavern = false;
+
+Scripts.Snapchip = false;
+
+Config.Snapchip.ClearIcyCellar = true;
+
+Scripts.Worldstone = false;
+
+Scripts.Baal = false;
+
+Config.Baal.HotTPMessage = "Hot TP!";
+
+Config.Baal.SafeTPMessage = "Safe TP!";
+
+Config.Baal.BaalMessage = "Baal!";
+
+Config.Baal.SoulQuit = false; // End script if Souls (Undead Soul Killers) are found.
+
+Config.Baal.DollQuit = false; // End script if Dolls (Undead Stigyan Dolls) are found.
+
+Config.Baal.KillBaal = true; // Kill Baal. Leaves game after wave 5 if false.
+
+리칭 섹션
+아마 이미 알고있는 것처럼 몇몇 스크립트는 리더 (leader)와 임차인 (leecher) 또는 더 많은 리스너 (leechers)와 함께 수행 될 수 있습니다.
+
+이 매우 유용한 옵션은 봇을 실행하는 방법을 다양하게 제공합니다.
+
+마술 찾기 팀의 경우 MF 리더 / 도우미 또는 Tristram, Travincal과 같은 리더 리처 옵션이있는 스크립트를 사용할 수 있습니다. 모든 leechers 옵션 leeching 섹션 에서 찾을 수 있습니다 .
+
+리더를 올바르게 설정하려면 리더가 예를 들어 실행됩니다.
+
+Scripts.Tristram = true;
+
+Config.Tristram.PortalLeech = true; // Leechers를위한 포털을 열려면 true로 설정하십시오.
+
+절름발이에 대한 섹션 을 leeching 건너 뛰고 설정
+
+Scripts.TristramLeech = true;
+
+다른 캐릭터의 출구가있을 때 캐릭터가 게임을 끝내고 싶다면 Quit.List를 설정해야합니다.
+
+예:
+
+Config.QuitList = [ "MySorc", "MyDin"]; (대소 문자 구분)
+
+!!! 노트 !!! 것을 MySorc 및 MyDin이 있는 캐릭터의 이름 없는 프로필의 이름은!
+
+특수 스크립트
+특수 스크립트 섹션에서 다음과 같은 추가 기능을 갖춘 추가 스크립트를 찾을 수 있습니다.
+
+Scripts.WPGetter
+Scripts.GetKeys
+Scripts.OrgTorch
+Scripts.Rusher
+스크립트. 루시
+Scripts.CrushTele
+Scripts.Questing
+스크립트. 도박
+스크립트. 제작
+Scripts.GhostBusters
+Scripts.Enchant
+스크립트 .IPHunter
+Scripts.KillDclone
+Scripts.ShopBot
+Scripts.ChestMania
+Scripts.ClearAnyArea
+더 자세히 살펴보고 좋아하는 것을 확인하십시오. 각 스크립트 안에는 추가 정보가 있습니다. 모든 스크립트는 d2bs \ kolbot \ libs \ bots에 저장됩니다 . 여기에서 [URL = ' https://github.com/kolton/d2bot-with-kolbot/wiki/Gambling-System']GamblingSystem [/ URL]에 대해 자세히 알아볼 수 있습니다 .
+
+게스트 스크립트
+여기에 직접 추가 할 수있는 스크립트를위한 장소가 있습니다. 누가 알 겠어, 어쩌면 너는 우리를 위해 멋진 대본을 만들고 그것을 공유 할 수있다 !!
+
+BaalAssistant // 버알 달리기에 도움이되거나 도움이됩니다.
+
+도시 설정
+여기에서 힐러에게가는 삶의 비율과 용병의 사용을 설정할 수 있습니다.
+
+물약 설정
+여기에 사용 된 물약이있을 때의 생명력 / 마나의 비율을 설정할 수있을뿐만 아니라 얼마나 많은 물약을 재고로 유지할 것인가를 버퍼로 설정할 수 있습니다.
+
+치킨
+이 섹션은 캐릭터가 사망하지 못하게합니다.
+
+플레이어가 지정한 비율의 생명력하에 게임을 종료합니다.
+
+치킨은 가난한 서버, 성격 부족 등의 많은 환경으로 인해 항상 100 % 안전하지는 않기 때문에 가장 낮은 설정은 지옥에서의 경험 (XP)에 고통 스러울 수 있습니다.
+
+인벤토리 잠금 구성
+Config.Inventory [0] = [1,1,1,1,1,1,0,0,0,0];
+
+Config.Inventory [1] = [1,1,1,1,1,1,0,0,0,0];
+
+Config.Inventory [2] = [1,1,1,1,1,0,0,0,0,0];
+
+Config.Inventory [3] = [1,1,1,1,1,0,0,0,0,0];
+
+0 = 항목이 잠겨서 이동되지 않습니다. 항목이 둘 이상의 슬롯을 차지하는 경우 해당 슬롯을 모두 고정하려면 해당 슬롯을 모두 0으로 설정해야합니다.
+당신의 횃불, annihilus 및 당신이 유지하고 싶은 모든 것이있는 곳을 0으로 설정하십시오.
+1 = 항목의 잠금이 해제되어 떨어 뜨리거나 은닉 또는 판매됩니다.
+기본값을 변경하지 않으면 봇은 항목을 숨기지 않습니다.
+벨트 구성
+벨트 컬럼의 물약 유형은 왼쪽에서 오른쪽입니다. 회춘 약은 항상 최 우측이어야합니다. Healing ( "hp"), Mana ( "mp") 및 Rejuvenation ( "rv")의 예는 다음과 같습니다.
+
+Config.BeltColumn [0] = "hp";
+
+Config.BeltColumn [1] = "mp";
+
+Config.BeltColumn [2] = "rv";
+
+Config.BeltColumn [3] = "rv";
+
+포션의 최소 양을 설정할 수 있습니다. 우리가 적게는, 더 많은 것을 구매하기 위해 봇이 공급 업체에갑니다. 회춘 기둥을 구입할 수 없으므로 회랑 기둥을 0으로 설정하십시오! 예 : Config.MinColumn [0] = 3; Config.MinColumn [1] = 3; Config.MinColumn [2] = 0; Config.MinColumn [3] = 0;
+
+피치 설정
+모든 pickit 파일은 d2bs / kolbot / pickit /에 저장됩니다 . 기본적으로 kolton.nip 및 LLD.nip 만 활성화됩니다.
+
+다른 닙 파일을 사용하려면 여기에 행 추가
+
+[CODE] Config.PickitFiles.push ( "myPickit.nip"); [/ CODE]
+
+선택할 수있는 파일이 여러 개 있습니다. 자신 만의 파일을 만들고 추가하거나 다음 파일을 편집 할 수도 있습니다.
+
+classic.nip
+follower.nip
+gold.nip
+keyorg.nip
+kolton.nip
+LLD.nip
+pots.nip
+shopbot.nip
+test.nip
+블리자커 / 픽트 에 대한 추가 정보
+
+품목 식별 설정
+ID Tome을 사용하고 싶지 않다면, 카인에게 아이템을 시도해 볼 수 있습니다.
+
+Config.CainID.Enable = true; // 카인에서 항목 식별
+
+기본적으로 Cain에서 식별 된 항목은 판매되지 않지만 삭제 되므로이 대안을 추가하십시오 . Cain을 사용하고 항목을 판매하십시오 .
+다른 옵션은 필드에서 드롭을 식별하는 것입니다. 활성화하려면이 스크립트를 활성화하십시오.
+
+Config.FieldID = true; // 마을에 가지 않고 필드의 항목을 식별합니다.
+
+관리자 항목 로그 화면
+관리자 항목의 로그에서 일부 항목을 숨기려면 false로 설정하십시오.
+
+Config.ShowLowRunes = false; // 항목 로그 화면에서 낮은 룬 문자 (El-Dol)를 표시하거나 숨 깁니다.
+
+Config.ShowMiddleRunes = false; // 항목 로그 화면에서 중간 룬 (Hel - Mal) 표시 / 숨기기
+
+Config.ShowHighRunes = true; // 항목 로그 화면에서 높은 룬 문자 (Ist - Zod) 표시 / 숨기기
+
+Config.ShowLowGems = false; // 항목 로그 화면에서 낮은 보석 (부서 지거나 결함이있는 것) 표시 / 숨기기
+
+Config.ShowHighGems = false; // 항목 로그 화면에서 높은 보석 (완벽한, 완벽한) 표시 / 숨기기
+
+Config.ShowCubingInfo = true; // 콘솔 및 항목 로그 화면에서 큐브 메시지 표시 / 숨기기
+
+수리 설정
+여기서 수리를 유발할 내구성 퍼센트를 설정합니다.
+
+도박 설정
+Gamble은 Lvl 88 (클래식) 이후에 시도해 볼 가치가있는 멋진 아이템의 원천입니다.
+
+스크립트를 사용하려면 true로 만듭니다.
+
+Config.Gamble = true;
+
+봇이 도박하기 시작했을 때와 멈출 때를 결정해야합니다.
+
+금의 시작 금액은 은닉되어 있습니다.
+
+이제 도박을하고 홗용하기를 원하는 것을 결정하십시오.
+
+Config.GambleItems.push (520); // 아뮬렛 사용 가능
+
+//Config.GambleItems.push(522); // Ring DISABLED
+
+더 많은 항목을 보려면 libs / NTItemAlias.dbl을 확인하십시오 . MiniShopBot을 사용하면 Stop Gold 금액을 낮게 설정하지 마십시오. 도박은 도박 시스템으로 사용될 수 있습니다. 자세한 정보는 Gambling System Guide를 참조하십시오.
+
+큐브 구성
+모든 요리법은 d2bs \ kolbot \ libs \ config \ Templates \ Cubing.txt 에서 사용할 수 있습니다 .
+
+스크립트를 사용하려면 true로 만듭니다.
+
+Config.Cubing = true; // 큐브를 사용하려면 true로 설정하십시오.
+
+예를 들어, 만약 당신이 perfects 두개골을 주석으로 처리하고 싶다면 (주석을 제거하십시오 //),
+
+//Config.Recipes.push([Recipe.Gem, 600]); // 완벽한 두개골
+
+모든 재료는 자동 선택됩니다. d2bs \ kolbot \ libs \ NTItemAlias.dbl
+
+룬 워드 구성
+스크립트를 사용하려면 true로 만듭니다. Config.MakeRunewords = true; // runeword 만들기 / 다시 롤링을 사용하려면 true로 설정합니다.
+
+모든 요리법은 d2bs \ kolbot \ libs \ config \ Templates \ Runewords.txt 에서 사용할 수 있습니다 . !!!노트!!! 강화 된 피해와 강화 된 방어력이 코어에서 깨졌습니다. 라인을 계속 선택 상태로 유지하십시오. 주어진 runeword와 모든 라인을 비교 테스트 할 수 있으므로 반복 할 필요가 없습니다.
+
+공개 게임 옵션
+지역 채팅
+
+// LocalChat을 사용하는 경우 BNET 대신 'sendCopyData'를 통해 채팅을 보낼 수 있습니다.
+
+// 'say'가 BNET을 사용하도록 허용하려면 'say ( "msg", true)'를 사용하고, 두 번째 매개 변수는 BNET을 사용합니다
+
+// LocalChat 메시지는 동일한 PC에서 실행되는 클라이언트에서만 볼 수 있습니다.
+
+Config.LocalChat.Enabled = false; // LocalChat 시스템을 활성화합니다.
+
+Config.LocalChat.Toggle = false; // 옵션, KEY 값으로 설정하여 모드 0, 1, 2를 토글합니다.
+
+Config.LocalChat.Mode = 0; // 0 = 사용 중지됨, 1 = '말'에서 채팅 (권장), 2 = 모든 채팅 (수동 재생)
+
+// Config.Leader가 설정된 경우 봇은 리더의 초대 만 수락합니다. Config.PublicMode가 0이 아닌 경우 Baal 및 Diablo 스크립트가 Town Portals를 엽니 다.
+
+Config.PublicMode = 0; // 1 = 초대 및 수락, 2 = 수락 만, 3 = 초대 만, 0 = 사용 안 함
+
+// 파티 메시지 설정. 각 설정은 무작위로 선택되는 메시지 배열을 나타냅니다.
+
+// $ name, $ level, $ class 및 $ killer는 플레이어의 이름, 레벨, 클래스 및 킬러로 대체됩니다.
+
+Config.Greetings = []; // 예 : [ "Hello, $ name (level $ level $ class)"]
+
+Config.DeathMessages = []; // 예 : [ "$ killer, $ name 조심해!"]
+
+Config.Congratulations = []; // 예 : [ "$ level 수준의 축하, $ name!"]
+
+Config.ShitList = false; // 적대적인 플레이어를 블랙리스트에 올려 파티에 초대하지 마라.
+
+Config.UnpartyShitlisted = false; // 누군가가 블랙리스트에 올라있는 플레이어를 초대 한 경우 파티를 종료합니다.
+
+파티 초대, 초대 수락 또는 무시하고 혼자 놀고 싶은 경우 여기에서 설정할 수 있습니다. Config.PublicMode = 0; // 1 = 초대, 2 = 수락, 0 = 사용 안함. Config.Leader가 설정된 경우 봇은 리더의 초대 만 수락합니다.
+
+적대적인 플레이어를 블랙리스트에 올려 파티에 초대하지 않으려면 스크립트를 활성화해야합니다. Config.ShitList = true;
+
+일반 구성
+게임의 기본 최소 시간은 60 초로 설정됩니다. 초 수를 변경하여 원하는대로 변경할 수 있습니다.
+
+최대 게임 시간은 무한대로 설정되어 원하는 시간 (0 초)을 원하는 시간으로 변경 한 후에 로봇이 게임을 나가게합니다. 예 : 15 분 후 게임 종료
+
+Config.MaxGameTime = 900;
+
+다음과 같이 두 가지 방법으로 핑 설정을 구성 할 수도 있습니다.
+
+Config.PingQuit = [{Ping : 600, Duration : 10}, {Ping : 1500, Duration : 0}];
+
+첫 번째 조건은 핑이 10 초 동안 600보다 높으면 봇이 종료되고 두 번째 조건은 핑이 1500 이상일 때 종료된다는 것입니다.
+
+나머지 설정은 자명합니다.
+
+신사 스캐너
+신사 스캐너는 이동하는 동안 신전을 스캔합니다. 신사 종류를 우선 순위의 순서대로 (가장 높은 곳에서 가장 낮은 곳으로) 배치하십시오. 형식 목록은 d2bs \ kolbot \ sdk \ Shrines.txt를 참조하십시오 .
+
+예:
+
+Config.ScanShrines = [15,12,13,]; 어디에
+
+12 스킬 신사
+13 마나 충전 사 ( Config.ScanShrines의 끝 - 최저 우선 순위)
+15 경험 신사 (의 태초 Config.ScanShrines - 가장 높은 우선 순위)
+MF 스위치
+MF 용 무기를 교환하려면 무기를 전환 할 보스 수명을 설정해야합니다. 사용하지 않으려면 0으로 설정하십시오. MF 무기 슬롯을 설정해야합니다.
+
+Fastmod 구성
+감시인 은 꺼져 있지만 fastmod 또는 전체 패킷 캐스팅 을 사용하는 것이 안전 합니다 . 다음은 노아의 차이점에 대한 기술적 설명입니다 .
+
+Fastmod 는 플레이어 STAT 스푸핑 방법입니다. 기본적으로 아이템이 100 fcr이라고 말하면 서버는 100 fcr라고하는 정보를 서버에 보냅니다 (d2 클라이언트). 그래서 100 fcr 프레임과 일치하는 애니메이션을 만들 수 있습니다. 서버에서이 패킷을받는 것을 스푸핑하고 디아블로 2 클라이언트가 어떤 속도로 캐스팅 할 수 있다고 믿게 만듭니다 --- 정보가 다시 디아블로 2에서 블리자드의 서버로 전송되는 더 빠른 속도로 캐스팅 할 때 - 여전히 그렇습니다 애니메이션 프레임으로 스킬을 캐스팅하는 게임의 방법에 의존합니다.
+
+패킷 캐스팅 이 디아블로 2의 모든 애니메이션 코드를 우회하여 디아블로 2 클라이언트가 스킬을 캐스팅한다는 정보를 블리자드 서버로 직접 보냅니다. 블리자드 서버는 아이템 통계를 엄격하게 시행하지 않으며 공격 속도는 애니메이션 지연으로 인해 동기화가 유지되므로 캐스팅 패킷을 "스팸"시킬 수 있으며 블리자드 서버가 공격 패킷을 허용하기 때문에 일반적으로 애니메이션보다 많은 조회가 발생합니다 + - 장비에서 허용해야하는 임계 값 너 ~에
+
+패킷 캐스팅 은 플레이어 통계를 변경하지 않으며, 패킷 캐스팅은 블리자드 d2gs 서버에 직접 요청을 전송하여 기술을 캐스팅하기 위해 디아블로 2 클라이언트 코드를 우회합니다.
+
+Fastmod 는 디아블로 2 클라이언트의 애니메이션 코드를 우회하지 않으며, 디아블로 2 클라이언트에 대한 패킷을 스푸핑하여 클라이언트가 실제로 사용하는 장비보다 더 나은 개조를한다고 생각하도록합니다.
+
+fastmod 또는 packet casting이 얼마나 효과적인 지에 따라 달라지는 몇 가지 사항은 기본 통계, 인터넷 연결 속도 및 인터넷 대기 시간 (핑으로 측정)을 포함 할 수 있지만 이에 국한되지는 않습니다.
+
+패킷 캐스팅을 사용하면 연결에 의해 가능한 한 빨리 기술적으로 캐스팅되어야 합니다. 즉, 전체 패킷 캐스팅을 사용하는 경우 fastmod 가 영향을 미치지 않습니다 .
+
+설정 예 :
+
+Config.FCR = 255; // 0 - 사용 불가, 1 ~ 255 - 빠른 캐스팅 속도 설정 값
+
+Config.FHR = 255; // 0 - 사용 안 함, 1 - 255 - 빠른 조회 복구 설정 값
+
+Config.FBR = 255; // 0 - 사용 안 함, 1 - 255 - 빠른 블록 복구 값 설정
+
+Config.IAS = 255; // 0 - 사용 안 함, 1 - 255 - 증가 된 공격 속도의 값 설정
+
+Config.PacketCasting = 2; // 0 = 사용 불가, 1 = 패킷 텔레포트, 2 = 전체 패킷 캐스팅.
+
+반대로 적대적인 설정
+이 섹션에서는 당신을 죽이거나 당신의 게임을 망치려는 적대적인 플레이어들에 대한 로봇을 방어 할 수 있습니다.
+
+true로 설정하여 스크립트를 활성화합니다.
+
+Config.AntiHostile = true; // anti-hostile 사용
+
+이제 마을에 닭고기를 먹이고 게임을 종료하거나 적대적인 플레이어를 죽이려고 할 때 원하는 것을 선택할 수있는 가능성이 있습니다.
+
+DClone 구성
+Bot는 Palace Cellar 레벨 3으로 이동하여 Diablo Clone을 죽입니다.
+
+Config.StopOnDClone = true; // 디아블로가 지구를 걷 자마자 마을로 돌아와 유휴 상태로 만듭니다.
+
+Config.SoJWaitTime = 5; // 게임을 떠나기 전에 다른 SoJ 판매를 기다리는 데 걸리는 시간 (분). 0 = 사용 중지됨
+
+Config.KillDclone = true; // 궁전 지하실 3에 가서 디아블로 클론을 죽이려 고합니다. 이미 Annihilus가 있다면 무의미합니다.
+
+몬스터 건너 뛰기 설정
+
+여기에서는 건너 뛰고 싶은 몬스터의 종류를 설정할 수 있습니다.
+
+예를 들어 클래식 콜드 소서리스를 사용하는 경우 콜드 면역을 모두 건너 뛸 수 있습니다.
+
+예:
+
+Config.SkipImmune = [ "cold"];
+
+"Aura" 와 "Enchant"로 몬스터를 건너 뛸 수 있으며 "Immune" 과 비슷한 방식으로 사용할 수 있습니다.
+
+공격 구성
+공격 패턴은 빌드와 캐릭터 유형에 따라 다릅니다.
+
+d2bs \ kolbot \ libs \ config \ Templates \ Attacks.txt 에서 몇 가지 예제 설정을 찾을 수 있습니다 .
+
+Unique / SuperUnique 몬스터를 먼저 지우려면이 스크립트를 true로 변경해야합니다.
+
+Config.BossPriority = true;
+
+Clear.Type에 의해 공격하려는 몬스터의 종류를 결정할 수 있습니다.
+
+Config.ClearType = 0xF;
+
+0xF = 일반 건너 뛰기,
+0x7 = 챔피언 / 보스,
+0 = 모두
+클래스 별 구성
+수업을 위해서만 추가 옵션이 있습니다.
+
+아마존
+
+Config.LightningFuryDelay = 10; // 번개 격렬한 간격 (초). LF는 시간 초과 기술로 취급됩니다.
+
+Config.SummonValkyrie = true; // 발키리를 소환한다.
+
+암살자
+
+Config.UseTraps = true; // 트랩을 사용하려면 true로 설정하십시오.
+
+Config.Traps = [271, 271, 271, 276, 276]; // 행동 상사를 제외한 모든 사람에게 캐스팅 될 트랩의 스킬 ID.
+
+Config.BossTraps = [271, 271, 271, 271, 271]; // 행동 상사에게 캐스팅 될 트랩의 스킬 ID.
+
+Config.SummonShadow = "마스터"; // 0 = 소환하지 마라. 1 또는 "Warrior"= 섀도우 워리어를 소환한다. 2 또는 "Master"= 섀도우 마스터를 소환한다.
+
+Config.UseFade = true; // Fade prebuff을 사용하려면 true로 설정하십시오.
+
+Config.UseBoS = false; // Burst of Speed ​​prebuff를 사용하려면 true로 설정하십시오. TODO : 도시에서 주조 + UseFade 호환성
+
+Config.UseVenom = false; // Venom prebuff를 사용하려면 true로 설정하십시오. 스킬을 가지고 있지 않고 거미류 메쉬 (Arachnid Mesh)를 가지고 있다면 false로 설정하십시오 - 그렇지 않으면 연결이 끊어집니다.
+
+Config.UseCloakofShadows = true; // 싸우는 동안 그림자 망을 사용하려면 true로 설정하십시오. 눈부신 몬스터 / 미니언에 눈이 먼 경우에 유용합니다.
+
+야만인
+
+Config.FindItem = false; // 지우기 후에 시체에서 Find Item skill을 사용하십시오.
+
+Config.FindItemSwitch = 0; // 아이템 무기 슬롯 찾기 - 0 = 슬롯 1, 1 = 슬롯 2
+
+사제
+
+Config.SummonRaven = true;
+
+Config.SummonAnimal = "그리즐리"; // 0 = 사용 불가, 1 또는 "Spirit Wolf"= 영혼 늑대 소환, 2 또는 "Dire Wolf"= 무시 무시한 늑대 소환, 3 또는 "Grizzly"= 회색조 소환
+
+Config.SummonSpirit = "Oak Sage"; // 0 = 사용 불가, 1 / "Oak Sage", 2 / "울버린의 심장", 3 / "미늘창의 정신"
+
+Config.SummonVine = "포이즌 크리퍼"; // 0 = 사용 불가, 1 / "포이즌 크리퍼", 2 / "썩은 나무 덩굴", 3 / "솔리드 기는 것"
+
+점쟁이
+
+Config.Curse [0] = 0; // 보스 저주. 스킬 번호를 사용하거나 0으로 설정하면 사용하지 않도록 설정됩니다.
+
+Config.Curse [1] = 0; // 다른 괴물들이 저주합니다. 스킬 번호를 사용하거나 0으로 설정하면 사용하지 않도록 설정됩니다.
+
+Config.ExplodeCorpses = 0; // 시체를 폭발 시키십시오. 스킬 번호 또는 0을 사용하여 비활성화하십시오. 74 = 시체 폭발, 83 = 포이즌 폭발
+
+Config.Golem = "없음"; // 골렘. 0 또는 "None"= 소환하지 않음, 1 또는 "Clay"= 클레이 골렘, 2 또는 "Blood"= 블러드 골렘, 3 또는 "Fire"= 파이어 골렘
+
+Config.Skeletons = 0; // 올릴 스켈레톤 수입니다. 자동 감지하려면 "max"로 설정하고 사용하지 않으려면 0으로 설정하십시오.
+
+Config.SkeletonMages = 0; // 올릴 스켈레톤 마법사의 수입니다. 자동 감지하려면 "max"로 설정하고 사용하지 않으려면 0으로 설정하십시오.
+
+Config.Revives = 0; // 올릴 회수 수입니다. 자동 감지하려면 "max"로 설정하고 사용하지 않으려면 0으로 설정하십시오.
+
+Config.PoisonNovaDelay = 2; // 두 개의 포이즌 노바스 사이를 초 단위로 지연시킵니다.
+
+Config.ActiveSummon = false; // 각 공격 사이에 죽은자를 올립니다. false의 경우, 스팟을 클리어 한 후에 올립니다.
+
+Config.ReviveUnstackable = true; // 텔레포트 한 후에 자유롭게 움직일 수있는 몬스터를 되 살릴 수 있습니다.
+
+Config.IronGolemChicken = 30; // Iron Golem의 수명이 지정된 퍼센트보다 작거나 같으면 게임을 종료합니다.
+
+무협가
+
+Config.AvoidDolls = false; // hammerdins와 더 먼 거리에서 Soul Killers를 공격하십시오.
+
+Config.Vigor = true; // 실행 중 Swith to Vigor
+
+Config.Redemption = [50, 50]; // 지정된 생명 또는 마나 아래에 있다면 지역을 비운 후 보너스로 전환하십시오. 형식 : [lifepercent, manapercent]
+
+마법사
+
+Config.CastStatic = 60; // 대상이 지정된 수명 퍼센트에 도달 할 때까지 정적을 표시합니다. 100 = 비활성화 됨.
+
+Config.StaticList = [ "Diablo"]; // 괴물 이름 목록 정적. 예 : Config.StaticList = [ "Andariel", "Diablo", "Baal"];
+
+자동 빌드 시스템
+지시 사항은 /d2bs/kolbot/libs/config/Builds/README.txt를 참조하십시오.
+
+고급 옵션
+스크립트 관련 설정 무시
+
+Config 오브젝트에 속하는 모든 옵션은 각 개별 스크립트에 대해 겹쳐 쓸 수 있습니다.
+
+체재:
+
+Scripts.SomeScript = {changed_properties};
+
+true는 변경하려는 속성이 포함 된 객체로 대체됩니다. 속성은 "구성" 없이 나열됩니다 . 그들 앞에서.
+
+예를 들어, Mephisto 스크립트에 대해 dodge를 비활성화하면 다음과 같이 표시됩니다.
+
+Scripts.Mephisto = {닷지 : 거짓};
+
+다음과 같이 여러 속성을 변경할 수 있습니다.
+
+Scripts.Mephisto = {닷지 : false, 타운 HP : 60, MFSwitchPercent : 25};
+
+스크립트가 끝나면 변경 사항이 되돌립니다.
+
+문자 구성 파일 이름 옵션
+
+문자 설정 파일의 이름을 지정하는 방법에는 여러 가지가 있습니다. 우선 순위에 따라 나열하십시오 (목록의 상위 형식은 낮은 형식보다 우선 적용됩니다).
+
+맞춤 설정 (아래 참조)
+Class.Profile.js - 프로파일은 D2Bot # 프로파일과 일치합니다. 이렇게하면 동일한 문자에 다른 구성을 지정할 수 있습니다. 이 형식으로 동일한 문자와 2 문자 구성을 사용하는 2 개의 프로파일을 만드십시오. 예 : Paladin.MFer.js, Paladin.Rusher.js
+Realm.Class.Charname.js - 동일한 문자 이름을 사용하여 여러 영역을 중첩 할 때 사용됩니다. 예 : Europe.Sorceress.MyChar.js, USEast.Sorceress.MyChar.js
+Class.Charname.js - 기본 형식입니다. 예 : Sorceress.MyChar.js, Druid.Sorceress.MyOtherChar.js
+Profile.js - 1과 유사하지만 클래스 접두사가 없습니다. 이 클래스는 클래스가 중요하지 않은 일반 문자 (Follower, Wakka, AutoBaal 등)에 사용됩니다. 예 : Follower1.js, Follower2.js
+사용자 지정 구성
+
+사용자 지정 구성을 사용하면 어떤 프로필에서 어떤 구성 파일을 사용할지를 지정할 수 있습니다.
+
+_CustomConfig.js 를 편집 하여이 작업을 수행 할 수 있습니다.
+
+형식은 다음과 같습니다.
+
+"Config_Filename_Without_Extension": [ "array", "of", "profiles"]
+
+이는 특정 문자 구성에서 프로필 그룹을 실행할 수 있음을 의미합니다. 예를 들어 ShopBot 프로필에는 개별 프로필이 필요하지 않으므로 다음과 같이 할 수 있습니다.
+
+"ShopConfig": [ "Shopper1", "Shopper2", "Shopper3", "Shopper4"]
+
+이렇게하면 4 개의 프로파일 모두가 동일한 문자로 실행됩니다. config - ShopConfig.js 여러 항목은 다음과 같이 쉼표로 구분됩니다.
+
+"ShopConfig": [ "Shopper1", "Shopper2", "Shopper3", "Shopper4"], "Leecher": [ "Leech 1", "Leech 2", "Leech 3"]
+
+
+
+출처: https://coolsaida.tistory.com/26 [쿨 사이다의 디아블로2]

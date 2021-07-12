@@ -6,7 +6,7 @@
 
 function izual () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting izual');
+	print('ÿc9SoloLevelingÿc0: starting izual');
 	me.overhead("izual");
 
 	if (!Pather.checkWP(106)) {

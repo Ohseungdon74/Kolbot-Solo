@@ -38,10 +38,9 @@ Town.townTasks = function () {
 	this.heal();
 	this.identify();
 	this.clearInventory();
-	this.buyBooks();
+	this.buyBook();
 	this.buyPotions();
 	this.fillTome(518);
-	this.fillTome(519);
 	this.shopItems();
 	this.buyKeys();
 	this.repair(true);
@@ -49,12 +48,13 @@ Town.townTasks = function () {
 	this.reviveMerc();
 	this.gamble();
 	Item.autoEquip();
+	Item.autoEquipCharm();
 	Merc.hireMerc();
 	Merc.equipMerc();
 	this.stash();
 	this.clearJunk();
-	this.organizeStash();
-	this.organizeInventory();
+	this.sortInventory();
+	this.sortStash();
 	Quest.characterRespec();
 
 	for (i = 0; i < cancelFlags.length; i += 1) {
@@ -101,10 +101,9 @@ Town.doChores = function (repair = false) {
 	this.heal();
 	this.identify();
 	this.clearInventory();
-	this.buyBooks();
+	this.buyBook();
 	this.buyPotions();
 	this.fillTome(518);
-	this.fillTome(519);
 	this.shopItems();
 	this.buyKeys();
 	this.repair(repair);
@@ -112,6 +111,7 @@ Town.doChores = function (repair = false) {
 	this.reviveMerc();
 	this.gamble();
 	Item.autoEquip();
+	Item.autoEquipCharm();
 	Merc.hireMerc();
 	Merc.equipMerc();
 	this.stash();
@@ -121,7 +121,7 @@ Town.doChores = function (repair = false) {
 		this.clearScrolls();
 	}
 
-	this.organizeInventory();
+	this.sortInventory();
 	Quest.characterRespec();
 
 	for (i = 0; i < cancelFlags.length; i += 1) {
@@ -284,8 +284,8 @@ Town.identify = function () {
 	return true;
 };
 
-Town.buyBooks = function () {
-	if (me.findItem(518, 0, 3) && me.findItem(519, 0, 3)) {
+Town.buyBook = function () {
+	if (me.findItem(518, 0, 3)) {
 		return true;
 	}
 
@@ -329,7 +329,7 @@ Town.buyBooks = function () {
 		if (tpBook && me.getStat(14) + me.getStat(15) >= tpBook.getItemCost(0) && Storage.Inventory.CanFit(tpBook)) {
 			try {
 				if (tpBook.buy()) {
-					print('ÿc9솔로레벨링ÿc0 : bought Tome of Town Portal');
+					print('ÿc9SoloLevelingÿc0: bought Tome of Town Portal');
 					this.fillTome(518);
 				}
 			} catch (e1) {
@@ -341,7 +341,7 @@ Town.buyBooks = function () {
 			if (tpScroll && me.getStat(14) + me.getStat(15) >= tpScroll.getItemCost(0) && Storage.Inventory.CanFit(tpScroll)) {
 				try {
 					if (tpScroll.buy()) {
-						print('ÿc9솔로레벨링ÿc0 : bought Scroll of Town Portal');
+						print('ÿc9SoloLevelingÿc0: bought Scroll of Town Portal');
 					}
 				} catch (e1) {
 					print(e1);
@@ -349,24 +349,6 @@ Town.buyBooks = function () {
 					return false;
 				}
 			}
-		}
-	}
-
-	if (!me.findItem(519, 0, 3)) {
-		idBook = npc.getItem(519);
-
-		if (idBook && Storage.Inventory.CanFit(idBook)) {
-			try {
-				if (idBook.buy()) {
-					print('ÿc9솔로레벨링ÿc0 : bought Tome of Identify');
-				}
-			} catch (e3) {
-				print(e3);
-
-				return false;
-			}
-		} else {
-			return false;
 		}
 	}
 
@@ -524,7 +506,7 @@ Town.shopItems = function () {
 		}
 	} while (item.getNext());
 
-	print("ÿc9솔로레벨링ÿc0 : Evaluating " + npc.itemcount + " items.");
+	print("ÿc9SoloLevelingÿc0: Evaluating " + npc.itemcount + " items.");
 
 	for (i = 0; i < items.length; i += 1) {
 		result = Pickit.checkItem(items[i]);
@@ -604,16 +586,13 @@ Town.unfinishedQuests = function () {
 			delay(300 + me.ping);
 		}
 
-		if (book.interact()) {
-			print('ÿc9솔로레벨링ÿc0 : used Radament skill book');
-		} else {
-			print('ÿc9솔로레벨링ÿc0 : failed to used Radament skill book');
-		}
+		book.interact();
+		print('ÿc9SoloLevelingÿc0: used Radament skill book');
 	}
 
 	//Act 3
 	if (me.getItem(546)) { // golden bird
-		print("ÿc9솔로레벨링ÿc0 : starting jade figurine");
+		print("ÿc9SoloLevelingÿc0: starting jade figurine");
 		me.overhead('jade figurine');
 		Town.goToTown(3);
 		Town.npcInteract("meshif");
@@ -632,11 +611,8 @@ Town.unfinishedQuests = function () {
 			delay(300 + me.ping);
 		}
 
-		if (pol.interact()) {
-			print('ÿc9솔로레벨링ÿc0 : used potion of life');
-		} else {
-			print('ÿc9솔로레벨링ÿc0 : failed to used potion of life');
-		}
+		pol.interact();
+		print('ÿc9SoloLevelingÿc0: used potion of life');
 	}
 
 	if (tome) { //LamEssen's Tome
@@ -648,7 +624,7 @@ Town.unfinishedQuests = function () {
 
 		Town.goToTown(3);
 		Town.npcInteract("alkor");
-		print('ÿc9솔로레벨링ÿc0 : LamEssen Tome completed');
+		print('ÿc9SoloLevelingÿc0: LamEssen Tome completed');
 	}
 
 	if (kw) { //remove Khalim's Will if quest not completed and restarting run.
@@ -656,7 +632,7 @@ Town.unfinishedQuests = function () {
 			Town.clearInventory();
 			delay(500 + me.ping * 2);
 			Quest.stashItem(174);
-			print('ÿc9솔로레벨링ÿc0 : removed khalims will');
+			print('ÿc9SoloLevelingÿc0: removed khalims will');
 			Item.autoEquip();
 		}
 	}
@@ -689,7 +665,7 @@ Town.unfinishedQuests = function () {
 	}
 
 	//Act 5
-	if (!Check.haveItem("polearm", "runeword", "Insight") && !Item.getEquippedItemMerc(3).prefixnum === 20568 && me.getItem(58)) { // Larzuk reward
+	if (!Item.getEquippedItemMerc(3).prefixnum === 20568 && me.getItem(58)) { // Larzuk reward
 		Quest.holePunch(58); // insight voulge
 	}
 
@@ -711,11 +687,8 @@ Town.unfinishedQuests = function () {
 			delay(300 + me.ping);
 		}
 
-		if (sor.interact()) {
-			print('ÿc9솔로레벨링ÿc0 : used scroll of resistance');
-		} else {
-			print('ÿc9솔로레벨링ÿc0 : failed to used scroll of resistance');
-		}
+		sor.interact();
+		print('ÿc9SoloLevelingÿc0: used scroll of resistance');
 	}
 
 	return true;
@@ -825,7 +798,7 @@ Town.buyPots = function (quantity, type) {
 		break;
 	}
 
-	print('ÿc9솔로레벨링ÿc0 : buying ' + quantity + ' ' + type + ' Potions');
+	print('ÿc9SoloLevelingÿc0: buying ' + quantity + ' ' + type + ' Potions');
 
 	for (let totalspecialpotions = 0; totalspecialpotions < quantity; totalspecialpotions++) {
 
@@ -851,7 +824,25 @@ Town.drinkPots = function () {
 				chugs.interact();
 			} while (chugs.getNext());
 
-			print('ÿc9솔로레벨링ÿc0 : drank Special Potions');
+			print('ÿc9SoloLevelingÿc0: drank Special Potions');
+		}
+	}
+
+	return true;
+};
+
+Town.canStash = function (item) {
+	var ignoredClassids = [91, 174]; // Some quest items that have to be in inventory or equipped
+
+	if (!Item.canStashCharm(item) || this.ignoredItemTypes.indexOf(item.itemType) > -1 || ignoredClassids.indexOf(item.classid) > -1) {
+		return false;
+	}
+
+	if (!Storage.Stash.CanFit(item)) {
+		this.sortStash(true);	//Force sort
+
+		if (!Storage.Stash.CanFit(item)) {	//Re-check after sorting
+			return false;
 		}
 	}
 
@@ -896,47 +887,22 @@ Town.stash = function (stashGold) {
 	return true;
 };
 
-Town.organizeStash = function () {
-	if (Storage.Stash.UsedSpacePercent() < 65) {
-		return true;
-	}
-
-	Town.move('stash');
-	let stashFit = { sizex: 6, sizey: 8 };
-
-	if (!Storage.Stash.CanFit(stashFit)) {
-		me.cancel();
-
-		let sorted, items = me.findItems(-1, 0, 7);
-
-		items.sort(function (a, b) {
-			return (b.sizex * b.sizey - a.sizex * a.sizey);
-		});
-
-		for (sorted = 0; sorted < items.length; sorted += 1) {
-			moveTo.Stash(items[sorted], true);
-		}
-	}
+Town.sortInventory = function () {
+	Storage.Inventory.SortItems(SetUp.sortSettings.ItemsSortedFromLeft, SetUp.sortSettings.ItemsSortedFromRight);
 
 	return true;
 };
 
-Town.organizeInventory = function () {
-	let invfit = { sizex: 4, sizey: 4 };
-
-	if (!Storage.Inventory.CanFit(invfit)) {
-		me.cancel();
-
-		let inv, items = me.findItems(-1, 0, 3);
-
-		items.sort(function (a, b) {
-			return (b.sizex * b.sizey - a.sizex * a.sizey);
-		});
-
-		for (inv = 0; inv < items.length; inv += 1) {
-			moveTo.Inventory(items[inv], true);
-		}
+Town.sortStash = function (force) {
+	if (force === undefined) {
+		force = false;
 	}
+
+	if (Storage.Stash.UsedSpacePercent() < 50 && !force) {
+		return true;
+	}
+
+	Storage.Stash.SortItems();
 
 	return true;
 };
@@ -1105,16 +1071,15 @@ Town.clearJunk = function () {
 	}
 
 	while (junk.length > 0) {
-		if ((junk[0].location === 7 || junk[0].location === 3) && // stash or inventory
-			!Pickit.checkItem(junk[0]).result === 1 && // Don't throw pickit wanted items
-			!Cubing.keepItem(junk[0]) && // Don't throw cubing ingredients
-			!Runewords.keepItem(junk[0]) && // Don't throw runeword ingredients
-			!CraftingSystem.keepItem(junk[0]) && // Don't throw crafting system ingredients
-			(Pickit.checkItem(junk[0]).result === 0 || Pickit.checkItem(junk[0]).result === 4) // only drop unwanted
+		if ((junk[0].location === 7 || junk[0].location === 3) // stash or inventory
+			&& [-1, 1, 2, 3, 5, 6].indexOf(Pickit.checkItem(junk[0]).result) < 0 // only drop unwanted
+			&& !Cubing.keepItem(junk[0]) // Don't throw cubing ingredients
+			&& !Runewords.keepItem(junk[0]) // Don't throw runeword ingredients
+			&& !CraftingSystem.keepItem(junk[0]) // Don't throw crafting system ingredients
 		) {
 			if (junk[0].drop()) {
 				me.overhead('cleared junk');
-				print("ÿc9솔로레벨링ÿc0 : Cleared junk - " + junk[0].name);
+				print("ÿc9SoloLevelingÿc0: Cleared junk - " + junk[0].name);
 				delay(50 + me.ping);
 			}
 		}
@@ -1135,7 +1100,7 @@ Town.clearJunk = function () {
 				junk[0].itemType !== 30 && junk[0].getStatEx(31) < rwBase.getStatEx(31)) { // only drop noneth armors helms shields
 				if (junk[0].drop()) {
 					me.overhead('cleared runeword junk');
-					print("ÿc9솔로레벨링ÿc0 : Cleared runeword junk - " + junk[0].name);
+					print("ÿc9SoloLevelingÿc0: Cleared runeword junk - " + junk[0].name);
 					delay(50 + me.ping);
 				}
 			}

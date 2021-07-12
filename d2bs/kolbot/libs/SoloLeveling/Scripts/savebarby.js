@@ -9,7 +9,7 @@ function savebarby () {
 	let barbies = [];
 
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting barbies');
+	print('ÿc9SoloLevelingÿc0: starting barbies');
 	me.overhead("barbies");
 
 	if (!Pather.checkWP(111)) {

@@ -200,11 +200,6 @@ Skill.getRange = function (skillId) {
 
 		return 6;
 	case 48: // Nova
-		if (this.usePvpRange) {
-			return 11;
-		}
-
-		return 7;
 	case 151: // Whirlwind
 		return 7;
 	case 92: // Poison Nova
@@ -368,7 +363,7 @@ Misc.townCheck = function () {
 	return false;
 };
 
-Misc.openChest = function(unit) {
+Misc.openChest = function (unit) {
 	// Skip invalid and Countess chests
 	if (!unit || unit.x === 12526 || unit.x === 12565) {
 		return false;
@@ -614,7 +609,7 @@ Misc.gamePacket = function (bytes) {// various game events
 			if (wave > -1) {
 				Misc.gamePause();
 				tick = getTickCount();
-				print('ÿc9솔로레벨링ÿc0 : baal wave #' + (wave + 1));
+				print('ÿc9SoloLevelingÿc0: baal wave #' + (wave + 1));
 				me.overhead("wave " + (wave + 1));
 
 				while (getTickCount() - tick < 6500) { //prep

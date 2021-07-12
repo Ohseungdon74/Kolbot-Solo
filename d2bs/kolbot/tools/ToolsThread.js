@@ -714,7 +714,6 @@ function main() {
 			}
 
 			this.checkPing(false); // In case of quitlist triggering first
-			delay(10000); //10초 딜레이
 			this.exit();
 
 			break;

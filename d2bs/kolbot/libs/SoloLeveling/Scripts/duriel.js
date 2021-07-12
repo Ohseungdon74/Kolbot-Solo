@@ -8,7 +8,7 @@ function duriel () {
 	Quest.preReqs();
 	Quest.cubeItems(91, 92, 521);
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting duriel');
+	print('ÿc9SoloLevelingÿc0: starting duriel');
 	me.overhead("duriel");
 
 	if (!Pather.checkWP(46)) {
@@ -23,7 +23,7 @@ function duriel () {
 	Attack.securePosition(me.x, me.y, 30, 3000, true, me.hell);
 	Quest.placeStaff();
 	Town.doChores();
-	Town.buyPots(10, "Thawing"); // thawing
+	Town.buyPots(8, "Thawing"); // thawing
 	Town.drinkPots();
 	Config.MercWatch = false;
 	Pather.usePortal(null, me.name);

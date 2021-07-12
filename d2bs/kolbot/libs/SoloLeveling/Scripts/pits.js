@@ -6,7 +6,7 @@
 
 function pits () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting pits');
+	print('ÿc9SoloLevelingÿc0: starting pits');
 	me.overhead("pits");
 
 	if (!Pather.checkWP(6)) {
@@ -18,13 +18,13 @@ function pits () {
 	Precast.doPrecast(true);
 
 	if (!Pather.moveToExit([7, 12], true)) {
-		print("ÿc9솔로레벨링ÿc0 : Failed to move to Pit level 1");
+		print("ÿc9SoloLevelingÿc0: Failed to move to Pit level 1");
 	}
 
 	Attack.clearLevel();
 
 	if (!Pather.moveToExit(16, true)) {
-		print("ÿc9솔로레벨링ÿc0 : Failed to move to Pit level 2");
+		print("ÿc9SoloLevelingÿc0: Failed to move to Pit level 2");
 	}
 
 	Attack.clearLevel();

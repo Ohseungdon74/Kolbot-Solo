@@ -6,7 +6,7 @@
 
 function cube () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting cube');
+	print('ÿc9SoloLevelingÿc0: starting cube');
 	me.overhead("cube");
 
 	if (!Pather.checkWP(57)) {

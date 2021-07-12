@@ -12,11 +12,8 @@ function BoneAsh() {
 	if (!Pather.moveTo(20047, 4898)) {
 		throw new Error("Failed to move to Bone Ash");
 	}
-	
-	if (Config.OpenChests) {
-		Misc.openChestsInArea();
-	}
-	//Attack.kill(getLocaleString(2878)); // Bone Ash
+
+	Attack.kill(getLocaleString(2878)); // Bone Ash
 	Pickit.pickItems();
 
 	return true;

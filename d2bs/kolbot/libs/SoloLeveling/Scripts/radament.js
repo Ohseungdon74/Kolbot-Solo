@@ -6,7 +6,7 @@
 
 function radament () {
 	Town.townTasks();
-	print('ÿc9솔로레벨링ÿc0 : starting radament');
+	print('ÿc9SoloLevelingÿc0: starting radament');
 	me.overhead("radament");
 
 	if (!Pather.checkWP(48)) {
