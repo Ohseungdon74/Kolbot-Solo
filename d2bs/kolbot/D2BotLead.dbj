@@ -266,7 +266,7 @@ function main() {
 		if (!!DataFile.getStats().debugInfo) {
 			gameInfo.crashInfo = DataFile.getStats().debugInfo;
 
-			D2Bot.printToConsole("Crash Info: Script: " + JSON.parse(gameInfo.crashInfo).currScript + " Area: " + JSON.parse(gameInfo.crashInfo).area, 10);
+			D2Bot.printToConsole("충돌: " + JSON.parse(gameInfo.crashInfo).currScript + ", 지역: " + JSON.parse(gameInfo.crashInfo).area + ", 방제: " + gameInfo.gameName + gameCount, 10);
 		}
 
 		/*if (gameInfo.crashInfo) {
