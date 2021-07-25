@@ -111,7 +111,6 @@ var ClassAttack = {
 		}
 
 		result = this.doCast(unit, timedSkill, untimedSkill);
-
 		if (result === 2 && Config.TeleStomp && Attack.checkResist(unit, "physical") && !!me.getMerc() && Attack.validSpot(unit.x, unit.y)) {
 			while (Attack.checkMonster(unit)) {
 				if (Town.needMerc()) {
@@ -121,10 +120,10 @@ var ClassAttack = {
 						return 2;
 					}
 				}
-
-				if (getDistance(me, unit) > 3) {
+				//몹과 거리가 멀어지면 근접
+/* 				if (getDistance(me, unit) > 3) {
 					Pather.moveToUnit(unit);
-				}
+				} */
 
 				this.doCast(unit, Config.AttackSkill[1], Config.AttackSkill[2]);
 			}
